@@ -230,6 +230,7 @@
 		50FC0D2E14E3D44300F28648 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShowcaseDemo/ShowcaseDemo-Info.plist";
@@ -241,6 +242,7 @@
 		50FC0D2F14E3D44300F28648 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShowcaseDemo/ShowcaseDemo-Info.plist";
