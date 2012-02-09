@@ -1,0 +1,3 @@
+[submodule "Libraries/GMGridView"]
+	path = Libraries/GMGridView
+	url = git://github.com/gmoledina/GMGridView.git
