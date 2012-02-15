@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5093F23114E53058004DC805 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E607E214E441D70060662D /* libGMGridView.a */; };
+		5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5093F25414E538A5004DC805 /* QuartzCore.framework */; };
 		50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1914E3D44300F28648 /* UIKit.framework */; };
 		50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1B14E3D44300F28648 /* Foundation.framework */; };
 		50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */; };
@@ -15,7 +17,26 @@
 		50FC0D2A14E3D44300F28648 /* PTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC0D2914E3D44300F28648 /* PTAppDelegate.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5093F24514E5307B004DC805 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50E607DA14E441D60060662D /* GMGridView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 78509311149FAC2E000787E4;
+			remoteInfo = GMGridView;
+		};
+		50E607E114E441D70060662D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50E607DA14E441D60060662D /* GMGridView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 78509312149FAC2E000787E4;
+			remoteInfo = GMGridView;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		5093F25414E538A5004DC805 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		50E607DA14E441D60060662D /* GMGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GMGridView.xcodeproj; path = ../../Libraries/GMGridView/GMGridView/GMGridView.xcodeproj; sourceTree = "<group>"; };
 		50FC0D1514E3D44300F28648 /* ShowcaseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowcaseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FC0D1914E3D44300F28648 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50FC0D1B14E3D44300F28648 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -33,15 +54,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5093F23114E53058004DC805 /* libGMGridView.a in Frameworks */,
 				50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */,
 				50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */,
 				50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */,
+				5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5093F21314E51E07004DC805 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				50E607DA14E441D60060662D /* GMGridView.xcodeproj */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		50A7967014E3D95E002B9117 /* PTShowcaseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -50,11 +81,20 @@
 			path = ../../PTShowcaseViewController;
 			sourceTree = "<group>";
 		};
+		50E607DB14E441D60060662D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50E607E214E441D70060662D /* libGMGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		50FC0D0A14E3D44300F28648 = {
 			isa = PBXGroup;
 			children = (
 				50FC0D1F14E3D44300F28648 /* ShowcaseDemo */,
 				50A7967014E3D95E002B9117 /* PTShowcaseViewController */,
+				5093F21314E51E07004DC805 /* Libraries */,
 				50FC0D1814E3D44300F28648 /* Frameworks */,
 				50FC0D1614E3D44300F28648 /* Products */,
 			);
@@ -74,6 +114,7 @@
 				50FC0D1914E3D44300F28648 /* UIKit.framework */,
 				50FC0D1B14E3D44300F28648 /* Foundation.framework */,
 				50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */,
+				5093F25414E538A5004DC805 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,6 +154,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5093F24614E5307B004DC805 /* PBXTargetDependency */,
 			);
 			name = ShowcaseDemo;
 			productName = ShowcaseDemo;
@@ -138,12 +180,28 @@
 			mainGroup = 50FC0D0A14E3D44300F28648;
 			productRefGroup = 50FC0D1614E3D44300F28648 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 50E607DB14E441D60060662D /* Products */;
+					ProjectRef = 50E607DA14E441D60060662D /* GMGridView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				50FC0D1414E3D44300F28648 /* ShowcaseDemo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		50E607E214E441D70060662D /* libGMGridView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGMGridView.a;
+			remoteRef = 50E607E114E441D70060662D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		50FC0D1314E3D44300F28648 /* Resources */ = {
@@ -167,6 +225,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5093F24614E5307B004DC805 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GMGridView;
+			targetProxy = 5093F24514E5307B004DC805 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		50FC0D2214E3D44300F28648 /* InfoPlist.strings */ = {
@@ -200,6 +266,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Libraries/GMGridView/GMGridView\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -219,6 +286,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Libraries/GMGridView/GMGridView\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
