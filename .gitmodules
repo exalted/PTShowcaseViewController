@@ -1,3 +1,6 @@
 [submodule "Libraries/GMGridView"]
 	path = Libraries/GMGridView
 	url = git://github.com/gmoledina/GMGridView.git
+[submodule "Libraries/nimbus"]
+	path = Libraries/nimbus
+	url = git://github.com/jverkoey/nimbus.git
