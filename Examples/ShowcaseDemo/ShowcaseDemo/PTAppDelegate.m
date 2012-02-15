@@ -8,15 +8,31 @@
 
 #import "PTAppDelegate.h"
 
+#import "PTDemoViewController.h"
+
 @implementation PTAppDelegate
 
 @synthesize window = _window;
+
+@synthesize navController = _navController;
+@synthesize viewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    [UINavigationBar.appearance setBarStyle:UIBarStyleBlack];
+    
+    ////////////////////////////////////////////////////////////////////////////
+
+    self.viewController = [[PTDemoViewController alloc] init];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    
+    self.window.rootViewController = self.navController;
+
+    ////////////////////////////////////////////////////////////////////////////
+
     [self.window makeKeyAndVisible];
     return YES;
 }
