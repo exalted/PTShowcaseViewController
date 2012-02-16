@@ -17,5 +17,6 @@
 @required
 - (NSInteger)numberOfItemsInShowcaseView:(PTShowcaseView *)showcaseView;
 - (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index;
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index;
 
 @end

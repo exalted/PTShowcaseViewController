@@ -11,21 +11,27 @@
 #import "GMGridView.h"
 #import "GMGridViewLayoutStrategies.h"
 
-#import "PTShowcaseView.h"
+#import "NimbusCore.h"
+#import "NimbusNetworkImage.h"
 
-// TODO remove unnecessary import statement
-#import <QuartzCore/QuartzCore.h>
+#import "PTShowcaseView.h"
 
 #define PREVIEW_SIZE_PHONE   CGSizeMake(75.0, 75.0)
 #define PREVIEW_SIZE_PAD     CGSizeMake(120.0, 180.0)
 
-@interface PTShowcaseViewController () <GMGridViewDataSource>
+@interface PTShowcaseViewController () <GMGridViewDataSource, NINetworkImageViewDelegate>
 
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView setCellWithImage:(UIImage *)image inOrientation:(PTItemOrientation)orientation;
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView imageCellWithImage:(UIImage *)image inOrientation:(PTItemOrientation)orientation;
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithImage:(UIImage *)image;
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithImage:(UIImage *)image inOrientation:(PTItemOrientation)orientation;
+
+// Supported cells for content types
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForContentType:(PTContentType)contentType withOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView setCellWithOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView imageCellWithOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithOrientation:(PTItemOrientation)orientation;
+
+// Methods generating thumbnails for content types
+- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType atPath:(NSString *)path;
 
 @end
 
@@ -111,7 +117,43 @@
     }
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView setCellWithImage:(UIImage *)image inOrientation:(PTItemOrientation)orientation;
+/* =============================================================================
+ * Supported cells for content types
+ * =============================================================================
+ */
+#define THUMBNAIL_TAG 1
+
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForContentType:(PTContentType)contentType withOrientation:(PTItemOrientation)orientation
+{
+    switch (contentType)
+    {
+        case PTContentTypeSet:
+        {
+            return [self GMGridView:gridView setCellWithOrientation:orientation];
+        }
+            
+        case PTContentTypeImage:
+        {
+            return [self GMGridView:gridView imageCellWithOrientation:orientation];
+        }
+            
+        case PTContentTypeVideo:
+        {
+            return [self GMGridView:gridView videoCellWithOrientation:orientation];
+        }
+            
+        case PTContentTypePdf:
+        {
+            return [self GMGridView:gridView pdfCellWithOrientation:orientation];
+        }
+            
+        default: NSAssert(NO, @"Unknown content-type.");
+    }
+    
+    return nil;
+}
+
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView setCellWithOrientation:(PTItemOrientation)orientation;
 {
     NSString *cellIdentifier = orientation == PTItemOrientationPortrait ? @"SetPortraitCell" : @"SetLandscapeCell";
 
@@ -120,30 +162,36 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = cellIdentifier;
         
-        NSString *imageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png",
-                               @"item-set",
-                               orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        // Back Image
         
-        CGRect imageViewFrame = orientation == PTItemOrientationPortrait
+        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-set",
+                                   orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
         ? CGRectMake(-16.5, -15.0, 154.0, 158.0)
         : CGRectMake(-18.5, -15.0, 155.0, 158.0);
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
-        imageView.image = [UIImage imageNamed:imageName];
-        [cell addSubview:imageView];
+        UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
+        backImageView.image = [UIImage imageNamed:backImageName];
+        [cell addSubview:backImageView];
         
-        // TODO missing implementation
-        UIView *foo = [[UIView alloc] initWithFrame:orientation == PTItemOrientationPortrait ? CGRectMake(15.0, 0.0, 90.0, 120.0) : CGRectMake(0.0, 15.0, 120.0, 90.0)];
-        foo.backgroundColor = [UIColor lightGrayColor];
-        [cell addSubview:foo];
+        // Thumbnail
+        
+        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-set-loading",
+                                      orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
+        ? CGRectMake(15.0, 0.0, 90.0, 120.0)
+        : CGRectMake(0.0, 15.0, 120.0, 90.0);
+        
+        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+        thumbnailView.tag = THUMBNAIL_TAG;
+        thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+        [cell addSubview:thumbnailView];
     }
-    
-    // Configure the cell...
     
     return cell;
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView imageCellWithImage:(UIImage *)image inOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView imageCellWithOrientation:(PTItemOrientation)orientation;
 {
     NSString *cellIdentifier = orientation == PTItemOrientationPortrait ? @"ImagePortraitCell" : @"ImageLandscapeCell";
 
@@ -152,30 +200,36 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = cellIdentifier;
         
-        NSString *imageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png",
-                               @"image-frame",
-                               orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        // Back Image
         
-        CGRect imageViewFrame = orientation == PTItemOrientationPortrait
+        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-frame",
+                                   orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
         ? CGRectMake(8.5, -4.5, 103.0, 137.0)
         : CGRectMake(-6.5, 11.0, 133.0, 107.0);
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
-        imageView.image = [UIImage imageNamed:imageName];
-        [cell addSubview:imageView];
+        UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
+        backImageView.image = [UIImage imageNamed:backImageName];
+        [cell addSubview:backImageView];
         
-        // TODO missing implementation
-        UIView *foo = [[UIView alloc] initWithFrame:orientation == PTItemOrientationPortrait ? CGRectMake(15.0, 0.0, 90.0, 120.0) : CGRectMake(0.0, 15.0, 120.0, 90.0)];
-        foo.backgroundColor = [UIColor lightGrayColor];
-        [cell addSubview:foo];
+        // Thumbnail
+        
+        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-loading",
+                                      orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
+        ? CGRectMake(15.0, 0.0, 90.0, 120.0)
+        : CGRectMake(0.0, 15.0, 120.0, 90.0);
+        
+        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+        thumbnailView.tag = THUMBNAIL_TAG;
+        thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+        [cell addSubview:thumbnailView];
     }
-    
-    // Configure the cell...
     
     return cell;
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithImage:(UIImage *)image;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithOrientation:(PTItemOrientation)orientation;
 {
     static NSString *CellIdentifier = @"VideoCell";
 
@@ -183,7 +237,18 @@
     if (cell == nil) {
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = CellIdentifier;
-
+        
+        // Blank White View
+        
+        UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 35.0, 80.0, 50.0)];
+        whiteView.backgroundColor = [UIColor whiteColor];
+        [cell addSubview:whiteView];
+        
+        // Thumbnail
+        
+        NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
+        CGRect loadingImageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
+        
         CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
         CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
                                                CGImageGetHeight(maskImageRef),
@@ -193,29 +258,23 @@
                                                CGImageGetDataProvider(maskImageRef),
                                                NULL,
                                                NO);
-        CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], maskRef);
+        CGImageRef maskedImageRef = CGImageCreateWithMask([[UIImage imageNamed:loadingImageName] CGImage], maskRef);
         CGImageRelease(maskRef);
-
+        
         UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
         CGImageRelease(maskedImageRef);
-
-        CGRect imageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
         
-        UIView *blankView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 35.0, 80.0, 50.0)];
-        blankView.backgroundColor = [UIColor whiteColor];
-        [cell addSubview:blankView];
-
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
-        imageView.image = maskedImage;
-        [cell addSubview:imageView];
+        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+        thumbnailView.tag = THUMBNAIL_TAG;
+        thumbnailView.delegate = self;
+        thumbnailView.initialImage = maskedImage;
+        [cell addSubview:thumbnailView];
     }
-    
-    // Configure the cell...
     
     return cell;
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithImage:(UIImage *)image inOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithOrientation:(PTItemOrientation)orientation;
 {
     NSString *cellIdentifier = orientation == PTItemOrientationPortrait ? @"PdfPortraitCell" : @"PdfLandscapeCell";
 
@@ -224,27 +283,75 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = cellIdentifier;
         
-        NSString *imageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png",
-                               @"document-pages",
-                               orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        // Back Image
         
-        CGRect imageViewFrame = orientation == PTItemOrientationPortrait
+        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-pages",
+                                   orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
         ? CGRectMake(4.0, -11.0, 116.0, 146.0)
         : CGRectMake(-26.0, -11.0, 176.0, 146.0);
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewFrame];
-        imageView.image = [UIImage imageNamed:imageName];
-        [cell addSubview:imageView];
+        UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
+        backImageView.image = [UIImage imageNamed:backImageName];
+        [cell addSubview:backImageView];
         
-        // TODO missing implementation
-        UIView *foo = [[UIView alloc] initWithFrame:orientation == PTItemOrientationPortrait ? CGRectMake(15.0, 0.0, 90.0, 120.0) : CGRectMake(0.0, 15.0, 120.0, 90.0)];
-        foo.backgroundColor = [UIColor lightGrayColor];
-        [cell addSubview:foo];
+        // Thumbnail
+        
+        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-pages-loading",
+                                      orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+        CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
+        ? CGRectMake(15.0, 0.0, 90.0, 120.0)
+        : CGRectMake(0.0, 15.0, 120.0, 90.0);
+        
+        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+        thumbnailView.tag = THUMBNAIL_TAG;
+        thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+        [cell addSubview:thumbnailView];
     }
     
-    // Configure the cell...
-    
     return cell;
+}
+
+/* =============================================================================
+ * Methods generating thumbnails for content types
+ * =============================================================================
+ */
+- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType atPath:(NSString *)path
+{
+    thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    switch (contentType)
+    {
+        case PTContentTypeSet:
+        {
+            // TODO missing implementation
+            [thumbnailView setPathToNetworkImage:path];
+            break;
+        }
+            
+        case PTContentTypeImage:
+        {
+            // TODO missing implementation
+            [thumbnailView setPathToNetworkImage:path];
+            break;
+        }
+            
+        case PTContentTypeVideo:
+        {
+            // TODO missing implementation
+            [thumbnailView setPathToNetworkImage:path];
+            break;
+        }
+            
+        case PTContentTypePdf:
+        {
+            // TODO missing implementation
+            [thumbnailView setPathToNetworkImage:path];
+            break;
+        }
+            
+        default: NSAssert(NO, @"Unknown content-type.");
+    }
 }
 
 #pragma mark - GMGridViewDataSource
@@ -265,57 +372,44 @@
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
+    // Ask datasource and delegate for 'content-type' and 'orientation' for current item
     PTContentType contentType = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView contentTypeForItemAtIndex:index];
     PTItemOrientation orientation = [self.showcaseView.showcaseDelegate showcaseView:self.showcaseView orientationForItemAtIndex:index];
-    
-    GMGridViewCell *cell = nil;
-    switch (contentType)
-    {
-        case PTContentTypeSet:
-        {
-            // TODO missing implementation 'image = nil'
-            cell = [self GMGridView:gridView setCellWithImage:nil inOrientation:orientation];
-            break;
-        }
-            
-        case PTContentTypeImage:
-        {
-            // TODO missing implementation 'image = nil'
-            cell = [self GMGridView:gridView imageCellWithImage:nil inOrientation:orientation];
-            break;
-        }
-            
-        case PTContentTypeVideo:
-        {
-            // TODO missing implementation 'image = nil'
-            
-            UIView *foo = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 120.0, 90.0)];
-            foo.backgroundColor = [UIColor lightGrayColor];
-            
-            UIGraphicsBeginImageContext(foo.bounds.size);
-            [foo.layer renderInContext:UIGraphicsGetCurrentContext()];
-            UIImage *fooImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            cell = [self GMGridView:gridView videoCellWithImage:fooImage];
-            break;
-        }
-            
-        case PTContentTypePdf:
-        {
-            // TODO missing implementation 'image = nil'
-            cell = [self GMGridView:gridView pdfCellWithImage:nil inOrientation:orientation];
-            break;
-        }
-            
-        default: NSAssert(NO, @"Unknown content-type.");
-    }
+
+    // Generate a cell for that
+    GMGridViewCell *cell = [self GMGridView:gridView cellForContentType:contentType withOrientation:orientation];
+
+    // Ask datasource where to find it (fetch if necessary)
+    NSString *path = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView pathForItemAtIndex:index];
     
     // Configure the cell...
+    [self thumbnailView:(NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG] setImageForContentType:contentType atPath:path];
     
 //    cell.backgroundColor = [UIColor greenColor];
     
     return cell;
+}
+
+#pragma mark - NINetworkImageViewDelegate
+
+- (void)networkImageView:(NINetworkImageView *)imageView didLoadImage:(UIImage *)image
+{
+    CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
+    CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
+                                           CGImageGetHeight(maskImageRef),
+                                           CGImageGetBitsPerComponent(maskImageRef),
+                                           CGImageGetBitsPerPixel(maskImageRef),
+                                           CGImageGetBytesPerRow(maskImageRef),
+                                           CGImageGetDataProvider(maskImageRef),
+                                           NULL,
+                                           NO);
+    CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], maskRef);
+    CGImageRelease(maskRef);
+    
+    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
+    CGImageRelease(maskedImageRef);
+    
+    imageView.image = maskedImage;
 }
 
 #pragma mark - PTShowcaseViewDelegate
@@ -337,6 +431,12 @@
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:contentTypeForItemAtIndex:'");
     return -1;
+}
+
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index
+{
+    NSAssert(NO, @"missing required method implementation 'showcaseView:pathForItemAtIndex:'");
+    return nil;
 }
 
 @end
