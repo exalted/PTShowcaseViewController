@@ -4,3 +4,6 @@
 [submodule "Libraries/nimbus"]
 	path = Libraries/nimbus
 	url = git://github.com/jverkoey/nimbus.git
+[submodule "Libraries/PTImageAlbumViewController"]
+	path = Libraries/PTImageAlbumViewController
+	url = /Users/adonmez/dev/xcode/PTImageAlbumViewController.git
