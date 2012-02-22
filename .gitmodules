@@ -7,3 +7,6 @@
 [submodule "Libraries/PTImageAlbumViewController"]
 	path = Libraries/PTImageAlbumViewController
 	url = git://github.com/exalted/PTImageAlbumViewController.git
+[submodule "Libraries/SDURLCache"]
+	path = Libraries/SDURLCache
+	url = git://github.com/rs/SDURLCache.git
