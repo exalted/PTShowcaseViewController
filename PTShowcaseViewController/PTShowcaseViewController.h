@@ -15,6 +15,6 @@
 
 @interface PTShowcaseViewController : UIViewController <PTShowcaseViewDelegate, PTShowcaseViewDataSource>
 
-@property(nonatomic, retain) PTShowcaseView *showcaseView;
+@property (nonatomic, retain) PTShowcaseView *showcaseView;
 
 @end

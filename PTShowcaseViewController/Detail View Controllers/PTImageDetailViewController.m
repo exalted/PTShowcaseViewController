@@ -66,11 +66,13 @@
 
 - (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
 {
+    // TODO missing implementation
     return CGSizeMake(150.0, 100.0);
 }
 
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
+    // TODO missing implementation
     return [[self.images objectAtIndex:index] objectForKey:@"source"];
 }
 

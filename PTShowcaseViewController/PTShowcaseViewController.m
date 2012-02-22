@@ -19,8 +19,6 @@
 
 @interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate, NINetworkImageViewDelegate>
 
-@property (nonatomic, retain) NSMutableArray *itemsInfo;
-
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 // Supported cells for content types
@@ -38,9 +36,6 @@
 @implementation PTShowcaseViewController
 
 @synthesize showcaseView = _showcaseView;
-
-// private
-@synthesize itemsInfo = _itemsInfo;
 
 - (id)init
 {
@@ -78,10 +73,12 @@
 
     self.showcaseView.showcaseDelegate = self;
     self.showcaseView.showcaseDataSource = self;
-
+    
     // Internal
     self.showcaseView.dataSource = self;
     self.showcaseView.actionDelegate = self;
+    
+    [self.showcaseView reloadData];
 }
 
 - (void)viewDidUnload
@@ -257,6 +254,7 @@
         NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
         CGRect loadingImageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
         
+        // TODO remove duplicate: 'networkImageView:didLoadImage:'
         CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
         CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
                                                CGImageGetHeight(maskImageRef),
@@ -366,15 +364,7 @@
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    NSInteger numberOfItems = [self.showcaseView.showcaseDataSource numberOfItemsInShowcaseView:self.showcaseView];
-    
-    // Create an items' info array for reusing
-    self.itemsInfo = [NSMutableArray arrayWithCapacity:numberOfItems];
-    for (NSInteger i = 0; i < numberOfItems; i++) {
-        [self.itemsInfo addObject:[NSMutableDictionary dictionary]];
-    }
-    
-    return numberOfItems;
+    return [self.showcaseView numberOfImages];
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -388,20 +378,12 @@
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
-    // Ask datasource and delegate for 'content-type' and 'orientation' for current item
-    PTContentType contentType = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView contentTypeForItemAtIndex:index];
-    PTItemOrientation orientation = [self.showcaseView.showcaseDelegate showcaseView:self.showcaseView orientationForItemAtIndex:index];
-
-    // Save these
-    [[self.itemsInfo objectAtIndex:index] setObject:[NSNumber numberWithInteger:contentType] forKey:@"contentType"];
-    [[self.itemsInfo objectAtIndex:index] setObject:[NSNumber numberWithInteger:orientation] forKey:@"orientation"];
+    PTContentType contentType = [self.showcaseView contentTypeForImageAtIndex:index];
+    PTItemOrientation orientation = [self.showcaseView orientationForImageAtIndex:index];
+    NSString *source = [self.showcaseView sourceForImageAtIndex:index];
 
     // Generate a cell
     GMGridViewCell *cell = [self GMGridView:gridView cellForContentType:contentType withOrientation:orientation];
-
-    // Ask datasource where to find it (fetch if necessary) and save
-    NSString *source = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView sourceForItemAtIndex:index];
-    [[self.itemsInfo objectAtIndex:index] setObject:source forKey:@"source"];
 
     // Configure the cell...
     [self thumbnailView:(NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG] createImageForContentType:contentType withSource:source];
@@ -415,7 +397,7 @@
 
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
-    PTContentType contentType = [[[self.itemsInfo objectAtIndex:position] objectForKey:@"contentType"] integerValue];
+    PTContentType contentType = [self.showcaseView contentTypeForImageAtIndex:position];
 
     switch (contentType)
     {
@@ -428,9 +410,9 @@
         case PTContentTypeImage:
         {
             PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] init];
-            detailViewController.images = [self.itemsInfo filteredArrayUsingPredicate:
-                                           [NSPredicate predicateWithFormat:@"contentType = %d", PTContentTypeImage]];
+            detailViewController.images = self.showcaseView.imageItems;
             
+            // TODO fade in/out (just like in Photos.app in the iPad) instead of a simple push
             [self.navigationController pushViewController:detailViewController animated:YES];
 
             break;
