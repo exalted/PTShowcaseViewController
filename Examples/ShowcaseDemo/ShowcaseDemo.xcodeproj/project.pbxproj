@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		505AE85A14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE84F14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.m */; };
+		505AE85B14ED5FF900BBFC05 /* NIPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE85314ED5FF900BBFC05 /* NIPhotoScrollView.m */; };
+		505AE85C14ED5FF900BBFC05 /* NIPhotoScrubberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE85714ED5FF900BBFC05 /* NIPhotoScrubberView.m */; };
+		505AE85D14ED5FF900BBFC05 /* NIToolbarPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE85914ED5FF900BBFC05 /* NIToolbarPhotoViewController.m */; };
+		505AE86814ED608000BBFC05 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE86214ED608000BBFC05 /* NIPageView.m */; };
+		505AE86914ED608000BBFC05 /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE86414ED608000BBFC05 /* NIPagingScrollView.m */; };
+		505AE96314ED785700BBFC05 /* PTImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */; };
+		508F7CFC14EEA26A000140D6 /* PTImageAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CFA14EEA26A000140D6 /* PTImageAlbumView.m */; };
+		508F7D0014EEA358000140D6 /* PTImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CFF14EEA358000140D6 /* PTImageDetailViewController.m */; };
+		508F7D0614EEB066000140D6 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 508F7D0514EEB066000140D6 /* NimbusPhotos.bundle */; };
+		50918CD114F508A00005AD9C /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50918CD014F508A00005AD9C /* SDURLCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50925E0214F4032D009A05D1 /* NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50925E0114F4032D009A05D1 /* NetworkPhotoAlbumViewController.m */; };
 		5093F23114E53058004DC805 /* libGMGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E607E214E441D70060662D /* libGMGridView.a */; };
 		5093F24E14E532F1004DC805 /* PTShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F24D14E532F1004DC805 /* PTShowcaseViewController.m */; };
 		5093F25314E53496004DC805 /* PTShowcaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F25214E53496004DC805 /* PTShowcaseView.m */; };
@@ -61,6 +73,41 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		505AE84C14ED5FF900BBFC05 /* NimbusPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusPhotos.h; path = ../../Libraries/nimbus/src/photos/src/NimbusPhotos.h; sourceTree = "<group>"; };
+		505AE84D14ED5FF900BBFC05 /* NimbusPhotos+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusPhotos+Namespace.h"; path = "../../Libraries/nimbus/src/photos/src/NimbusPhotos+Namespace.h"; sourceTree = "<group>"; };
+		505AE84E14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoAlbumScrollView.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoAlbumScrollView.h; sourceTree = "<group>"; };
+		505AE84F14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoAlbumScrollView.m; path = ../../Libraries/nimbus/src/photos/src/NIPhotoAlbumScrollView.m; sourceTree = "<group>"; };
+		505AE85014ED5FF900BBFC05 /* NIPhotoAlbumScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoAlbumScrollViewDataSource.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoAlbumScrollViewDataSource.h; sourceTree = "<group>"; };
+		505AE85114ED5FF900BBFC05 /* NIPhotoAlbumScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoAlbumScrollViewDelegate.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoAlbumScrollViewDelegate.h; sourceTree = "<group>"; };
+		505AE85214ED5FF900BBFC05 /* NIPhotoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrollView.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrollView.h; sourceTree = "<group>"; };
+		505AE85314ED5FF900BBFC05 /* NIPhotoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrollView.m; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrollView.m; sourceTree = "<group>"; };
+		505AE85414ED5FF900BBFC05 /* NIPhotoScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrollViewDelegate.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrollViewDelegate.h; sourceTree = "<group>"; };
+		505AE85514ED5FF900BBFC05 /* NIPhotoScrollViewPhotoSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrollViewPhotoSize.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrollViewPhotoSize.h; sourceTree = "<group>"; };
+		505AE85614ED5FF900BBFC05 /* NIPhotoScrubberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPhotoScrubberView.h; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrubberView.h; sourceTree = "<group>"; };
+		505AE85714ED5FF900BBFC05 /* NIPhotoScrubberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPhotoScrubberView.m; path = ../../Libraries/nimbus/src/photos/src/NIPhotoScrubberView.m; sourceTree = "<group>"; };
+		505AE85814ED5FF900BBFC05 /* NIToolbarPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIToolbarPhotoViewController.h; path = ../../Libraries/nimbus/src/photos/src/NIToolbarPhotoViewController.h; sourceTree = "<group>"; };
+		505AE85914ED5FF900BBFC05 /* NIToolbarPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIToolbarPhotoViewController.m; path = ../../Libraries/nimbus/src/photos/src/NIToolbarPhotoViewController.m; sourceTree = "<group>"; };
+		505AE85F14ED608000BBFC05 /* NimbusPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NimbusPagingScrollView.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NimbusPagingScrollView.h; sourceTree = "<group>"; };
+		505AE86014ED608000BBFC05 /* NimbusPagingScrollView+Namespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NimbusPagingScrollView+Namespace.h"; path = "../../Libraries/nimbus/src/pagingscrollview/src/NimbusPagingScrollView+Namespace.h"; sourceTree = "<group>"; };
+		505AE86114ED608000BBFC05 /* NIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPageView.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPageView.h; sourceTree = "<group>"; };
+		505AE86214ED608000BBFC05 /* NIPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPageView.m; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPageView.m; sourceTree = "<group>"; };
+		505AE86314ED608000BBFC05 /* NIPagingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollView.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPagingScrollView.h; sourceTree = "<group>"; };
+		505AE86414ED608000BBFC05 /* NIPagingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NIPagingScrollView.m; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPagingScrollView.m; sourceTree = "<group>"; };
+		505AE86514ED608000BBFC05 /* NIPagingScrollViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDataSource.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPagingScrollViewDataSource.h; sourceTree = "<group>"; };
+		505AE86614ED608000BBFC05 /* NIPagingScrollViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewDelegate.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPagingScrollViewDelegate.h; sourceTree = "<group>"; };
+		505AE86714ED608000BBFC05 /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = "<group>"; };
+		505AE96114ED785700BBFC05 /* PTImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewController.h; sourceTree = "<group>"; };
+		505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumViewController.m; sourceTree = "<group>"; };
+		508F7CF914EEA26A000140D6 /* PTImageAlbumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumView.h; sourceTree = "<group>"; };
+		508F7CFA14EEA26A000140D6 /* PTImageAlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumView.m; sourceTree = "<group>"; };
+		508F7CFB14EEA26A000140D6 /* PTImageAlbumViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewDataSource.h; sourceTree = "<group>"; };
+		508F7CFE14EEA358000140D6 /* PTImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageDetailViewController.h; sourceTree = "<group>"; };
+		508F7CFF14EEA358000140D6 /* PTImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageDetailViewController.m; sourceTree = "<group>"; };
+		508F7D0514EEB066000140D6 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = ../../Libraries/nimbus/src/photos/resources/NimbusPhotos.bundle; sourceTree = "<group>"; };
+		50918CCF14F508A00005AD9C /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDURLCache.h; path = ../../Libraries/SDURLCache/SDURLCache.h; sourceTree = "<group>"; };
+		50918CD014F508A00005AD9C /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = ../../Libraries/SDURLCache/SDURLCache.m; sourceTree = "<group>"; };
+		50925E0014F4032D009A05D1 /* NetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkPhotoAlbumViewController.h; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/NetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
+		50925E0114F4032D009A05D1 /* NetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkPhotoAlbumViewController.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/NetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
 		5093F24C14E532F1004DC805 /* PTShowcaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcaseViewController.h; sourceTree = "<group>"; };
 		5093F24D14E532F1004DC805 /* PTShowcaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTShowcaseViewController.m; sourceTree = "<group>"; };
 		5093F24F14E53375004DC805 /* PTShowcaseViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcaseViewDelegate.h; sourceTree = "<group>"; };
@@ -153,11 +200,92 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		505AE84B14ED5FD900BBFC05 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				508F7D0514EEB066000140D6 /* NimbusPhotos.bundle */,
+				505AE84C14ED5FF900BBFC05 /* NimbusPhotos.h */,
+				505AE84D14ED5FF900BBFC05 /* NimbusPhotos+Namespace.h */,
+				505AE84E14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.h */,
+				505AE84F14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.m */,
+				505AE85014ED5FF900BBFC05 /* NIPhotoAlbumScrollViewDataSource.h */,
+				505AE85114ED5FF900BBFC05 /* NIPhotoAlbumScrollViewDelegate.h */,
+				505AE85214ED5FF900BBFC05 /* NIPhotoScrollView.h */,
+				505AE85314ED5FF900BBFC05 /* NIPhotoScrollView.m */,
+				505AE85414ED5FF900BBFC05 /* NIPhotoScrollViewDelegate.h */,
+				505AE85514ED5FF900BBFC05 /* NIPhotoScrollViewPhotoSize.h */,
+				505AE85614ED5FF900BBFC05 /* NIPhotoScrubberView.h */,
+				505AE85714ED5FF900BBFC05 /* NIPhotoScrubberView.m */,
+				505AE85814ED5FF900BBFC05 /* NIToolbarPhotoViewController.h */,
+				505AE85914ED5FF900BBFC05 /* NIToolbarPhotoViewController.m */,
+			);
+			name = Photos;
+			sourceTree = "<group>";
+		};
+		505AE85E14ED601E00BBFC05 /* Paging Scroll View */ = {
+			isa = PBXGroup;
+			children = (
+				505AE85F14ED608000BBFC05 /* NimbusPagingScrollView.h */,
+				505AE86014ED608000BBFC05 /* NimbusPagingScrollView+Namespace.h */,
+				505AE86114ED608000BBFC05 /* NIPageView.h */,
+				505AE86214ED608000BBFC05 /* NIPageView.m */,
+				505AE86314ED608000BBFC05 /* NIPagingScrollView.h */,
+				505AE86414ED608000BBFC05 /* NIPagingScrollView.m */,
+				505AE86514ED608000BBFC05 /* NIPagingScrollViewDataSource.h */,
+				505AE86614ED608000BBFC05 /* NIPagingScrollViewDelegate.h */,
+				505AE86714ED608000BBFC05 /* NIPagingScrollViewPage.h */,
+			);
+			name = "Paging Scroll View";
+			sourceTree = "<group>";
+		};
+		505AE96014ED785700BBFC05 /* PTImageAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				505AE96114ED785700BBFC05 /* PTImageAlbumViewController.h */,
+				505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */,
+				508F7CF914EEA26A000140D6 /* PTImageAlbumView.h */,
+				508F7CFA14EEA26A000140D6 /* PTImageAlbumView.m */,
+				508F7CFB14EEA26A000140D6 /* PTImageAlbumViewDataSource.h */,
+			);
+			name = PTImageAlbumViewController;
+			path = ../../Libraries/PTImageAlbumViewController/PTImageAlbumViewController;
+			sourceTree = "<group>";
+		};
+		508F7CFD14EEA2DD000140D6 /* Detail View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				508F7CFE14EEA358000140D6 /* PTImageDetailViewController.h */,
+				508F7CFF14EEA358000140D6 /* PTImageDetailViewController.m */,
+			);
+			path = "Detail View Controllers";
+			sourceTree = "<group>";
+		};
+		50918CCE14F508930005AD9C /* SDURLCache */ = {
+			isa = PBXGroup;
+			children = (
+				50918CCF14F508A00005AD9C /* SDURLCache.h */,
+				50918CD014F508A00005AD9C /* SDURLCache.m */,
+			);
+			name = SDURLCache;
+			sourceTree = "<group>";
+		};
+		50925DFF14F40301009A05D1 /* NetworkPhotoAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				50925E0014F4032D009A05D1 /* NetworkPhotoAlbumViewController.h */,
+				50925E0114F4032D009A05D1 /* NetworkPhotoAlbumViewController.m */,
+			);
+			name = NetworkPhotoAlbumViewController;
+			sourceTree = "<group>";
+		};
 		5093F21314E51E07004DC805 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				50E607DA14E441D60060662D /* GMGridView.xcodeproj */,
 				50B977B914EC10EB00873F87 /* Nimbus */,
+				505AE96014ED785700BBFC05 /* PTImageAlbumViewController */,
+				50925DFF14F40301009A05D1 /* NetworkPhotoAlbumViewController */,
+				50918CCE14F508930005AD9C /* SDURLCache */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -173,6 +301,7 @@
 				5093F25214E53496004DC805 /* PTShowcaseView.m */,
 				5093F24F14E53375004DC805 /* PTShowcaseViewDelegate.h */,
 				5093F25014E53386004DC805 /* PTShowcaseViewDataSource.h */,
+				508F7CFD14EEA2DD000140D6 /* Detail View Controllers */,
 			);
 			name = PTShowcaseViewController;
 			path = ../../PTShowcaseViewController;
@@ -183,6 +312,8 @@
 			children = (
 				50B977BA14EC115900873F87 /* Core */,
 				50B977BB14EC116E00873F87 /* Network Image */,
+				505AE85E14ED601E00BBFC05 /* Paging Scroll View */,
+				505AE84B14ED5FD900BBFC05 /* Photos */,
 			);
 			name = Nimbus;
 			sourceTree = "<group>";
@@ -384,6 +515,7 @@
 			files = (
 				50FC0D2414E3D44300F28648 /* InfoPlist.strings in Resources */,
 				50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */,
+				508F7D0614EEB066000140D6 /* NimbusPhotos.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +553,17 @@
 				50B977FD14EC11B200873F87 /* UIView+NimbusCore.m in Sources */,
 				50B9780414EC11D700873F87 /* NINetworkImageRequest.m in Sources */,
 				50B9780514EC11D700873F87 /* NINetworkImageView.m in Sources */,
+				505AE85A14ED5FF900BBFC05 /* NIPhotoAlbumScrollView.m in Sources */,
+				505AE85B14ED5FF900BBFC05 /* NIPhotoScrollView.m in Sources */,
+				505AE85C14ED5FF900BBFC05 /* NIPhotoScrubberView.m in Sources */,
+				505AE85D14ED5FF900BBFC05 /* NIToolbarPhotoViewController.m in Sources */,
+				505AE86814ED608000BBFC05 /* NIPageView.m in Sources */,
+				505AE86914ED608000BBFC05 /* NIPagingScrollView.m in Sources */,
+				505AE96314ED785700BBFC05 /* PTImageAlbumViewController.m in Sources */,
+				508F7CFC14EEA26A000140D6 /* PTImageAlbumView.m in Sources */,
+				508F7D0014EEA358000140D6 /* PTImageDetailViewController.m in Sources */,
+				50925E0214F4032D009A05D1 /* NetworkPhotoAlbumViewController.m in Sources */,
+				50918CD114F508A00005AD9C /* SDURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

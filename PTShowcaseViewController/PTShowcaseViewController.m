@@ -11,15 +11,15 @@
 #import "GMGridView.h"
 #import "GMGridViewLayoutStrategies.h"
 
-#import "NimbusCore.h"
-#import "NimbusNetworkImage.h"
-
 #import "PTShowcaseView.h"
+#import "PTImageDetailViewController.h"
 
 #define PREVIEW_SIZE_PHONE   CGSizeMake(75.0, 75.0)
 #define PREVIEW_SIZE_PAD     CGSizeMake(120.0, 180.0)
 
-@interface PTShowcaseViewController () <GMGridViewDataSource, NINetworkImageViewDelegate>
+@interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate, NINetworkImageViewDelegate>
+
+@property (nonatomic, retain) NSMutableArray *itemsInfo;
 
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
@@ -31,7 +31,7 @@
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithOrientation:(PTItemOrientation)orientation;
 
 // Methods generating thumbnails for content types
-- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType atPath:(NSString *)path;
+- (void)thumbnailView:(NINetworkImageView *)thumbnailView createImageForContentType:(PTContentType)contentType withSource:(NSString *)source;
 
 @end
 
@@ -39,16 +39,15 @@
 
 @synthesize showcaseView = _showcaseView;
 
+// private
+@synthesize itemsInfo = _itemsInfo;
+
 - (id)init
 {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         // Custom initialization
         _showcaseView = [[PTShowcaseView alloc] init];
-        _showcaseView.showcaseDelegate = self;
-        _showcaseView.showcaseDataSource = self;
-
-        _showcaseView.dataSource = self;
     }
     return self;
 }
@@ -76,6 +75,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.showcaseView.showcaseDelegate = self;
+    self.showcaseView.showcaseDataSource = self;
+
+    // Internal
+    self.showcaseView.dataSource = self;
+    self.showcaseView.actionDelegate = self;
 }
 
 - (void)viewDidUnload
@@ -83,6 +89,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    self.showcaseView = nil;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -316,7 +324,7 @@
  * Methods generating thumbnails for content types
  * =============================================================================
  */
-- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType atPath:(NSString *)path
+- (void)thumbnailView:(NINetworkImageView *)thumbnailView createImageForContentType:(PTContentType)contentType withSource:(NSString *)source
 {
     thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
     
@@ -325,28 +333,28 @@
         case PTContentTypeSet:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:path];
+            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
         case PTContentTypeImage:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:path];
+            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
         case PTContentTypeVideo:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:path];
+            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
         case PTContentTypePdf:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:path];
+            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
@@ -358,7 +366,15 @@
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    return [self.showcaseView.showcaseDataSource numberOfItemsInShowcaseView:self.showcaseView];
+    NSInteger numberOfItems = [self.showcaseView.showcaseDataSource numberOfItemsInShowcaseView:self.showcaseView];
+    
+    // Create an items' info array for reusing
+    self.itemsInfo = [NSMutableArray arrayWithCapacity:numberOfItems];
+    for (NSInteger i = 0; i < numberOfItems; i++) {
+        [self.itemsInfo addObject:[NSMutableDictionary dictionary]];
+    }
+    
+    return numberOfItems;
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -376,18 +392,64 @@
     PTContentType contentType = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView contentTypeForItemAtIndex:index];
     PTItemOrientation orientation = [self.showcaseView.showcaseDelegate showcaseView:self.showcaseView orientationForItemAtIndex:index];
 
-    // Generate a cell for that
+    // Save these
+    [[self.itemsInfo objectAtIndex:index] setObject:[NSNumber numberWithInteger:contentType] forKey:@"contentType"];
+    [[self.itemsInfo objectAtIndex:index] setObject:[NSNumber numberWithInteger:orientation] forKey:@"orientation"];
+
+    // Generate a cell
     GMGridViewCell *cell = [self GMGridView:gridView cellForContentType:contentType withOrientation:orientation];
 
-    // Ask datasource where to find it (fetch if necessary)
-    NSString *path = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView pathForItemAtIndex:index];
-    
+    // Ask datasource where to find it (fetch if necessary) and save
+    NSString *source = [self.showcaseView.showcaseDataSource showcaseView:self.showcaseView sourceForItemAtIndex:index];
+    [[self.itemsInfo objectAtIndex:index] setObject:source forKey:@"source"];
+
     // Configure the cell...
-    [self thumbnailView:(NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG] setImageForContentType:contentType atPath:path];
+    [self thumbnailView:(NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG] createImageForContentType:contentType withSource:source];
     
 //    cell.backgroundColor = [UIColor greenColor];
     
     return cell;
+}
+
+#pragma mark - GMGridViewActionDelegate
+
+- (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
+{
+    PTContentType contentType = [[[self.itemsInfo objectAtIndex:position] objectForKey:@"contentType"] integerValue];
+
+    switch (contentType)
+    {
+        case PTContentTypeSet:
+        {
+            // TODO missing implementation
+            break;
+        }
+            
+        case PTContentTypeImage:
+        {
+            PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] init];
+            detailViewController.images = [self.itemsInfo filteredArrayUsingPredicate:
+                                           [NSPredicate predicateWithFormat:@"contentType = %d", PTContentTypeImage]];
+            
+            [self.navigationController pushViewController:detailViewController animated:YES];
+
+            break;
+        }
+            
+        case PTContentTypeVideo:
+        {
+            // TODO missing implementation
+            break;
+        }
+            
+        case PTContentTypePdf:
+        {
+            // TODO missing implementation
+            break;
+        }
+            
+        default: NSAssert(NO, @"Unknown content-type.");
+    }
 }
 
 #pragma mark - NINetworkImageViewDelegate
@@ -433,9 +495,9 @@
     return -1;
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index
 {
-    NSAssert(NO, @"missing required method implementation 'showcaseView:pathForItemAtIndex:'");
+    NSAssert(NO, @"missing required method implementation 'showcaseView:sourceForItemAtIndex:'");
     return nil;
 }
 

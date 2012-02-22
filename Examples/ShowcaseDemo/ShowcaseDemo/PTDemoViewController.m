@@ -28,6 +28,12 @@
     self.title = @"Showcase";
 
     ////////////////////////////////////////////////////////////////////////////
+
+    /*
+     * Optionally change navigation bar color application-wide via appearance
+     * proxy (as below), or any other method as you see fit
+     */
+    [UINavigationBar.appearance setBarStyle:UIBarStyleBlack];
     
     /*
      * Some example 'backgroundColor' values are below, but you can come up with
@@ -109,13 +115,13 @@
     return PTContentTypeImage;
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index
 {
-    NSArray *paths = [NSArray arrayWithObjects:
-                      @"http://farm4.staticflickr.com/3358/3511501909_7d190b8594_z.jpg",
-                      @"http://farm6.staticflickr.com/5103/5888408473_3419721420_z.jpg",
-                      nil];
-    return [paths objectAtIndex:index % [paths count]];
+    NSArray *sources = [NSArray arrayWithObjects:
+                        @"http://farm4.staticflickr.com/3358/3511501909_7d190b8594_z.jpg",
+                        @"http://farm6.staticflickr.com/5103/5888408473_3419721420_z.jpg",
+                        nil];
+    return [sources objectAtIndex:index % [sources count]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

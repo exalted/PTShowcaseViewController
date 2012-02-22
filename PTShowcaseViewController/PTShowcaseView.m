@@ -10,7 +10,7 @@
 
 @implementation PTShowcaseView
 
-@synthesize showcaseDelegate;
-@synthesize showcaseDataSource;
+@synthesize showcaseDelegate = _showcaseDelegate;
+@synthesize showcaseDataSource = _showcaseDataSource;
 
 @end
