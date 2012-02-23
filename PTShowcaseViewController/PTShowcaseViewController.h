@@ -11,10 +11,12 @@
 #import "PTShowcaseViewDelegate.h"
 #import "PTShowcaseViewDataSource.h"
 
-@class PTShowcaseView;
+#import "PTShowcaseView.h"
 
 @interface PTShowcaseViewController : UIViewController <PTShowcaseViewDelegate, PTShowcaseViewDataSource>
 
 @property (nonatomic, retain) PTShowcaseView *showcaseView;
+
+- (id)initWithUniqueName:(NSString *)uniqueName;
 
 @end

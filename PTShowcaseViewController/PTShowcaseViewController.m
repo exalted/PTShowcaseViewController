@@ -11,8 +11,8 @@
 #import "GMGridView.h"
 #import "GMGridViewLayoutStrategies.h"
 
-#import "PTShowcaseView.h"
 #import "PTImageDetailViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define PREVIEW_SIZE_PHONE   CGSizeMake(75.0, 75.0)
 #define PREVIEW_SIZE_PAD     CGSizeMake(120.0, 180.0)
@@ -23,7 +23,7 @@
 
 // Supported cells for content types
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForContentType:(PTContentType)contentType withOrientation:(PTItemOrientation)orientation;
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView setCellWithOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView groupCellWithOrientation:(PTItemOrientation)orientation;
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView imageCellWithOrientation:(PTItemOrientation)orientation;
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithOrientation:(PTItemOrientation)orientation;
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithOrientation:(PTItemOrientation)orientation;
@@ -42,7 +42,21 @@
     self = [super init];
     if (self) {
         // Custom initialization
-        _showcaseView = [[PTShowcaseView alloc] init];
+        _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:nil];
+        _showcaseView.showcaseDelegate = self;
+        _showcaseView.showcaseDataSource = self;
+    }
+    return self;
+}
+
+- (id)initWithUniqueName:(NSString *)uniqueName
+{
+    self = [super init];
+    if (self) {
+        // Custom initialization
+        _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:uniqueName];
+        _showcaseView.showcaseDelegate = self;
+        _showcaseView.showcaseDataSource = self;
     }
     return self;
 }
@@ -71,14 +85,9 @@
 {
     [super viewDidLoad];
 
-    self.showcaseView.showcaseDelegate = self;
-    self.showcaseView.showcaseDataSource = self;
-    
     // Internal
-    self.showcaseView.dataSource = self;
+    self.showcaseView.dataSource = self; // this will trigger 'reloadData' automatically
     self.showcaseView.actionDelegate = self;
-    
-    [self.showcaseView reloadData];
 }
 
 - (void)viewDidUnload
@@ -132,9 +141,9 @@
 {
     switch (contentType)
     {
-        case PTContentTypeSet:
+        case PTContentTypeGroup:
         {
-            return [self GMGridView:gridView setCellWithOrientation:orientation];
+            return [self GMGridView:gridView groupCellWithOrientation:orientation];
         }
             
         case PTContentTypeImage:
@@ -158,9 +167,9 @@
     return nil;
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView setCellWithOrientation:(PTItemOrientation)orientation;
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView groupCellWithOrientation:(PTItemOrientation)orientation;
 {
-    NSString *cellIdentifier = orientation == PTItemOrientationPortrait ? @"SetPortraitCell" : @"SetLandscapeCell";
+    NSString *cellIdentifier = orientation == PTItemOrientationPortrait ? @"GroupPortraitCell" : @"GroupLandscapeCell";
 
     GMGridViewCell *cell = [gridView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -169,7 +178,7 @@
         
         // Back Image
         
-        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-set",
+        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group",
                                    orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
         CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
         ? CGRectMake(-16.5, -15.0, 154.0, 158.0)
@@ -181,7 +190,7 @@
         
         // Thumbnail
         
-        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-set-loading",
+        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group-loading",
                                       orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
         CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
         ? CGRectMake(15.0, 0.0, 90.0, 120.0)
@@ -328,10 +337,9 @@
     
     switch (contentType)
     {
-        case PTContentTypeSet:
+        case PTContentTypeGroup:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
@@ -345,14 +353,12 @@
         case PTContentTypeVideo:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
         case PTContentTypePdf:
         {
             // TODO missing implementation
-            [thumbnailView setPathToNetworkImage:source];
             break;
         }
             
@@ -364,7 +370,7 @@
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    return [self.showcaseView numberOfImages];
+    return [self.showcaseView numberOfItems];
 }
 
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
@@ -378,9 +384,9 @@
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
-    PTContentType contentType = [self.showcaseView contentTypeForImageAtIndex:index];
-    PTItemOrientation orientation = [self.showcaseView orientationForImageAtIndex:index];
-    NSString *source = [self.showcaseView sourceForImageAtIndex:index];
+    PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:index];
+    PTItemOrientation orientation = [self.showcaseView orientationForItemAtIndex:index];
+    NSString *source = [self.showcaseView sourceForItemAtIndex:index];
 
     // Generate a cell
     GMGridViewCell *cell = [self GMGridView:gridView cellForContentType:contentType withOrientation:orientation];
@@ -397,13 +403,20 @@
 
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
-    PTContentType contentType = [self.showcaseView contentTypeForImageAtIndex:position];
+    PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:position];
 
     switch (contentType)
     {
-        case PTContentTypeSet:
+        case PTContentTypeGroup:
         {
-            // TODO missing implementation
+            NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
+            
+            PTShowcaseViewController *detailViewController = [[PTShowcaseViewController alloc] initWithUniqueName:uniqueName];
+            detailViewController.showcaseView.showcaseDelegate = self.showcaseView.showcaseDelegate;
+            detailViewController.showcaseView.showcaseDataSource = self.showcaseView.showcaseDataSource;
+
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            
             break;
         }
             
@@ -412,15 +425,35 @@
             PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] init];
             detailViewController.images = self.showcaseView.imageItems;
             
-            // TODO fade in/out (just like in Photos.app in the iPad) instead of a simple push
-            [self.navigationController pushViewController:detailViewController animated:YES];
+            // TODO zoom in/out (just like in Photos.app in the iPad)
+            [self.navigationController pushViewController:detailViewController animated:NO];
 
             break;
         }
             
         case PTContentTypeVideo:
         {
-            // TODO missing implementation
+            NSString *source = [self.showcaseView sourceForItemAtIndex:position];
+            
+            // TODO remove duplicate code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            NSURL *url = nil;
+
+            // Check for file URLs.
+            if ([source hasPrefix:@"/"]) {
+                // If the url starts with / then it's likely a file URL, so treat it accordingly.
+                url = [NSURL fileURLWithPath:source];
+            }
+            else {
+                // Otherwise we assume it's a regular URL.
+                url = [NSURL URLWithString:source];
+            }
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+            MPMoviePlayerViewController *detailViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+
+            // TODO zoom in/out (just like in Photos.app in the iPad)
+            [self presentViewController:detailViewController animated:NO completion:NULL];
+            
             break;
         }
             
@@ -469,6 +502,11 @@
 {
     NSAssert(NO, @"missing required method implementation 'numberOfItemsInShowcaseView:'");
     return -1;
+}
+
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index;
+{
+    return nil;
 }
 
 - (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index

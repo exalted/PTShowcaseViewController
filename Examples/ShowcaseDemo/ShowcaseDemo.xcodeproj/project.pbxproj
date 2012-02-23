@@ -23,11 +23,14 @@
 		5093F25314E53496004DC805 /* PTShowcaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F25214E53496004DC805 /* PTShowcaseView.m */; };
 		5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5093F25414E538A5004DC805 /* QuartzCore.framework */; };
 		5093F29114E557A3004DC805 /* PTDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F29014E557A3004DC805 /* PTDemoViewController.m */; };
+		50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */; };
 		50A6019D14F536E8002076AB /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019314F536E8002076AB /* GMGridView.m */; };
 		50A6019E14F536E8002076AB /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019514F536E8002076AB /* GMGridViewCell.m */; };
 		50A6019F14F536E8002076AB /* GMGridViewLayoutStrategies.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019814F536E8002076AB /* GMGridViewLayoutStrategies.m */; };
 		50A601A014F536E8002076AB /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019A14F536E8002076AB /* UIGestureRecognizer+GMGridViewAdditions.m */; };
 		50A601A114F536E8002076AB /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019C14F536E8002076AB /* UIView+GMGridViewAdditions.m */; };
+		50A601AE14F556A3002076AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A601AD14F556A3002076AB /* MediaPlayer.framework */; };
+		50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */; };
 		50B977EA14EC11B200873F87 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B977BE14EC11B200873F87 /* NICommonMetrics.m */; };
 		50B977EB14EC11B200873F87 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B977C014EC11B200873F87 /* NIDataStructures.m */; };
 		50B977EC14EC11B200873F87 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B977C214EC11B200873F87 /* NIDebuggingTools.m */; };
@@ -104,6 +107,7 @@
 		5093F25414E538A5004DC805 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5093F28F14E557A3004DC805 /* PTDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDemoViewController.h; sourceTree = "<group>"; };
 		5093F29014E557A3004DC805 /* PTDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDemoViewController.m; sourceTree = "<group>"; };
+		50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShowcaseDemo.plist; sourceTree = "<group>"; };
 		50A6019114F536E8002076AB /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GMGridView-Constants.h"; path = "../../Libraries/GMGridView/GMGridView/GMGridView-Constants.h"; sourceTree = "<group>"; };
 		50A6019214F536E8002076AB /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGridView.h; path = ../../Libraries/GMGridView/GMGridView/GMGridView.h; sourceTree = "<group>"; };
 		50A6019314F536E8002076AB /* GMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GMGridView.m; path = ../../Libraries/GMGridView/GMGridView/GMGridView.m; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		50A6019A14F536E8002076AB /* UIGestureRecognizer+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+GMGridViewAdditions.m"; path = "../../Libraries/GMGridView/GMGridView/UIGestureRecognizer+GMGridViewAdditions.m"; sourceTree = "<group>"; };
 		50A6019B14F536E8002076AB /* UIView+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+GMGridViewAdditions.h"; path = "../../Libraries/GMGridView/GMGridView/UIView+GMGridViewAdditions.h"; sourceTree = "<group>"; };
 		50A6019C14F536E8002076AB /* UIView+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+GMGridViewAdditions.m"; path = "../../Libraries/GMGridView/GMGridView/UIView+GMGridViewAdditions.m"; sourceTree = "<group>"; };
+		50A601AD14F556A3002076AB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShowcaseDemo.bundle; sourceTree = "<group>"; };
 		50B977BC14EC11B200873F87 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../Libraries/nimbus/src/core/src/NIBlocks.h; sourceTree = "<group>"; };
 		50B977BD14EC11B200873F87 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../Libraries/nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		50B977BE14EC11B200873F87 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../Libraries/nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A601AE14F556A3002076AB /* MediaPlayer.framework in Frameworks */,
 				50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */,
 				50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */,
 				50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */,
@@ -426,6 +433,7 @@
 				50FC0D1B14E3D44300F28648 /* Foundation.framework */,
 				50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */,
 				5093F25414E538A5004DC805 /* QuartzCore.framework */,
+				50A601AD14F556A3002076AB /* MediaPlayer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -437,6 +445,8 @@
 				50FC0D2914E3D44300F28648 /* PTAppDelegate.m */,
 				5093F28F14E557A3004DC805 /* PTDemoViewController.h */,
 				5093F29014E557A3004DC805 /* PTDemoViewController.m */,
+				50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */,
+				50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */,
 				50FC0D2014E3D44300F28648 /* Supporting Files */,
 			);
 			path = ShowcaseDemo;
@@ -507,6 +517,8 @@
 				50FC0D2414E3D44300F28648 /* InfoPlist.strings in Resources */,
 				50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */,
 				508F7D0614EEB066000140D6 /* NimbusPhotos.bundle in Resources */,
+				50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */,
+				50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

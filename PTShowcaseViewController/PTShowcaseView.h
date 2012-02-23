@@ -18,12 +18,17 @@
 @property (nonatomic, assign) id<PTShowcaseViewDelegate> showcaseDelegate;
 @property (nonatomic, assign) id<PTShowcaseViewDataSource> showcaseDataSource;
 
+@property (nonatomic, retain, readonly) NSString *uniqueName;
+
 @property (nonatomic, readonly) NSArray *imageItems;
 
-- (NSInteger)numberOfImages;
-- (PTContentType)contentTypeForImageAtIndex:(NSInteger)index;
-- (PTItemOrientation)orientationForImageAtIndex:(NSInteger)index;
-- (NSString *)sourceForImageAtIndex:(NSInteger)index;
+- (id)initWithUniqueName:(NSString *)uniqueName;
+
+- (NSInteger)numberOfItems;
+- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
+- (PTContentType)contentTypeForItemAtIndex:(NSInteger)index;
+- (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index;
+- (NSString *)sourceForItemAtIndex:(NSInteger)index;
 
 - (void)reloadData;
 

@@ -12,7 +12,7 @@ typedef enum {
 } PTItemOrientation;
 
 typedef enum {
-    PTContentTypeSet,
+    PTContentTypeGroup,
     PTContentTypeImage,
     PTContentTypeVideo,
     PTContentTypePdf,
