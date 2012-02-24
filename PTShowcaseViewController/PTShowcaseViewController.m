@@ -424,6 +424,7 @@
         {
             PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] init];
             detailViewController.images = self.showcaseView.imageItems;
+            detailViewController.hidesBottomBarWhenPushed = YES;
             
             // TODO zoom in/out (just like in Photos.app in the iPad)
             [self.navigationController pushViewController:detailViewController animated:NO];
