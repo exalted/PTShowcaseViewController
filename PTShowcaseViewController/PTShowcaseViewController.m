@@ -75,6 +75,7 @@
 - (void)loadView
 {
     self.showcaseView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    self.showcaseView.centerGrid = NO;
     [self setupShowcaseViewForInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 
     self.view = self.showcaseView;
