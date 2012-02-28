@@ -177,30 +177,35 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = cellIdentifier;
         
-        // Back Image
-        
-        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group",
-                                   orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-        CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
-        ? CGRectMake(-16.5, -15.0, 154.0, 158.0)
-        : CGRectMake(-18.5, -15.0, 155.0, 158.0);
-        
-        UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
-        backImageView.image = [UIImage imageNamed:backImageName];
-        [cell addSubview:backImageView];
-        
-        // Thumbnail
-        
-        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group-loading",
-                                      orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-        CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
-        ? CGRectMake(15.0, 0.0, 90.0, 120.0)
-        : CGRectMake(0.0, 15.0, 120.0, 90.0);
-        
-        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-        thumbnailView.tag = THUMBNAIL_TAG;
-        thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
-        [cell addSubview:thumbnailView];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            // TODO missing implementation
+        }
+        else {
+            // Back Image
+            
+            NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group",
+                                       orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
+            ? CGRectMake(-16.5, -15.0, 154.0, 158.0)
+            : CGRectMake(-18.5, -15.0, 155.0, 158.0);
+            
+            UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
+            backImageView.image = [UIImage imageNamed:backImageName];
+            [cell addSubview:backImageView];
+            
+            // Thumbnail
+            
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group-loading",
+                                          orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
+            ? CGRectMake(15.0, 0.0, 90.0, 120.0)
+            : CGRectMake(0.0, 15.0, 120.0, 90.0);
+            
+            NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+            [cell addSubview:thumbnailView];
+        }
     }
     
     return cell;
@@ -215,30 +220,35 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = cellIdentifier;
         
-        // Back Image
-        
-        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-frame",
-                                   orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-        CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
-        ? CGRectMake(8.5, -4.5, 103.0, 137.0)
-        : CGRectMake(-6.5, 11.0, 133.0, 107.0);
-        
-        UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
-        backImageView.image = [UIImage imageNamed:backImageName];
-        [cell addSubview:backImageView];
-        
-        // Thumbnail
-        
-        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-loading",
-                                      orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-        CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
-        ? CGRectMake(15.0, 0.0, 90.0, 120.0)
-        : CGRectMake(0.0, 15.0, 120.0, 90.0);
-        
-        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-        thumbnailView.tag = THUMBNAIL_TAG;
-        thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
-        [cell addSubview:thumbnailView];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            // TODO missing implementation
+        }
+        else {
+            // Back Image
+            
+            NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-frame",
+                                       orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
+            ? CGRectMake(8.5, -4.5, 103.0, 137.0)
+            : CGRectMake(-6.5, 11.0, 133.0, 107.0);
+            
+            UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
+            backImageView.image = [UIImage imageNamed:backImageName];
+            [cell addSubview:backImageView];
+            
+            // Thumbnail
+            
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-loading",
+                                          orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
+            ? CGRectMake(15.0, 0.0, 90.0, 120.0)
+            : CGRectMake(0.0, 15.0, 120.0, 90.0);
+            
+            NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+            [cell addSubview:thumbnailView];
+        }
     }
     
     return cell;
@@ -253,38 +263,43 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = CellIdentifier;
         
-        // Blank White View
-        
-        UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 35.0, 80.0, 50.0)];
-        whiteView.backgroundColor = [UIColor whiteColor];
-        [cell addSubview:whiteView];
-        
-        // Thumbnail
-        
-        NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
-        CGRect loadingImageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
-        
-        // TODO remove duplicate: 'networkImageView:didLoadImage:'
-        CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
-        CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
-                                               CGImageGetHeight(maskImageRef),
-                                               CGImageGetBitsPerComponent(maskImageRef),
-                                               CGImageGetBitsPerPixel(maskImageRef),
-                                               CGImageGetBytesPerRow(maskImageRef),
-                                               CGImageGetDataProvider(maskImageRef),
-                                               NULL,
-                                               NO);
-        CGImageRef maskedImageRef = CGImageCreateWithMask([[UIImage imageNamed:loadingImageName] CGImage], maskRef);
-        CGImageRelease(maskRef);
-        
-        UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
-        CGImageRelease(maskedImageRef);
-        
-        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-        thumbnailView.tag = THUMBNAIL_TAG;
-        thumbnailView.delegate = self;
-        thumbnailView.initialImage = maskedImage;
-        [cell addSubview:thumbnailView];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            // TODO missing implementation
+        }
+        else {
+            // Blank White View
+            
+            UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 35.0, 80.0, 50.0)];
+            whiteView.backgroundColor = [UIColor whiteColor];
+            [cell addSubview:whiteView];
+            
+            // Thumbnail
+            
+            NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
+            CGRect loadingImageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
+            
+            // TODO remove duplicate: 'networkImageView:didLoadImage:'
+            CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
+            CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
+                                                   CGImageGetHeight(maskImageRef),
+                                                   CGImageGetBitsPerComponent(maskImageRef),
+                                                   CGImageGetBitsPerPixel(maskImageRef),
+                                                   CGImageGetBytesPerRow(maskImageRef),
+                                                   CGImageGetDataProvider(maskImageRef),
+                                                   NULL,
+                                                   NO);
+            CGImageRef maskedImageRef = CGImageCreateWithMask([[UIImage imageNamed:loadingImageName] CGImage], maskRef);
+            CGImageRelease(maskRef);
+            
+            UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
+            CGImageRelease(maskedImageRef);
+            
+            NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.delegate = self;
+            thumbnailView.initialImage = maskedImage;
+            [cell addSubview:thumbnailView];
+        }
     }
     
     return cell;
@@ -299,30 +314,35 @@
         cell = [[GMGridViewCell alloc] init];
         cell.reuseIdentifier = cellIdentifier;
         
-        // Back Image
-        
-        NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-pages",
-                                   orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-        CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
-        ? CGRectMake(4.0, -11.0, 116.0, 146.0)
-        : CGRectMake(-26.0, -11.0, 176.0, 146.0);
-        
-        UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
-        backImageView.image = [UIImage imageNamed:backImageName];
-        [cell addSubview:backImageView];
-        
-        // Thumbnail
-        
-        NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-pages-loading",
-                                      orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-        CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
-        ? CGRectMake(15.0, 0.0, 90.0, 120.0)
-        : CGRectMake(0.0, 15.0, 120.0, 90.0);
-        
-        NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-        thumbnailView.tag = THUMBNAIL_TAG;
-        thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
-        [cell addSubview:thumbnailView];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            // TODO missing implementation
+        }
+        else {
+            // Back Image
+            
+            NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-pages",
+                                       orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
+            ? CGRectMake(4.0, -11.0, 116.0, 146.0)
+            : CGRectMake(-26.0, -11.0, 176.0, 146.0);
+            
+            UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
+            backImageView.image = [UIImage imageNamed:backImageName];
+            [cell addSubview:backImageView];
+            
+            // Thumbnail
+            
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-loading",
+                                          orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
+            ? CGRectMake(15.0, 0.0, 90.0, 120.0)
+            : CGRectMake(0.0, 15.0, 120.0, 90.0);
+            
+            NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+            [cell addSubview:thumbnailView];
+        }
     }
     
     return cell;
