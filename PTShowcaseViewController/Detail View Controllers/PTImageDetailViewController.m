@@ -46,17 +46,6 @@
     self.images = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return interfaceOrientation == UIInterfaceOrientationPortrait;
-    }
-    
-    return YES;
-}
-
 #pragma mark - PTImageAlbumViewDataSource
 
 - (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView

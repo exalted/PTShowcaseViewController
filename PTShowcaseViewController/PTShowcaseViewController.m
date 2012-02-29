@@ -16,6 +16,7 @@
 #import "PTPdfThumbnailImageView.h"
 
 // Detail
+#import "PTGroupDetailViewController.h"
 #import "PTImageDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -103,6 +104,17 @@
     // e.g. self.myOutlet = nil;
     
     self.showcaseView = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return interfaceOrientation == UIInterfaceOrientationPortrait || UIInterfaceOrientationIsLandscape(interfaceOrientation);
+    }
+    
+    return YES;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
@@ -472,7 +484,7 @@
         {
             NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
             
-            PTShowcaseViewController *detailViewController = [[PTShowcaseViewController alloc] initWithUniqueName:uniqueName];
+            PTGroupDetailViewController *detailViewController = [[PTGroupDetailViewController alloc] initWithUniqueName:uniqueName];
             detailViewController.showcaseView.showcaseDelegate = self.showcaseView.showcaseDelegate;
             detailViewController.showcaseView.showcaseDataSource = self.showcaseView.showcaseDataSource;
             
