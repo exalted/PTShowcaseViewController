@@ -54,7 +54,8 @@
 
 - (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
 {
-    return [[self.data objectAtIndex:index] objectForKey:@"uniqueName"];
+    id object = [[self.data objectAtIndex:index] objectForKey:@"uniqueName"];
+    return object == [NSNull null] ? nil : object;
 }
 
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index;
@@ -69,7 +70,14 @@
 
 - (NSString *)sourceForItemAtIndex:(NSInteger)index;
 {
-    return [[self.data objectAtIndex:index] objectForKey:@"source"];
+    id object = [[self.data objectAtIndex:index] objectForKey:@"source"];
+    return object == [NSNull null] ? nil : object;
+}
+
+- (NSString *)textForItemAtIndex:(NSInteger)index;
+{
+    id object = [[self.data objectAtIndex:index] objectForKey:@"text"];
+    return object == [NSNull null] ? nil : object;
 }
 
 - (void)reloadData
@@ -85,16 +93,14 @@
         PTContentType contentType = [self.showcaseDataSource showcaseView:self contentTypeForItemAtIndex:i];
         PTItemOrientation orientation = [self.showcaseDelegate showcaseView:self orientationForItemAtIndex:i];
         NSString *source = [self.showcaseDataSource showcaseView:self sourceForItemAtIndex:i];
+        NSString *text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:i];
         
-        // TODO checks below are the ugliest stuff ever!
-        uniqueName = uniqueName == nil ? @"" : uniqueName;
-        source = source == nil ? @"" : source;
-
         [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              uniqueName, @"uniqueName",
+                              uniqueName ? uniqueName : [NSNull null], @"uniqueName",
                               [NSNumber numberWithInteger:contentType], @"contentType",
                               [NSNumber numberWithInteger:orientation], @"orientation",
-                              source, @"source",
+                              source ? source : [NSNull null], @"source",
+                              text ? text : [NSNull null], @"text",
                               nil]];
     }
     

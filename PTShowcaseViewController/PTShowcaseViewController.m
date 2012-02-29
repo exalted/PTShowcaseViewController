@@ -20,8 +20,12 @@
 #import "PTImageDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-#define PREVIEW_SIZE_PHONE   CGSizeMake(75.0, 100.0)
-#define PREVIEW_SIZE_PAD     CGSizeMake(120.0, 180.0)
+#define PREVIEW_SIZE_PHONE  CGSizeMake(75.0, 100.0)
+#define PREVIEW_SIZE_PAD    CGSizeMake(120.0, 180.0)
+
+#define THUMBNAIL_TAG       1
+#define TEXT_TAG            2
+#define DETAIL_TEXT_TAG     3
 
 @interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 
@@ -34,8 +38,8 @@
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithOrientation:(PTItemOrientation)orientation;
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithOrientation:(PTItemOrientation)orientation;
 
-// Methods generating thumbnails for content types
-- (void)thumbnailView:(NINetworkImageView *)thumbnailView createImageForContentType:(PTContentType)contentType withSource:(NSString *)source;
+// Methods thumbnails
+- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType withSource:(NSString *)source;
 
 @end
 
@@ -153,36 +157,66 @@
  * Supported cells for content types
  * =============================================================================
  */
-#define THUMBNAIL_TAG 1
-
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForContentType:(PTContentType)contentType withOrientation:(PTItemOrientation)orientation
 {
+    GMGridViewCell *cell = nil;
     switch (contentType)
     {
         case PTContentTypeGroup:
         {
-            return [self GMGridView:gridView groupCellWithOrientation:orientation];
+            cell = [self GMGridView:gridView groupCellWithOrientation:orientation];
+            break;
         }
             
         case PTContentTypeImage:
         {
-            return [self GMGridView:gridView imageCellWithOrientation:orientation];
+            cell = [self GMGridView:gridView imageCellWithOrientation:orientation];
+            break;
         }
             
         case PTContentTypeVideo:
         {
-            return [self GMGridView:gridView videoCellWithOrientation:orientation];
+            cell = [self GMGridView:gridView videoCellWithOrientation:orientation];
+            break;
         }
             
         case PTContentTypePdf:
         {
-            return [self GMGridView:gridView pdfCellWithOrientation:orientation];
+            cell = [self GMGridView:gridView pdfCellWithOrientation:orientation];
+            break;
         }
             
         default: NSAssert(NO, @"Unknown content-type.");
     }
     
-    return nil;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 75.0, 75.0, 20.0)];
+        textLabel.tag = TEXT_TAG;
+        textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        textLabel.textAlignment = UITextAlignmentCenter;
+        textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        textLabel.textColor = [UIColor whiteColor];
+        textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
+        textLabel.shadowColor = [UIColor blackColor];
+        textLabel.backgroundColor = [UIColor clearColor];
+        
+        [cell addSubview:textLabel];
+    }
+    else {
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 140.0, 120.0, 20.0)];
+        textLabel.tag = TEXT_TAG;
+        textLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        textLabel.textAlignment = UITextAlignmentCenter;
+        textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        textLabel.textColor = [UIColor whiteColor];
+        textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
+        textLabel.shadowColor = [UIColor blackColor];
+        textLabel.backgroundColor = [UIColor clearColor];
+        
+        [cell addSubview:textLabel];
+    }
+    
+    return cell;
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView groupCellWithOrientation:(PTItemOrientation)orientation;
@@ -404,7 +438,7 @@
  * Methods generating thumbnails for content types
  * =============================================================================
  */
-- (void)thumbnailView:(NINetworkImageView *)thumbnailView createImageForContentType:(PTContentType)contentType withSource:(NSString *)source
+- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType withSource:(NSString *)source
 {
     thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
     
@@ -460,12 +494,18 @@
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:index];
     PTItemOrientation orientation = [self.showcaseView orientationForItemAtIndex:index];
     NSString *source = [self.showcaseView sourceForItemAtIndex:index];
+    NSString *text = [self.showcaseView textForItemAtIndex:index];
 
-    // Generate a cell
+    // Dequeue or generate a new cell
     GMGridViewCell *cell = [self GMGridView:gridView cellForContentType:contentType withOrientation:orientation];
 
     // Configure the cell...
-    [self thumbnailView:(NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG] createImageForContentType:contentType withSource:source];
+    
+    NINetworkImageView *thumbnailView = (NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG];
+    UILabel *textLabel = (UILabel *)[cell viewWithTag:TEXT_TAG];
+    
+    [self thumbnailView:thumbnailView setImageForContentType:contentType withSource:source];
+    textLabel.text = text;
     
 //    cell.backgroundColor = [UIColor greenColor];
     
@@ -572,6 +612,11 @@
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:sourceForItemAtIndex:'");
+    return nil;
+}
+
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView textForItemAtIndex:(NSInteger)index
+{
     return nil;
 }
 

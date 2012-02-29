@@ -29,6 +29,7 @@
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index;
 - (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index;
 - (NSString *)sourceForItemAtIndex:(NSInteger)index;
+- (NSString *)textForItemAtIndex:(NSInteger)index;
 
 - (void)reloadData;
 

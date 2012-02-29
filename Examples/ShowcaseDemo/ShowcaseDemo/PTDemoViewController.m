@@ -161,6 +161,12 @@
     return nil;
 }
 
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView textForItemAtIndex:(NSInteger)index
+{
+    return [[[self itemsForUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+            objectForKey:@"Title"];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 @end
