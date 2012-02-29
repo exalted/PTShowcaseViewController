@@ -11,13 +11,18 @@
 #import "GMGridView.h"
 #import "GMGridViewLayoutStrategies.h"
 
+// Thumbnail
+#import "PTVideoThumbnailImageView.h"
+#import "PTPdfThumbnailImageView.h"
+
+// Detail
 #import "PTImageDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-#define PREVIEW_SIZE_PHONE   CGSizeMake(75.0, 75.0)
+#define PREVIEW_SIZE_PHONE   CGSizeMake(75.0, 100.0)
 #define PREVIEW_SIZE_PAD     CGSizeMake(120.0, 180.0)
 
-@interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate, NINetworkImageViewDelegate>
+@interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
@@ -178,12 +183,19 @@
         cell.reuseIdentifier = cellIdentifier;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            // TODO missing implementation
+            // Placeholder
+            
+            NSString *placeholderImageName = @"PTShowcase.bundle/group.png";
+            CGRect placeholderImageNameImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
+            
+            UIImageView *placeholderImageView = [[UIImageView alloc] initWithFrame:placeholderImageNameImageViewFrame];
+            placeholderImageView.image = [UIImage imageNamed:placeholderImageName];
+            [cell addSubview:placeholderImageView];
         }
         else {
             // Back Image
             
-            NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group",
+            NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"group",
                                        orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
             CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
             ? CGRectMake(-16.5, -15.0, 154.0, 158.0)
@@ -195,7 +207,7 @@
             
             // Thumbnail
             
-            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"item-group-loading",
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"group-loading",
                                           orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
             CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
             ? CGRectMake(15.0, 0.0, 90.0, 120.0)
@@ -221,7 +233,21 @@
         cell.reuseIdentifier = cellIdentifier;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            // TODO missing implementation
+            // Thumbnail
+            
+            NSString *loadingImageName = @"PTShowcase.bundle/image-loading.png";
+            CGRect loadingImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
+            
+            NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
+            [cell addSubview:thumbnailView];
+            
+            // Overlap
+            
+            UIImageView *overlapView = [[UIImageView alloc] initWithFrame:loadingImageViewFrame];
+            overlapView.image = [UIImage imageNamed:@"PTShowcase.bundle/image-overlap.png"];
+            [cell addSubview:overlapView];
         }
         else {
             // Back Image
@@ -264,41 +290,40 @@
         cell.reuseIdentifier = CellIdentifier;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            // TODO missing implementation
+            // Thumbnail
+            
+            NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
+            CGRect loadingImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
+            UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName]];
+            
+            PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.initialImage = maskedImage;
+            [cell addSubview:thumbnailView];
+            
+            // Overlap
+            
+            UIImageView *overlapView = [[UIImageView alloc] initWithFrame:loadingImageViewFrame];
+            overlapView.image = [UIImage imageNamed:@"PTShowcase.bundle/video-overlap.png"];
+            [cell addSubview:overlapView];
         }
         else {
-            // Blank White View
-            
-            UIView *whiteView = [[UIView alloc] initWithFrame:CGRectMake(20.0, 35.0, 80.0, 50.0)];
-            whiteView.backgroundColor = [UIColor whiteColor];
-            [cell addSubview:whiteView];
-            
             // Thumbnail
             
             NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
             CGRect loadingImageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
+            UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName]];
             
-            // TODO remove duplicate: 'networkImageView:didLoadImage:'
-            CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
-            CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
-                                                   CGImageGetHeight(maskImageRef),
-                                                   CGImageGetBitsPerComponent(maskImageRef),
-                                                   CGImageGetBitsPerPixel(maskImageRef),
-                                                   CGImageGetBytesPerRow(maskImageRef),
-                                                   CGImageGetDataProvider(maskImageRef),
-                                                   NULL,
-                                                   NO);
-            CGImageRef maskedImageRef = CGImageCreateWithMask([[UIImage imageNamed:loadingImageName] CGImage], maskRef);
-            CGImageRelease(maskRef);
-            
-            UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
-            CGImageRelease(maskedImageRef);
-            
-            NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
+            PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
-            thumbnailView.delegate = self;
             thumbnailView.initialImage = maskedImage;
             [cell addSubview:thumbnailView];
+            
+            // Overlap
+            
+            UIImageView *overlapView = [[UIImageView alloc] initWithFrame:loadingImageViewFrame];
+            overlapView.image = [UIImage imageNamed:@"PTShowcase.bundle/video-overlap.png"];
+            [cell addSubview:overlapView];
         }
     }
     
@@ -315,7 +340,22 @@
         cell.reuseIdentifier = cellIdentifier;
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            // TODO missing implementation
+            // Thumbnail
+            
+            NSString *loadingImageName = @"PTShowcase.bundle/document-loading.png";
+            CGRect loadingImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
+            UIImage *maskedImage = [PTPdfThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName]];
+            
+            PTPdfThumbnailImageView *thumbnailView = [[PTPdfThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
+            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.initialImage = maskedImage;
+            [cell addSubview:thumbnailView];
+            
+            // Overlap
+            
+            UIImageView *overlapView = [[UIImageView alloc] initWithFrame:loadingImageViewFrame];
+            overlapView.image = [UIImage imageNamed:@"PTShowcase.bundle/document-overlap.png"];
+            [cell addSubview:overlapView];
         }
         else {
             // Back Image
@@ -487,28 +527,6 @@
             
         default: NSAssert(NO, @"Unknown content-type.");
     }
-}
-
-#pragma mark - NINetworkImageViewDelegate
-
-- (void)networkImageView:(NINetworkImageView *)imageView didLoadImage:(UIImage *)image
-{
-    CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
-    CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
-                                           CGImageGetHeight(maskImageRef),
-                                           CGImageGetBitsPerComponent(maskImageRef),
-                                           CGImageGetBitsPerPixel(maskImageRef),
-                                           CGImageGetBytesPerRow(maskImageRef),
-                                           CGImageGetDataProvider(maskImageRef),
-                                           NULL,
-                                           NO);
-    CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], maskRef);
-    CGImageRelease(maskRef);
-    
-    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
-    CGImageRelease(maskedImageRef);
-    
-    imageView.image = maskedImage;
 }
 
 #pragma mark - PTShowcaseViewDelegate
