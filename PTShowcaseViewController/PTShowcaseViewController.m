@@ -475,6 +475,8 @@
             PTShowcaseViewController *detailViewController = [[PTShowcaseViewController alloc] initWithUniqueName:uniqueName];
             detailViewController.showcaseView.showcaseDelegate = self.showcaseView.showcaseDelegate;
             detailViewController.showcaseView.showcaseDataSource = self.showcaseView.showcaseDataSource;
+            
+            detailViewController.view.backgroundColor = self.view.backgroundColor;
 
             [self.navigationController pushViewController:detailViewController animated:YES];
             
