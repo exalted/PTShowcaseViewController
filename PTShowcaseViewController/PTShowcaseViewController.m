@@ -551,7 +551,8 @@
         {
             NSString *source = [self.showcaseView sourceForItemAtIndex:position];
             
-            // TODO remove duplicate code >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            // TODO remove duplicate
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             NSURL *url = nil;
 
             // Check for file URLs.
