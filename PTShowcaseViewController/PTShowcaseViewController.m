@@ -518,13 +518,13 @@
 {
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:position];
     NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
+    NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
+    NSString *source = [self.showcaseView sourceForItemAtIndex:position];
 
     switch (contentType)
     {
         case PTContentTypeGroup:
         {
-            NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
-            
             PTGroupDetailViewController *detailViewController = [[PTGroupDetailViewController alloc] initWithUniqueName:uniqueName];
             detailViewController.showcaseView.showcaseDelegate = self.showcaseView.showcaseDelegate;
             detailViewController.showcaseView.showcaseDataSource = self.showcaseView.showcaseDataSource;
@@ -550,8 +550,6 @@
             
         case PTContentTypeVideo:
         {
-            NSString *source = [self.showcaseView sourceForItemAtIndex:position];
-            
             // TODO remove duplicate
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             NSURL *url = nil;
