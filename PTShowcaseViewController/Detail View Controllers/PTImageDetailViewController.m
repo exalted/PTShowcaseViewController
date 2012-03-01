@@ -61,13 +61,22 @@
 - (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
 {
     // TODO missing implementation
-    return CGSizeMake(150.0, 100.0);
+    // ...
+    
+    // TODO temporary implementation
+    // return original sized image's size
+    return [[UIImage imageWithContentsOfFile:[self imageAlbumView:imageAlbumView sourceForImageAtIndex:index]] size];
 }
 
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
     // TODO missing implementation
-    return [[self.images objectAtIndex:index] objectForKey:@"source"];
+    // - create a thumbnail once the original image has been downloaded
+    // - return thumbnail's sourcs
+    
+    // TODO temporary implementation
+    // return original sized image
+    return [self imageAlbumView:imageAlbumView sourceForImageAtIndex:index];
 }
 
 @end
