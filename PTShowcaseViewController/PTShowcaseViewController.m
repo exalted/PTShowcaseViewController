@@ -517,6 +517,7 @@
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:position];
+    NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
 
     switch (contentType)
     {
@@ -537,7 +538,7 @@
             
         case PTContentTypeImage:
         {
-            PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] init];
+            PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] initWithImageAtIndex:relativeIndex animated:NO];
             detailViewController.images = self.showcaseView.imageItems;
             detailViewController.hidesBottomBarWhenPushed = YES;
             

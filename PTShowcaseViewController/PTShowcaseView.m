@@ -80,6 +80,18 @@
     return object == [NSNull null] ? nil : object;
 }
 
+- (NSInteger)relativeIndexForItemAtIndex:(NSInteger)index withContentType:(PTContentType)contentType
+{
+    NSInteger relativeIndex = -1;
+    for (NSInteger i = 0; i < index+1; i++) {
+        if ([[[self.data objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType) {
+            relativeIndex++;
+        }
+    }
+    
+    return relativeIndex;
+}
+
 - (void)reloadData
 {
     // Ask data source for number of items
