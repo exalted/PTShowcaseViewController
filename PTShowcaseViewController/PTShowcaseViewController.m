@@ -452,7 +452,7 @@
             
         case PTContentTypeImage:
         {
-            // TODO missing implementation
+            // TODO temporary implementation
             [thumbnailView setPathToNetworkImage:source];
             break;
         }
