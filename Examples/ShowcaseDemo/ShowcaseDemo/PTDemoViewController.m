@@ -10,7 +10,9 @@
 
 @interface PTDemoViewController ()
 
-- (NSArray *)itemsForUniqueName:(NSString *)uniqueName;
+@property (nonatomic, readonly) NSArray *demoItems;
+
+- (NSArray *)recursiveSearchForItems:(NSArray *)root forUniqueName:(NSString *)uniqueName;
 
 @end
 
@@ -26,37 +28,36 @@
 
 #pragma mark - private
 
-- (NSArray *)itemsForUniqueName:(NSString *)uniqueName
+- (NSArray *)recursiveSearchForItems:(NSArray *)root forUniqueName:(NSString *)uniqueName
 {
-    // Root
-    NSArray *exampleData = [[NSDictionary dictionaryWithContentsOfFile:NIPathForBundleResource(nil, @"ShowcaseDemo.plist")]
-                            objectForKey:@"Root"];
-    
-    if ([@"83a115dfcdce56aeb39a75df77d58ddf" isEqualToString:uniqueName]) {
-        // Deplian
-        return [[exampleData objectAtIndex:0] objectForKey:@"Items"];
-    }
-    else if ([@"a5163fe21f330316158294f4b906f597" isEqualToString:uniqueName]) {
-        // Foto
-        return [[exampleData objectAtIndex:2] objectForKey:@"Items"];
-    }
-    else if ([@"ec90da36bb5cae03932cfab1d996f67e" isEqualToString:uniqueName]) {
-        // Laminati Plastici
-        return [[[[exampleData objectAtIndex:2] objectForKey:@"Items"] 
-                 objectAtIndex:0] objectForKey:@"Items"];
-    }
-    else if ([@"16c45e82ec19d52989d695c3b464be2d" isEqualToString:uniqueName]) {
-        // Listellari
-        return [[[[exampleData objectAtIndex:2] objectForKey:@"Items"] 
-                 objectAtIndex:1] objectForKey:@"Items"];
-    }
-    else if ([@"043110ffb6e2f2bb8b7f35b31bc35ed1" isEqualToString:uniqueName]) {
-        // Mdf
-        return [[[[exampleData objectAtIndex:2] objectForKey:@"Items"] 
-                 objectAtIndex:2] objectForKey:@"Items"];
+    if (root == nil) {
+        return nil;
     }
     
-    return exampleData;
+    if (uniqueName == nil) {
+        return root;
+    }
+    
+    for (NSDictionary *item in root) {
+        if ([[item objectForKey:@"ContentType"] integerValue] == PTContentTypeGroup) {
+            if ([uniqueName isEqualToString:[item objectForKey:@"UniqueName"]]) {
+                return [item objectForKey:@"Items"];
+            }
+            
+            NSArray *result = [self recursiveSearchForItems:[item objectForKey:@"Items"] forUniqueName:uniqueName];
+            if (result) {
+                return result;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (NSArray *)demoItems
+{
+    return [[NSDictionary dictionaryWithContentsOfFile:NIPathForBundleResource(nil, @"ShowcaseDemo.plist")]
+            objectForKey:@"Root"];
 }
 
 #pragma mark - View lifecycle
@@ -127,7 +128,7 @@
 
 - (PTItemOrientation)showcaseView:(PTShowcaseView *)showcaseView orientationForItemAtIndex:(NSInteger)index
 {
-    return [[[[self itemsForUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+    return [[[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
              objectForKey:@"Orientation"] integerValue];
 }
 
@@ -135,24 +136,24 @@
 
 - (NSInteger)numberOfItemsInShowcaseView:(PTShowcaseView *)showcaseView
 {
-    return [[self itemsForUniqueName:showcaseView.uniqueName] count];
+    return [[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] count];
 }
 
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index
 {
-    return [[[self itemsForUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+    return [[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
             objectForKey:@"UniqueName"];
 }
 
 - (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index
 {
-    return [[[[self itemsForUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+    return [[[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
              objectForKey:@"ContentType"] integerValue];
 }
 
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index
 {
-    NSString *source = [[[self itemsForUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+    NSString *source = [[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
                         objectForKey:@"Source"];
     if (source != nil) {
         return NIPathForBundleResource(nil, [NSString stringWithFormat:@"ShowcaseDemo.bundle/%@", source]);
@@ -163,7 +164,7 @@
 
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView textForItemAtIndex:(NSInteger)index
 {
-    return [[[self itemsForUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+    return [[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
             objectForKey:@"Title"];
 }
 
