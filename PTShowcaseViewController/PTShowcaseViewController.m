@@ -587,7 +587,7 @@
 
 - (PTItemOrientation)showcaseView:(PTShowcaseView *)showcaseView orientationForItemAtIndex:(NSInteger)index
 {
-    return PTItemOrientationLandscape;
+    return PTItemOrientationPortrait;
 }
 
 #pragma mark - PTShowcaseViewDataSource
