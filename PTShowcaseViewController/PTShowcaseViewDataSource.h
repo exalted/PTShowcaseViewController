@@ -18,6 +18,7 @@
 - (NSInteger)numberOfItemsInShowcaseView:(PTShowcaseView *)showcaseView;
 - (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index;
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index;
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemThumbnailAtIndex:(NSInteger)index;
 
 @optional
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index;

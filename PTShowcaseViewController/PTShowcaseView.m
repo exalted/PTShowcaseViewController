@@ -74,6 +74,12 @@
     return object == [NSNull null] ? nil : object;
 }
 
+- (NSString *)sourceForItemThumbnailAtIndex:(NSInteger)index
+{
+    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailSource"];
+    return object == [NSNull null] ? nil : object;
+}
+
 - (NSString *)textForItemAtIndex:(NSInteger)index;
 {
     id object = [[self.data objectAtIndex:index] objectForKey:@"text"];
@@ -105,6 +111,7 @@
         PTContentType contentType = [self.showcaseDataSource showcaseView:self contentTypeForItemAtIndex:i];
         PTItemOrientation orientation = [self.showcaseDelegate showcaseView:self orientationForItemAtIndex:i];
         NSString *source = [self.showcaseDataSource showcaseView:self sourceForItemAtIndex:i];
+        NSString *thumbnailSource = [self.showcaseDataSource showcaseView:self sourceForItemThumbnailAtIndex:i];
         NSString *text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:i];
         
         [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -112,6 +119,7 @@
                               [NSNumber numberWithInteger:contentType], @"contentType",
                               [NSNumber numberWithInteger:orientation], @"orientation",
                               source ? source : [NSNull null], @"source",
+                              thumbnailSource ? thumbnailSource : [NSNull null], @"thumbnailSource",
                               text ? text : [NSNull null], @"text",
                               nil]];
     }

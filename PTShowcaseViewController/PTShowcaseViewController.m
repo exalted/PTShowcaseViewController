@@ -36,9 +36,6 @@
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView videoCellWithOrientation:(PTItemOrientation)orientation;
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView pdfCellWithOrientation:(PTItemOrientation)orientation;
 
-// Methods thumbnails
-- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType withSource:(NSString *)source;
-
 @end
 
 @implementation PTShowcaseViewController
@@ -410,45 +407,6 @@
     return cell;
 }
 
-/* =============================================================================
- * Methods generating thumbnails for content types
- * =============================================================================
- */
-- (void)thumbnailView:(NINetworkImageView *)thumbnailView setImageForContentType:(PTContentType)contentType withSource:(NSString *)source
-{
-    thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
-    
-    switch (contentType)
-    {
-        case PTContentTypeGroup:
-        {
-            // TODO missing implementation
-            break;
-        }
-            
-        case PTContentTypeImage:
-        {
-            // TODO temporary implementation
-            [thumbnailView setPathToNetworkImage:source];
-            break;
-        }
-            
-        case PTContentTypeVideo:
-        {
-            // TODO missing implementation
-            break;
-        }
-            
-        case PTContentTypePdf:
-        {
-            // TODO missing implementation
-            break;
-        }
-            
-        default: NSAssert(NO, @"Unknown content-type.");
-    }
-}
-
 #pragma mark - GMGridViewDataSource
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
@@ -469,7 +427,7 @@
 {
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:index];
     PTItemOrientation orientation = [self.showcaseView orientationForItemAtIndex:index];
-    NSString *source = [self.showcaseView sourceForItemAtIndex:index];
+    NSString *thumbnailImageSource = [self.showcaseView sourceForItemThumbnailAtIndex:index];
     NSString *text = [self.showcaseView textForItemAtIndex:index];
 
     // Dequeue or generate a new cell
@@ -478,9 +436,10 @@
     // Configure the cell...
     
     NINetworkImageView *thumbnailView = (NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG];
+    thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
+    [thumbnailView setPathToNetworkImage:thumbnailImageSource];
+
     UILabel *textLabel = (UILabel *)[cell viewWithTag:TEXT_TAG];
-    
-    [self thumbnailView:thumbnailView setImageForContentType:contentType withSource:source];
     textLabel.text = text;
     
 //    cell.backgroundColor = [UIColor greenColor];
@@ -515,7 +474,7 @@
             
         case PTContentTypeImage:
         {
-            PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] initWithImageAtIndex:relativeIndex animated:NO];
+            PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] initWithImageAtIndex:relativeIndex];
             detailViewController.images = self.showcaseView.imageItems;
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
@@ -622,6 +581,11 @@
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:sourceForItemAtIndex:'");
+    return nil;
+}
+
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemThumbnailAtIndex:(NSInteger)index
+{
     return nil;
 }
 

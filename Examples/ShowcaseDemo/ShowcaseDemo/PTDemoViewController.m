@@ -158,7 +158,18 @@
     if (source != nil) {
         return NIPathForBundleResource(nil, [NSString stringWithFormat:@"ShowcaseDemo.bundle/%@", source]);
     }
+    
+    return nil;
+}
 
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemThumbnailAtIndex:(NSInteger)index
+{
+    NSString *source = [[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+                        objectForKey:@"Thumbnail"];
+    if (source != nil) {
+        return NIPathForBundleResource(nil, [NSString stringWithFormat:@"ShowcaseDemo.bundle/%@", source]);
+    }
+    
     return nil;
 }
 
