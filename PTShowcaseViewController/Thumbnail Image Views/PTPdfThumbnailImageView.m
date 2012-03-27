@@ -10,7 +10,9 @@
 
 @implementation PTPdfThumbnailImageView
 
-+ (UIImage *)applyMask:(UIImage *)image
+@synthesize orientation = _orientation;
+
++ (UIImage *)applyMask:(UIImage *)image forOrientation:(PTItemOrientation)orientation
 {
     CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/document-mask.png"] CGImage];
     CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
@@ -31,7 +33,7 @@
 }
 
 - (void)networkImageViewDidLoadImage:(UIImage *)image {
-    self.image = [PTPdfThumbnailImageView applyMask:image];
+    self.image = [PTPdfThumbnailImageView applyMask:image forOrientation:self.orientation];
 }
 
 @end

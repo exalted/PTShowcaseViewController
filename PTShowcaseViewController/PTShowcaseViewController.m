@@ -20,12 +20,9 @@
 #import "PTImageDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-#define PREVIEW_SIZE_PHONE  CGSizeMake(75.0, 100.0)
-#define PREVIEW_SIZE_PAD    CGSizeMake(120.0, 180.0)
-
-#define THUMBNAIL_TAG       1
-#define TEXT_TAG            2
-#define DETAIL_TEXT_TAG     3
+#define THUMBNAIL_TAG   1
+#define TEXT_TAG        2
+#define DETAIL_TEXT_TAG 3
 
 @interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 
@@ -130,27 +127,8 @@
 
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // TODO these pre-calculated values *will* cause trouble at some point
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-            self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(4.0, 4.0, 4.0, 4.0);
-            self.showcaseView.itemSpacing = 4;
-        }
-        else {
-            self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0);
-            self.showcaseView.itemSpacing = 4;
-        }
-    }
-    else {
-        if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-            self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(28.0, 28.0, 0.0, 0.0);
-            self.showcaseView.itemSpacing = 28;
-        }
-        else {
-            self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(23.0, 23.0, 0.0, 0.0);
-            self.showcaseView.itemSpacing = 23;
-        }
-    }
+    self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.showcaseView.itemSpacing = 0;
 }
 
 /* =============================================================================
@@ -190,7 +168,7 @@
     }
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 75.0, 75.0, 20.0)];
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 80.0, 80.0, 20.0)];
         textLabel.tag = TEXT_TAG;
         textLabel.font = [UIFont boldSystemFontOfSize:12.0];
         textLabel.textAlignment = UITextAlignmentCenter;
@@ -203,7 +181,7 @@
         [cell addSubview:textLabel];
     }
     else {
-        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 140.0, 120.0, 20.0)];
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 256.0, 256.0, 20.0)];
         textLabel.tag = TEXT_TAG;
         textLabel.font = [UIFont boldSystemFontOfSize:12.0];
         textLabel.textAlignment = UITextAlignmentCenter;
@@ -232,7 +210,7 @@
             // Placeholder
             
             NSString *placeholderImageName = @"PTShowcase.bundle/group.png";
-            CGRect placeholderImageNameImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
+            CGRect placeholderImageNameImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
             
             UIImageView *placeholderImageView = [[UIImageView alloc] initWithFrame:placeholderImageNameImageViewFrame];
             placeholderImageView.image = [UIImage imageNamed:placeholderImageName];
@@ -243,9 +221,7 @@
             
             NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"group",
                                        orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-            CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
-            ? CGRectMake(-16.5, -15.0, 154.0, 158.0)
-            : CGRectMake(-18.5, -15.0, 155.0, 158.0);
+            CGRect backImageViewFrame = CGRectMake(0.0, 0.0, 256.0, 256.0);
             
             UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
             backImageView.image = [UIImage imageNamed:backImageName];
@@ -253,11 +229,11 @@
             
             // Thumbnail
             
-            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"group-loading",
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"thumbnail-loading",
                                           orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
             CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
-            ? CGRectMake(15.0, 0.0, 90.0, 120.0)
-            : CGRectMake(0.0, 15.0, 120.0, 90.0);
+            ? CGRectMake(60.0, 28.0, 135.0, 180.0)
+            : CGRectMake(40.0, 50.0, 180.0, 135.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
@@ -282,7 +258,7 @@
             // Thumbnail
             
             NSString *loadingImageName = @"PTShowcase.bundle/image-loading.png";
-            CGRect loadingImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
+            CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
@@ -296,30 +272,26 @@
             [cell addSubview:overlapView];
         }
         else {
-            // Back Image
-            
-            NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-frame",
-                                       orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-            CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
-            ? CGRectMake(8.5, -4.5, 103.0, 137.0)
-            : CGRectMake(-6.5, 11.0, 133.0, 107.0);
-            
-            UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
-            backImageView.image = [UIImage imageNamed:backImageName];
-            [cell addSubview:backImageView];
-            
             // Thumbnail
             
-            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-loading",
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"thumbnail-loading",
                                           orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
             CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
-            ? CGRectMake(15.0, 0.0, 90.0, 120.0)
-            : CGRectMake(0.0, 15.0, 120.0, 90.0);
+            ? CGRectMake(38.0, 8.0, 180.0, 240.0)
+            : CGRectMake(8.0, 28.0, 240.0, 180.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
             thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
             [cell addSubview:thumbnailView];
+            
+            // Overlap
+            
+            NSString *overlapImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"image-overlap",
+                                          orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
+            UIImageView *overlapView = [[UIImageView alloc] initWithFrame:loadingImageViewFrame];
+            overlapView.image = [UIImage imageNamed:overlapImageName];
+            [cell addSubview:overlapView];
         }
     }
     
@@ -339,8 +311,8 @@
             // Thumbnail
             
             NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
-            CGRect loadingImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
-            UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName]];
+            CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
+            UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
             
             PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
@@ -357,8 +329,8 @@
             // Thumbnail
             
             NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
-            CGRect loadingImageViewFrame = CGRectMake(0.0, 15.0, 120.0, 90.0);
-            UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName]];
+            CGRect loadingImageViewFrame = CGRectMake(0.0, 30.0, 240.0, 180.0);
+            UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
             
             PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
@@ -389,8 +361,8 @@
             // Thumbnail
             
             NSString *loadingImageName = @"PTShowcase.bundle/document-loading.png";
-            CGRect loadingImageViewFrame = CGRectMake(0.0, 0.0, 75.0, 75.0);
-            UIImage *maskedImage = [PTPdfThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName]];
+            CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
+            UIImage *maskedImage = [PTPdfThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
             
             PTPdfThumbnailImageView *thumbnailView = [[PTPdfThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
@@ -408,9 +380,7 @@
             
             NSString *backImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-pages",
                                        orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
-            CGRect backImageViewFrame = orientation == PTItemOrientationPortrait
-            ? CGRectMake(4.0, -11.0, 116.0, 146.0)
-            : CGRectMake(-26.0, -11.0, 176.0, 146.0);
+            CGRect backImageViewFrame = CGRectMake(0.0, 0.0, 256.0, 256.0);
             
             UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backImageViewFrame];
             backImageView.image = [UIImage imageNamed:backImageName];
@@ -418,11 +388,11 @@
             
             // Thumbnail
             
-            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"document-loading",
+            NSString *loadingImageName = [NSString stringWithFormat:@"PTShowcase.bundle/%@-%@.png", @"thumbnail-loading",
                                           orientation == PTItemOrientationPortrait ? @"portrait" : @"landscape"];
             CGRect loadingImageViewFrame = orientation == PTItemOrientationPortrait
-            ? CGRectMake(15.0, 0.0, 90.0, 120.0)
-            : CGRectMake(0.0, 15.0, 120.0, 90.0);
+            ? CGRectMake(60.0, 38.0, 135.0, 180.0)
+            : CGRectMake(38.0, 61.0, 180.0, 135.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
             thumbnailView.tag = THUMBNAIL_TAG;
@@ -483,10 +453,10 @@
 - (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return PREVIEW_SIZE_PHONE;
+        return CGSizeMake(80.0, 80.0+20.0);
     }
 
-    return PREVIEW_SIZE_PAD;
+    return CGSizeMake(256.0, 256.0+20.0);
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
@@ -508,6 +478,7 @@
     textLabel.text = text;
     
 //    cell.backgroundColor = [UIColor greenColor];
+//    textLabel.backgroundColor = [UIColor redColor];
     
     return cell;
 }

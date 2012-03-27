@@ -8,8 +8,12 @@
 
 #import "NINetworkImageView.h"
 
+#import "PTShowcase.h"
+
 @interface PTVideoThumbnailImageView : NINetworkImageView
 
-+ (UIImage *)applyMask:(UIImage *)image;
+@property (nonatomic, assign) PTItemOrientation orientation;
+
++ (UIImage *)applyMask:(UIImage *)image forOrientation:(PTItemOrientation)orientation;
 
 @end
