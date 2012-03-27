@@ -11,6 +11,8 @@
 			<string>Depliant</string>
 			<key>ContentType</key>
 			<integer>0</integer>
+			<key>Thumbnail</key>
+			<string>data/thumbs/divisorio.png</string>
 			<key>Orientation</key>
 			<integer>0</integer>
 			<key>Items</key>
@@ -20,6 +22,8 @@
 					<string>Divisorio</string>
 					<key>Source</key>
 					<string>data/doc/divisorio.pdf</string>
+					<key>Thumbnail</key>
+					<string>data/thumbs/divisorio.png</string>
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
@@ -30,6 +34,8 @@
 					<string>Lastre</string>
 					<key>Source</key>
 					<string>data/doc/lastre.pdf</string>
+					<key>Thumbnail</key>
+					<string>data/thumbs/lastre.png</string>
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
@@ -40,6 +46,8 @@
 					<string>Muro</string>
 					<key>Source</key>
 					<string>data/doc/muro.pdf</string>
+					<key>Thumbnail</key>
+					<string>data/thumbs/muro.png</string>
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
@@ -52,6 +60,8 @@
 			<string>Poliespanso</string>
 			<key>Source</key>
 			<string>data/video/poliespanso.mp4</string>
+			<key>Thumbnail</key>
+			<string>data/thumbs/trailer.png</string>
 			<key>ContentType</key>
 			<integer>2</integer>
 		</dict>
@@ -60,6 +70,8 @@
 			<string>a5163fe21f330316158294f4b906f597</string>
 			<key>Title</key>
 			<string>Foto</string>
+			<key>Thumbnail</key>
+			<string>data/img/laminati-plastici/01.jpg</string>
 			<key>ContentType</key>
 			<integer>0</integer>
 			<key>Orientation</key>
@@ -71,6 +83,8 @@
 					<string>ec90da36bb5cae03932cfab1d996f67e</string>
 					<key>Title</key>
 					<string>Laminati Plastici</string>
+					<key>Thumbnail</key>
+					<string>data/img/laminati-plastici/01.jpg</string>
 					<key>ContentType</key>
 					<integer>0</integer>
 					<key>Orientation</key>
@@ -84,6 +98,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/laminati-plastici/01.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/laminati-plastici/01.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -95,6 +111,8 @@
 							<key>Description</key>
 							<string></string>
 							<key>Source</key>
+							<string>data/img/laminati-plastici/02.jpg</string>
+							<key>Thumbnail</key>
 							<string>data/img/laminati-plastici/02.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
@@ -108,6 +126,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/laminati-plastici/03.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/laminati-plastici/03.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -119,6 +139,8 @@
 							<key>Description</key>
 							<string></string>
 							<key>Source</key>
+							<string>data/img/laminati-plastici/04.jpg</string>
+							<key>Thumbnail</key>
 							<string>data/img/laminati-plastici/04.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
@@ -132,6 +154,8 @@
 					<string>16c45e82ec19d52989d695c3b464be2d</string>
 					<key>Title</key>
 					<string>Listellari</string>
+					<key>Thumbnail</key>
+					<string>data/img/listellari/01.jpg</string>
 					<key>ContentType</key>
 					<integer>0</integer>
 					<key>Orientation</key>
@@ -145,6 +169,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/listellari/01.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/listellari/01.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -156,6 +182,8 @@
 							<key>Description</key>
 							<string></string>
 							<key>Source</key>
+							<string>data/img/listellari/02.jpg</string>
+							<key>Thumbnail</key>
 							<string>data/img/listellari/02.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
@@ -169,6 +197,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/listellari/03.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/listellari/03.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -181,6 +211,8 @@
 					<string>043110ffb6e2f2bb8b7f35b31bc35ed1</string>
 					<key>Title</key>
 					<string>Mdf</string>
+					<key>Thumbnail</key>
+					<string>data/img/mdf/01.jpg</string>
 					<key>ContentType</key>
 					<integer>0</integer>
 					<key>Orientation</key>
@@ -194,6 +226,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/mdf/01.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/mdf/01.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -205,6 +239,8 @@
 							<key>Description</key>
 							<string></string>
 							<key>Source</key>
+							<string>data/img/mdf/02.jpg</string>
+							<key>Thumbnail</key>
 							<string>data/img/mdf/02.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
@@ -218,6 +254,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/mdf/03.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/mdf/03.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -230,6 +268,8 @@
 							<string></string>
 							<key>Source</key>
 							<string>data/img/mdf/04.jpg</string>
+							<key>Thumbnail</key>
+							<string>data/img/mdf/04.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
@@ -241,6 +281,8 @@
 							<key>Description</key>
 							<string></string>
 							<key>Source</key>
+							<string>data/img/mdf/05.jpg</string>
+							<key>Thumbnail</key>
 							<string>data/img/mdf/05.jpg</string>
 							<key>ContentType</key>
 							<integer>1</integer>
