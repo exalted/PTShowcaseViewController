@@ -456,6 +456,7 @@
     NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
     NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
     NSString *source = [self.showcaseView sourceForItemAtIndex:position];
+    NSString *text = [self.showcaseView textForItemAtIndex:position];
 
     switch (contentType)
     {
@@ -465,6 +466,7 @@
             detailViewController.showcaseView.showcaseDelegate = self.showcaseView.showcaseDelegate;
             detailViewController.showcaseView.showcaseDataSource = self.showcaseView.showcaseDataSource;
             
+            detailViewController.title = text;
             detailViewController.view.backgroundColor = self.view.backgroundColor;
 
             [self.navigationController pushViewController:detailViewController animated:YES];
@@ -511,6 +513,8 @@
             MPMoviePlayerViewController *detailViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
+            detailViewController.title = text;
+
             // TODO zoom in/out (just like in Photos.app in the iPad)
             [self presentViewController:detailViewController animated:YES completion:NULL];
             
@@ -538,6 +542,8 @@
             PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
+            
+            detailViewController.title = text;
             detailViewController.view.backgroundColor = self.view.backgroundColor;
             
             UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
