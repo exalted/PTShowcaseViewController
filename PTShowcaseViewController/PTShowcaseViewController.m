@@ -519,7 +519,7 @@
             detailViewController.images = self.showcaseView.imageItems;
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
-            [detailViewController.navigationItem setRightBarButtonItem:
+            [detailViewController.navigationItem setLeftBarButtonItem:
              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                            target:self
                                                            action:@selector(dismissImageDetailViewController)]];
