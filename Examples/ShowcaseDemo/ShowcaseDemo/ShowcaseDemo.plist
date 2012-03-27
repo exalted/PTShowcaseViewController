@@ -23,7 +23,7 @@
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 				<dict>
 					<key>Title</key>
@@ -33,7 +33,7 @@
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
-					<integer>0</integer>
+					<integer>1</integer>
 				</dict>
 				<dict>
 					<key>Title</key>
@@ -63,7 +63,7 @@
 			<key>ContentType</key>
 			<integer>0</integer>
 			<key>Orientation</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>Items</key>
 			<array>
 				<dict>
@@ -74,7 +74,7 @@
 					<key>ContentType</key>
 					<integer>0</integer>
 					<key>Orientation</key>
-					<integer>0</integer>
+					<integer>1</integer>
 					<key>Items</key>
 					<array>
 						<dict>
@@ -99,7 +99,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
@@ -111,7 +111,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
@@ -135,7 +135,7 @@
 					<key>ContentType</key>
 					<integer>0</integer>
 					<key>Orientation</key>
-					<integer>0</integer>
+					<integer>1</integer>
 					<key>Items</key>
 					<array>
 						<dict>
@@ -148,7 +148,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
@@ -160,7 +160,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
@@ -172,7 +172,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 					</array>
 				</dict>
@@ -197,7 +197,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
@@ -221,7 +221,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
@@ -233,7 +233,7 @@
 							<key>ContentType</key>
 							<integer>1</integer>
 							<key>Orientation</key>
-							<integer>0</integer>
+							<integer>1</integer>
 						</dict>
 						<dict>
 							<key>Title</key>
