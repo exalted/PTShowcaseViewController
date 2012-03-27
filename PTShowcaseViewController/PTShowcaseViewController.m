@@ -27,6 +27,7 @@
 @interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (void)dismissImageDetailViewController;
 
 // Supported cells for content types
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForContentType:(PTContentType)contentType withOrientation:(PTItemOrientation)orientation;
@@ -129,6 +130,11 @@
 {
     self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     self.showcaseView.itemSpacing = 0;
+}
+
+- (void)dismissImageDetailViewController
+{
+    [self dismissViewControllerAnimated:NO completion:NULL];
 }
 
 /* =============================================================================
@@ -511,11 +517,20 @@
         {
             PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] initWithImageAtIndex:relativeIndex animated:NO];
             detailViewController.images = self.showcaseView.imageItems;
-            detailViewController.hidesBottomBarWhenPushed = YES;
+            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            
+            [detailViewController.navigationItem setRightBarButtonItem:
+             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                           target:self
+                                                           action:@selector(dismissImageDetailViewController)]];
+            
+            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
             
             // TODO zoom in/out (just like in Photos.app in the iPad)
-            [self.navigationController pushViewController:detailViewController animated:NO];
-
+            [self presentViewController:navCtrl animated:YES completion:^{
+                // do something;
+            }];
+            
             break;
         }
             
