@@ -134,7 +134,7 @@
 
 - (void)dismissImageDetailViewController
 {
-    [self dismissViewControllerAnimated:NO completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 /* =============================================================================
@@ -550,9 +550,10 @@
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
             MPMoviePlayerViewController *detailViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 
             // TODO zoom in/out (just like in Photos.app in the iPad)
-            [self presentViewController:detailViewController animated:NO completion:NULL];
+            [self presentViewController:detailViewController animated:YES completion:NULL];
             
             break;
         }
