@@ -236,17 +236,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		50265E2214FD44320094A642 /* Thumbnail Image Views */ = {
-			isa = PBXGroup;
-			children = (
-				50265E2A14FD45DA0094A642 /* PTVideoThumbnailImageView.h */,
-				50265E2B14FD45DA0094A642 /* PTVideoThumbnailImageView.m */,
-				50265E2D14FD46080094A642 /* PTPdfThumbnailImageView.h */,
-				50265E2E14FD46080094A642 /* PTPdfThumbnailImageView.m */,
-			);
-			path = "Thumbnail Image Views";
-			sourceTree = "<group>";
-		};
 		505AE84B14ED5FD900BBFC05 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +295,18 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		508F7CFD14EEA2DD000140D6 /* Detail View Controllers */ = {
+		5088D9DC1521EE1000A1A9DE /* Thumbnails */ = {
+			isa = PBXGroup;
+			children = (
+				50265E2A14FD45DA0094A642 /* PTVideoThumbnailImageView.h */,
+				50265E2B14FD45DA0094A642 /* PTVideoThumbnailImageView.m */,
+				50265E2D14FD46080094A642 /* PTPdfThumbnailImageView.h */,
+				50265E2E14FD46080094A642 /* PTPdfThumbnailImageView.m */,
+			);
+			name = Thumbnails;
+			sourceTree = "<group>";
+		};
+		5088D9DD1521EE2900A1A9DE /* Details */ = {
 			isa = PBXGroup;
 			children = (
 				50265E3414FE72D10094A642 /* PTGroupDetailViewController.h */,
@@ -314,7 +314,7 @@
 				508F7CFE14EEA358000140D6 /* PTImageDetailViewController.h */,
 				508F7CFF14EEA358000140D6 /* PTImageDetailViewController.m */,
 			);
-			path = "Detail View Controllers";
+			name = Details;
 			sourceTree = "<group>";
 		};
 		50918CCE14F508930005AD9C /* SDURLCache */ = {
@@ -369,6 +369,8 @@
 		50A7967014E3D95E002B9117 /* PTShowcaseViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5088D9DC1521EE1000A1A9DE /* Thumbnails */,
+				5088D9DD1521EE2900A1A9DE /* Details */,
 				50DE74F214E964FE0070F1FE /* PTShowcase.bundle */,
 				50DE74F114E940AD0070F1FE /* PTShowcase.h */,
 				5093F24C14E532F1004DC805 /* PTShowcaseViewController.h */,
@@ -377,8 +379,6 @@
 				5093F25214E53496004DC805 /* PTShowcaseView.m */,
 				5093F24F14E53375004DC805 /* PTShowcaseViewDelegate.h */,
 				5093F25014E53386004DC805 /* PTShowcaseViewDataSource.h */,
-				50265E2214FD44320094A642 /* Thumbnail Image Views */,
-				508F7CFD14EEA2DD000140D6 /* Detail View Controllers */,
 			);
 			name = PTShowcaseViewController;
 			path = ../../PTShowcaseViewController;
