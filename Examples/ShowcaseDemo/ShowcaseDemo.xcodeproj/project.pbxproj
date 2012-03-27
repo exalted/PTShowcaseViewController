@@ -17,6 +17,14 @@
 		505AE86814ED608000BBFC05 /* NIPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE86214ED608000BBFC05 /* NIPageView.m */; };
 		505AE86914ED608000BBFC05 /* NIPagingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE86414ED608000BBFC05 /* NIPagingScrollView.m */; };
 		505AE96314ED785700BBFC05 /* PTImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */; };
+		5088D9CA1521EAEA00A1A9DE /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9C91521EAEA00A1A9DE /* PSPDFKit.framework */; };
+		5088D9CD1521EC0700A1A9DE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9CC1521EC0700A1A9DE /* CoreText.framework */; };
+		5088D9CF1521EC1800A1A9DE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9CE1521EC1800A1A9DE /* MessageUI.framework */; };
+		5088D9D11521EC2400A1A9DE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D01521EC2400A1A9DE /* libz.dylib */; };
+		5088D9D31521EC2B00A1A9DE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D21521EC2B00A1A9DE /* ImageIO.framework */; };
+		5088D9D51521EC3100A1A9DE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D41521EC3100A1A9DE /* CoreMedia.framework */; };
+		5088D9D71521EC3E00A1A9DE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D61521EC3E00A1A9DE /* AVFoundation.framework */; };
+		5088D9DA1521EC9F00A1A9DE /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5088D9D91521EC9F00A1A9DE /* PSPDFKit.bundle */; };
 		508F7CFC14EEA26A000140D6 /* PTImageAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CFA14EEA26A000140D6 /* PTImageAlbumView.m */; };
 		508F7D0014EEA358000140D6 /* PTImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CFF14EEA358000140D6 /* PTImageDetailViewController.m */; };
 		508F7D0614EEB066000140D6 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 508F7D0514EEB066000140D6 /* NimbusPhotos.bundle */; };
@@ -97,6 +105,14 @@
 		505AE86714ED608000BBFC05 /* NIPagingScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIPagingScrollViewPage.h; path = ../../Libraries/nimbus/src/pagingscrollview/src/NIPagingScrollViewPage.h; sourceTree = "<group>"; };
 		505AE96114ED785700BBFC05 /* PTImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewController.h; sourceTree = "<group>"; };
 		505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumViewController.m; sourceTree = "<group>"; };
+		5088D9C91521EAEA00A1A9DE /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../Libraries/PSPDFKit/PSPDFKit.framework; sourceTree = "<group>"; };
+		5088D9CC1521EC0700A1A9DE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		5088D9CE1521EC1800A1A9DE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		5088D9D01521EC2400A1A9DE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5088D9D21521EC2B00A1A9DE /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		5088D9D41521EC3100A1A9DE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		5088D9D61521EC3E00A1A9DE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5088D9D91521EC9F00A1A9DE /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../../../Libraries/PSPDFKit/PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		508F7CF914EEA26A000140D6 /* PTImageAlbumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumView.h; sourceTree = "<group>"; };
 		508F7CFA14EEA26A000140D6 /* PTImageAlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumView.m; sourceTree = "<group>"; };
 		508F7CFB14EEA26A000140D6 /* PTImageAlbumViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewDataSource.h; sourceTree = "<group>"; };
@@ -202,11 +218,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5088D9D71521EC3E00A1A9DE /* AVFoundation.framework in Frameworks */,
 				50A601AE14F556A3002076AB /* MediaPlayer.framework in Frameworks */,
+				5088D9D51521EC3100A1A9DE /* CoreMedia.framework in Frameworks */,
+				5088D9D31521EC2B00A1A9DE /* ImageIO.framework in Frameworks */,
+				5088D9D11521EC2400A1A9DE /* libz.dylib in Frameworks */,
+				5088D9CF1521EC1800A1A9DE /* MessageUI.framework in Frameworks */,
+				5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */,
+				5088D9CD1521EC0700A1A9DE /* CoreText.framework in Frameworks */,
+				5088D9CA1521EAEA00A1A9DE /* PSPDFKit.framework in Frameworks */,
 				50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */,
 				50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */,
 				50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */,
-				5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +296,14 @@
 			);
 			name = PTImageAlbumViewController;
 			path = ../../Libraries/PTImageAlbumViewController/PTImageAlbumViewController;
+			sourceTree = "<group>";
+		};
+		5088D9D81521EC9500A1A9DE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5088D9D91521EC9F00A1A9DE /* PSPDFKit.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		508F7CFD14EEA2DD000140D6 /* Detail View Controllers */ = {
@@ -452,6 +483,13 @@
 		50FC0D1814E3D44300F28648 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5088D9C91521EAEA00A1A9DE /* PSPDFKit.framework */,
+				5088D9D61521EC3E00A1A9DE /* AVFoundation.framework */,
+				5088D9D41521EC3100A1A9DE /* CoreMedia.framework */,
+				5088D9D21521EC2B00A1A9DE /* ImageIO.framework */,
+				5088D9D01521EC2400A1A9DE /* libz.dylib */,
+				5088D9CE1521EC1800A1A9DE /* MessageUI.framework */,
+				5088D9CC1521EC0700A1A9DE /* CoreText.framework */,
 				50FC0D1914E3D44300F28648 /* UIKit.framework */,
 				50FC0D1B14E3D44300F28648 /* Foundation.framework */,
 				50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */,
@@ -478,6 +516,7 @@
 		50FC0D2014E3D44300F28648 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5088D9D81521EC9500A1A9DE /* Resources */,
 				50FC0D2114E3D44300F28648 /* ShowcaseDemo-Info.plist */,
 				50FC0D2214E3D44300F28648 /* InfoPlist.strings */,
 				50FC0D2514E3D44300F28648 /* main.m */,
@@ -542,6 +581,7 @@
 				508F7D0614EEB066000140D6 /* NimbusPhotos.bundle in Resources */,
 				50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */,
 				50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */,
+				5088D9DA1521EC9F00A1A9DE /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,9 +708,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Libraries/PSPDFKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShowcaseDemo/ShowcaseDemo-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -680,9 +725,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Libraries/PSPDFKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShowcaseDemo/ShowcaseDemo-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
