@@ -561,7 +561,32 @@
             
         case PTContentTypePdf:
         {
-            // TODO missing implementation
+            // TODO remove duplicate
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            NSURL *url = nil;
+            
+            // Check for file URLs.
+            if ([source hasPrefix:@"/"]) {
+                // If the url starts with / then it's likely a file URL, so treat it accordingly.
+                url = [NSURL fileURLWithPath:source];
+            }
+            else {
+                // Otherwise we assume it's a regular URL.
+                url = [NSURL URLWithString:source];
+            }
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:url];
+            PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
+            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+            detailViewController.view.backgroundColor = self.view.backgroundColor;
+            
+            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+
+            // TODO zoom in/out (just like in Photos.app in the iPad)
+            [self presentViewController:navCtrl animated:YES completion:NULL];
+            
             break;
         }
             
