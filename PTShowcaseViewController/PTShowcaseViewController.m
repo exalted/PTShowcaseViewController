@@ -527,9 +527,7 @@
             UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
             
             // TODO zoom in/out (just like in Photos.app in the iPad)
-            [self presentViewController:navCtrl animated:YES completion:^{
-                // do something;
-            }];
+            [self presentViewController:navCtrl animated:YES completion:NULL];
             
             break;
         }
