@@ -62,23 +62,23 @@
     return [self.data count];
 }
 
-- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
+- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index
 {
     id object = [[self.data objectAtIndex:index] objectForKey:@"uniqueName"];
     return object == [NSNull null] ? nil : object;
 }
 
-- (PTContentType)contentTypeForItemAtIndex:(NSInteger)index;
+- (PTContentType)contentTypeForItemAtIndex:(NSInteger)index
 {
     return [[[self.data objectAtIndex:index] objectForKey:@"contentType"] integerValue];
 }
 
-- (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index;
+- (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index
 {
     return [[[self.data objectAtIndex:index] objectForKey:@"orientation"] integerValue];
 }
 
-- (NSString *)sourceForItemAtIndex:(NSInteger)index;
+- (NSString *)sourceForItemAtIndex:(NSInteger)index
 {
     id object = [[self.data objectAtIndex:index] objectForKey:@"source"];
     return object == [NSNull null] ? nil : object;
@@ -90,7 +90,7 @@
     return object == [NSNull null] ? nil : object;
 }
 
-- (NSString *)textForItemAtIndex:(NSInteger)index;
+- (NSString *)textForItemAtIndex:(NSInteger)index
 {
     id object = [[self.data objectAtIndex:index] objectForKey:@"text"];
     return object == [NSNull null] ? nil : object;
