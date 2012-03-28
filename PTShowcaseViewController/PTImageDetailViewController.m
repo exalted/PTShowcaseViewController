@@ -20,7 +20,7 @@
 
 @implementation PTImageDetailViewController
 
-@synthesize images = _images;
+@synthesize data = _data;
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,37 +53,29 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     
-    self.images = nil;
+    self.data = nil;
 }
 
 #pragma mark - PTImageAlbumViewDataSource
 
 - (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView
 {
-    return [self.images count];
-}
-
-- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
-{
-    return [[self.images objectAtIndex:index] objectForKey:@"source"];
+    return [self.data count];
 }
 
 - (CGSize)imageAlbumView:(PTImageAlbumView *)imageAlbumView sizeForImageAtIndex:(NSInteger)index
 {
-    // TODO temporary implementation
-    // return original sized image's size
-    return [[UIImage imageWithContentsOfFile:[self imageAlbumView:imageAlbumView sourceForImageAtIndex:index]] size];
+    return [[UIImage imageWithContentsOfFile:[[self.data objectAtIndex:index] objectForKey:@"path"]] size];
+}
+
+- (UIImage *)imageAlbumView:(PTImageAlbumView *)imageAlbumView imageAtIndex:(NSInteger)index
+{
+    return [UIImage imageWithContentsOfFile:[[self.data objectAtIndex:index] objectForKey:@"path"]];
 }
 
 - (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    // TODO temporary implementation
-    // replace with:
-    // - create a thumbnail once the original image has been downloaded
-    // - return thumbnail's sourcs
-    // current:
-    // - return original sized image
-    return [self imageAlbumView:imageAlbumView sourceForImageAtIndex:index];
+    return [[self.data objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
 }
 
 @end

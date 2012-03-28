@@ -437,7 +437,7 @@
 {
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:index];
     PTItemOrientation orientation = [self.showcaseView orientationForItemAtIndex:index];
-    NSString *thumbnailImageSource = [self.showcaseView sourceForItemThumbnailAtIndex:index];
+    NSString *thumbnailImageSource = [self.showcaseView sourceForThumbnailImageOfItemAtIndex:index];
     NSString *text = [self.showcaseView textForItemAtIndex:index];
 
     // Dequeue or generate a new cell
@@ -463,10 +463,10 @@
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:position];
-    NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
     NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
-    NSString *source = [self.showcaseView sourceForItemAtIndex:position];
+    NSString *path = [self.showcaseView pathForItemAtIndex:position];
     NSString *text = [self.showcaseView textForItemAtIndex:position];
+    NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
 
     switch (contentType)
     {
@@ -487,7 +487,7 @@
         case PTContentTypeImage:
         {
             PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] initWithImageAtIndex:relativeIndex];
-            detailViewController.images = self.showcaseView.imageItems;
+            detailViewController.data = self.showcaseView.imageItems;
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
             [detailViewController.navigationItem setLeftBarButtonItem:
@@ -510,13 +510,13 @@
             NSURL *url = nil;
 
             // Check for file URLs.
-            if ([source hasPrefix:@"/"]) {
+            if ([path hasPrefix:@"/"]) {
                 // If the url starts with / then it's likely a file URL, so treat it accordingly.
-                url = [NSURL fileURLWithPath:source];
+                url = [NSURL fileURLWithPath:path];
             }
             else {
                 // Otherwise we assume it's a regular URL.
-                url = [NSURL URLWithString:source];
+                url = [NSURL URLWithString:path];
             }
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -538,13 +538,13 @@
             NSURL *url = nil;
             
             // Check for file URLs.
-            if ([source hasPrefix:@"/"]) {
+            if ([path hasPrefix:@"/"]) {
                 // If the url starts with / then it's likely a file URL, so treat it accordingly.
-                url = [NSURL fileURLWithPath:source];
+                url = [NSURL fileURLWithPath:path];
             }
             else {
                 // Otherwise we assume it's a regular URL.
-                url = [NSURL URLWithString:source];
+                url = [NSURL URLWithString:path];
             }
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             
@@ -583,24 +583,24 @@
     return -1;
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index;
-{
-    return nil;
-}
-
 - (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:contentTypeForItemAtIndex:'");
     return -1;
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemAtIndex:(NSInteger)index
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index
 {
-    NSAssert(NO, @"missing required method implementation 'showcaseView:sourceForItemAtIndex:'");
+    NSAssert(NO, @"missing required method implementation 'showcaseView:pathForItemAtIndex:'");
     return nil;
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForItemThumbnailAtIndex:(NSInteger)index
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index;
+{
+    return nil;
+}
+
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForThumbnailImageOfItemAtIndex:(NSInteger)index
 {
     return nil;
 }

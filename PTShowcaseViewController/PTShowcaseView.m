@@ -62,12 +62,6 @@
     return [self.data count];
 }
 
-- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index
-{
-    id object = [[self.data objectAtIndex:index] objectForKey:@"uniqueName"];
-    return object == [NSNull null] ? nil : object;
-}
-
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index
 {
     return [[[self.data objectAtIndex:index] objectForKey:@"contentType"] integerValue];
@@ -78,15 +72,21 @@
     return [[[self.data objectAtIndex:index] objectForKey:@"orientation"] integerValue];
 }
 
-- (NSString *)sourceForItemAtIndex:(NSInteger)index
+- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"source"];
+    id object = [[self.data objectAtIndex:index] objectForKey:@"uniqueName"];
     return object == [NSNull null] ? nil : object;
 }
 
-- (NSString *)sourceForItemThumbnailAtIndex:(NSInteger)index
+- (NSString *)pathForItemAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailSource"];
+    id object = [[self.data objectAtIndex:index] objectForKey:@"path"];
+    return object == [NSNull null] ? nil : object;
+}
+
+- (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index
+{
+    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
     return object == [NSNull null] ? nil : object;
 }
 
@@ -116,20 +116,24 @@
     // Create an items' info array for reusing
     self.data = [NSMutableArray arrayWithCapacity:numberOfItems];
     for (NSInteger i = 0; i < numberOfItems; i++) {
-        // Ask datasource and delegate for various data
-        NSString *uniqueName = [self.showcaseDataSource showcaseView:self uniqueNameForItemAtIndex:i];
+        // Ask data source and delegate for various data
         PTContentType contentType = [self.showcaseDataSource showcaseView:self contentTypeForItemAtIndex:i];
         PTItemOrientation orientation = [self.showcaseDelegate showcaseView:self orientationForItemAtIndex:i];
-        NSString *source = [self.showcaseDataSource showcaseView:self sourceForItemAtIndex:i];
-        NSString *thumbnailSource = [self.showcaseDataSource showcaseView:self sourceForItemThumbnailAtIndex:i];
+
+        NSString *path = [self.showcaseDataSource showcaseView:self pathForItemAtIndex:i];
+        if (path) {
+            NSAssert([path hasPrefix:@"/"], @"path should be a valid non-relative (absolute) system path.");
+        }
+        NSString *uniqueName = [self.showcaseDataSource showcaseView:self uniqueNameForItemAtIndex:i];
+        NSString *thumbnailImageSource = [self.showcaseDataSource showcaseView:self sourceForThumbnailImageOfItemAtIndex:i];
         NSString *text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:i];
         
         [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              uniqueName ? uniqueName : [NSNull null], @"uniqueName",
                               [NSNumber numberWithInteger:contentType], @"contentType",
                               [NSNumber numberWithInteger:orientation], @"orientation",
-                              source ? source : [NSNull null], @"source",
-                              thumbnailSource ? thumbnailSource : [NSNull null], @"thumbnailSource",
+                              path ? path : [NSNull null], @"path",
+                              uniqueName ? uniqueName : [NSNull null], @"uniqueName",
+                              thumbnailImageSource ? thumbnailImageSource : [NSNull null], @"thumbnailImageSource",
                               text ? text : [NSNull null], @"text",
                               nil]];
     }

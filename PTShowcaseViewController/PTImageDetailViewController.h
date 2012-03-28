@@ -20,6 +20,6 @@
 
 @interface PTImageDetailViewController : PTImageAlbumViewController
 
-@property (nonatomic, retain) NSArray *images;
+@property (nonatomic, retain) NSArray *data;
 
 @end

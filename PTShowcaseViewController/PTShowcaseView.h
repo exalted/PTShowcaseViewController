@@ -35,12 +35,16 @@
 - (id)initWithUniqueName:(NSString *)uniqueName;
 
 - (NSInteger)numberOfItems;
-- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
+
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index;
 - (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index;
-- (NSString *)sourceForItemAtIndex:(NSInteger)index;
-- (NSString *)sourceForItemThumbnailAtIndex:(NSInteger)index;
+
+- (NSString *)pathForItemAtIndex:(NSInteger)index;
+
+- (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
+- (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index;
 - (NSString *)textForItemAtIndex:(NSInteger)index;
+
 - (NSInteger)relativeIndexForItemAtIndex:(NSInteger)index withContentType:(PTContentType)contentType;
 
 - (void)reloadData;
