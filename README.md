@@ -61,7 +61,7 @@ How To Make It All Work
 
 ```bash
 $ cd <somewhere>
-$ git clone git@github.com:exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
+$ git clone git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
 $ cd PTShowcaseViewController-exalted/
 $ git submodule init
 $ git submodule update
