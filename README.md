@@ -1,10 +1,17 @@
-Intro
-=====
+How To Get It
+=============
 
-Not much to see here, don't hold your breath until a good ol' README comes up! ;-)
+```bash
+$ cd <somewhere>
+$ git clone git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
+$ cd PTShowcaseViewController-exalted/
+$ git submodule init
+$ git submodule update
+$ open Examples/ShowcaseDemo/ShowcaseDemo.xcodeproj
+```
 
-Example Screenshots
-===================
+Screenshots
+===========
 
 Screenshot 1.
 
@@ -55,15 +62,3 @@ Screenshot 10.
 
 ![Screenshot 10.](http://exalted.github.com/PTShowcaseViewController/iPad/ss10.png "Screenshot 10.")
 ![Screenshot 10.](http://exalted.github.com/PTShowcaseViewController/iPhone/ss10.png "Screenshot 10.")
-
-How To Make It All Work
-=======================
-
-```bash
-$ cd <somewhere>
-$ git clone git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
-$ cd PTShowcaseViewController-exalted/
-$ git submodule init
-$ git submodule update
-$ open Examples/ShowcaseDemo/ShowcaseDemo.xcodeproj
-```
