@@ -28,9 +28,11 @@
 #import "PTImageDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-#define THUMBNAIL_TAG   1
-#define TEXT_TAG        2
-#define DETAIL_TEXT_TAG 3
+typedef enum {
+    PTShowcaseTagThumbnail  = 10,
+    PTShowcaseTagText       = 20,
+    PTShowcaseTagDetailText = 30,
+} PTShowcaseTag;
 
 @interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 
@@ -180,7 +182,7 @@
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 80.0, 80.0, 20.0)];
-        textLabel.tag = TEXT_TAG;
+        textLabel.tag = PTShowcaseTagText;
         textLabel.font = [UIFont boldSystemFontOfSize:12.0];
         textLabel.textAlignment = UITextAlignmentCenter;
         textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
@@ -193,7 +195,7 @@
     }
     else {
         UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 256.0, 256.0, 20.0)];
-        textLabel.tag = TEXT_TAG;
+        textLabel.tag = PTShowcaseTagText;
         textLabel.font = [UIFont boldSystemFontOfSize:12.0];
         textLabel.textAlignment = UITextAlignmentCenter;
         textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
@@ -247,7 +249,7 @@
             : CGRectMake(40.0, 50.0, 180.0, 135.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
             [cell addSubview:thumbnailView];
         }
@@ -272,7 +274,7 @@
             CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
             [cell addSubview:thumbnailView];
             
@@ -292,7 +294,7 @@
             : CGRectMake(8.0, 28.0, 240.0, 180.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
             [cell addSubview:thumbnailView];
             
@@ -326,7 +328,7 @@
             UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
             
             PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = maskedImage;
             [cell addSubview:thumbnailView];
             
@@ -344,7 +346,7 @@
             UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
             
             PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = maskedImage;
             [cell addSubview:thumbnailView];
             
@@ -376,7 +378,7 @@
             UIImage *maskedImage = [PTPdfThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
             
             PTPdfThumbnailImageView *thumbnailView = [[PTPdfThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = maskedImage;
             [cell addSubview:thumbnailView];
             
@@ -406,7 +408,7 @@
             : CGRectMake(38.0, 61.0, 180.0, 135.0);
             
             NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
-            thumbnailView.tag = THUMBNAIL_TAG;
+            thumbnailView.tag = PTShowcaseTagThumbnail;
             thumbnailView.initialImage = [UIImage imageNamed:loadingImageName];
             [cell addSubview:thumbnailView];
         }
@@ -443,11 +445,11 @@
 
     // Configure the cell...
     
-    NINetworkImageView *thumbnailView = (NINetworkImageView *)[cell viewWithTag:THUMBNAIL_TAG];
+    NINetworkImageView *thumbnailView = (NINetworkImageView *)[cell viewWithTag:PTShowcaseTagThumbnail];
     thumbnailView.contentMode = UIViewContentModeScaleAspectFill;
     [thumbnailView setPathToNetworkImage:thumbnailImageSource];
 
-    UILabel *textLabel = (UILabel *)[cell viewWithTag:TEXT_TAG];
+    UILabel *textLabel = (UILabel *)[cell viewWithTag:PTShowcaseTagText];
     textLabel.text = text;
     
 //    cell.backgroundColor = [UIColor greenColor];
