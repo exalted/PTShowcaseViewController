@@ -549,11 +549,10 @@ typedef enum {
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:url];
+            document.title = text;
+
             PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-            
-            detailViewController.title = text;
             detailViewController.view.backgroundColor = self.view.backgroundColor;
             
             UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
