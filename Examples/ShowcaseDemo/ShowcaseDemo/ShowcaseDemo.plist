@@ -27,7 +27,7 @@
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
-					<integer>1</integer>
+					<integer>0</integer>
 				</dict>
 				<dict>
 					<key>Title</key>
@@ -39,7 +39,7 @@
 					<key>ContentType</key>
 					<integer>3</integer>
 					<key>Orientation</key>
-					<integer>1</integer>
+					<integer>0</integer>
 				</dict>
 				<dict>
 					<key>Title</key>
