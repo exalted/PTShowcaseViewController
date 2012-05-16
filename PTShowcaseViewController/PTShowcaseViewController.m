@@ -553,7 +553,7 @@ typedef enum {
 
             PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            detailViewController.view.backgroundColor = self.view.backgroundColor;
+            detailViewController.backgroundColor = self.view.backgroundColor;
             
             UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
 
