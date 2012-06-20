@@ -24,5 +24,6 @@
 
 @optional
 - (PTItemOrientation)showcaseView:(PTShowcaseView *)showcaseView orientationForItemAtIndex:(NSInteger)index;
+- (void)showcaseView:(PTShowcaseView *)showcaseView willDisplayView:(UIView *)view forItemAtIndex:(NSInteger)index;
 
 @end

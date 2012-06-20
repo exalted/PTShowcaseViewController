@@ -489,6 +489,9 @@ typedef enum {
     UILabel *textLabel = (UILabel *)[cell viewWithTag:PTShowcaseTagText];
     textLabel.text = text;
     
+    if ([self.showcaseDelegate respondsToSelector:@selector(showcaseView:willDisplayView:forItemAtIndex:)]) {
+        [self.showcaseDelegate showcaseView:self willDisplayView:cell forItemAtIndex:index];
+    }
     
     return cell;
 }
