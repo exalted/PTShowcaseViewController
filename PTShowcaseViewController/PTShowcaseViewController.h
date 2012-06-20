@@ -16,9 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PTShowcaseViewDelegate.h"
-#import "PTShowcaseViewDataSource.h"
-
 #import "PTShowcaseView.h"
 
 @interface PTShowcaseViewController : UIViewController <PTShowcaseViewDelegate, PTShowcaseViewDataSource>

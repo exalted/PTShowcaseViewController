@@ -18,8 +18,8 @@
 
 #import "PTShowcase.h"
 
-@protocol PTShowcaseViewDelegate;
-@protocol PTShowcaseViewDataSource;
+#import "PTShowcaseViewDelegate.h"
+#import "PTShowcaseViewDataSource.h"
 
 @interface PTShowcaseView : GMGridView
 
