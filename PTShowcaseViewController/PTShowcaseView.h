@@ -43,6 +43,7 @@
 - (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index;
 - (NSString *)textForItemAtIndex:(NSInteger)index;
 
+- (NSInteger)indexForItemAtRelativeIndex:(NSInteger)relativeIndex withContentType:(PTContentType)contentType;
 - (NSInteger)relativeIndexForItemAtIndex:(NSInteger)index withContentType:(PTContentType)contentType;
 
 - (void)reloadData;

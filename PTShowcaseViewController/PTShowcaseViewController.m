@@ -25,7 +25,7 @@
 
 // Detail
 #import "PTGroupDetailViewController.h"
-#import "PTImageDetailViewController.h"
+#import "PTImageAlbumViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 typedef enum {
@@ -34,7 +34,7 @@ typedef enum {
     PTShowcaseTagDetailText = 30,
 } PTShowcaseTag;
 
-@interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
+@interface PTShowcaseViewController () <GMGridViewDataSource, GMGridViewActionDelegate, PTImageAlbumViewDataSource>
 
 - (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)dismissImageDetailViewController;
@@ -463,15 +463,14 @@ typedef enum {
 - (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
     PTContentType contentType = [self.showcaseView contentTypeForItemAtIndex:position];
-    NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
-    NSString *path = [self.showcaseView pathForItemAtIndex:position];
-    NSString *text = [self.showcaseView textForItemAtIndex:position];
-    NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
 
     switch (contentType)
     {
         case PTContentTypeGroup:
         {
+            NSString *uniqueName = [self.showcaseView uniqueNameForItemAtIndex:position];
+            NSString *text = [self.showcaseView textForItemAtIndex:position];
+
             PTGroupDetailViewController *detailViewController = [[PTGroupDetailViewController alloc] initWithUniqueName:uniqueName];
             detailViewController.showcaseView.showcaseDelegate = self.showcaseView.showcaseDelegate;
             detailViewController.showcaseView.showcaseDataSource = self.showcaseView.showcaseDataSource;
@@ -486,8 +485,11 @@ typedef enum {
             
         case PTContentTypeImage:
         {
-            PTImageDetailViewController *detailViewController = [[PTImageDetailViewController alloc] initWithImageAtIndex:relativeIndex];
-            detailViewController.data = self.showcaseView.imageItems;
+            NSInteger relativeIndex = [self.showcaseView relativeIndexForItemAtIndex:position withContentType:contentType];
+
+            PTImageAlbumViewController *detailViewController = [[PTImageAlbumViewController alloc] initWithImageAtIndex:relativeIndex];
+            detailViewController.imageAlbumView.imageAlbumDataSource = self;
+
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             
             [detailViewController.navigationItem setLeftBarButtonItem:
@@ -505,6 +507,9 @@ typedef enum {
             
         case PTContentTypeVideo:
         {
+            NSString *path = [self.showcaseView pathForItemAtIndex:position];
+            NSString *text = [self.showcaseView textForItemAtIndex:position];
+
             // TODO remove duplicate
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             NSURL *url = nil;
@@ -533,6 +538,9 @@ typedef enum {
             
         case PTContentTypePdf:
         {
+            NSString *path = [self.showcaseView pathForItemAtIndex:position];
+            NSString *text = [self.showcaseView textForItemAtIndex:position];
+
             // TODO remove duplicate
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             NSURL *url = nil;
@@ -567,46 +575,43 @@ typedef enum {
     }
 }
 
-#pragma mark - PTShowcaseViewDelegate
-
-- (PTItemOrientation)showcaseView:(PTShowcaseView *)showcaseView orientationForItemAtIndex:(NSInteger)index
-{
-    return PTItemOrientationPortrait;
-}
-
 #pragma mark - PTShowcaseViewDataSource
 
 - (NSInteger)numberOfItemsInShowcaseView:(PTShowcaseView *)showcaseView
 {
     NSAssert(NO, @"missing required method implementation 'numberOfItemsInShowcaseView:'");
-    return -1;
+    abort();
 }
 
 - (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:contentTypeForItemAtIndex:'");
-    return -1;
+    abort();
 }
 
 - (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:pathForItemAtIndex:'");
-    return nil;
+    abort();
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index;
+#pragma mark - PTImageAlbumViewDataSource
+
+- (NSInteger)numberOfImagesInAlbumView:(PTImageAlbumView *)imageAlbumView
 {
-    return nil;
+    return [self.showcaseView.imageItems count];
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForThumbnailImageOfItemAtIndex:(NSInteger)index
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForImageAtIndex:(NSInteger)index
 {
-    return nil;
+    NSInteger i = [self.showcaseView indexForItemAtRelativeIndex:index withContentType:PTContentTypeImage];
+    return [self.showcaseView pathForItemAtIndex:i];
 }
 
-- (NSString *)showcaseView:(PTShowcaseView *)showcaseView textForItemAtIndex:(NSInteger)index
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView sourceForThumbnailImageAtIndex:(NSInteger)index
 {
-    return nil;
+    NSInteger i = [self.showcaseView indexForItemAtRelativeIndex:index withContentType:PTContentTypeImage];
+    return [self.showcaseView sourceForThumbnailImageOfItemAtIndex:i];
 }
 
 @end

@@ -19,9 +19,10 @@
 #import "PTShowcaseViewDelegate.h"
 #import "PTShowcaseViewDataSource.h"
 
-@interface PTShowcaseView ()
-
-@property (nonatomic, retain) NSMutableArray *data;
+@interface PTShowcaseView () {
+    NSMutableArray *_cachedData;
+    NSArray *_imageItems;
+}
 
 @end
 
@@ -31,9 +32,6 @@
 @synthesize showcaseDataSource = _showcaseDataSource;
 
 @synthesize uniqueName = _uniqueName;
-
-// private
-@synthesize data = _data;
 
 - (id)initWithUniqueName:(NSString *)uniqueName
 {
@@ -47,95 +45,126 @@
 
 #pragma mark - Instance properties
 
+// TODO replace with much better 'imageItemsForContentType:'
 - (NSArray *)imageItems
 {
-    return [self.data filteredArrayUsingPredicate:
-            [NSPredicate predicateWithFormat:@"contentType = %d", PTContentTypeImage]];
+    if (_imageItems == nil) {
+        _imageItems = [_cachedData filteredArrayUsingPredicate:
+                       [NSPredicate predicateWithFormat:@"contentType = %d", PTContentTypeImage]];
+    }
+    return _imageItems;
 }
 
 #pragma mark - Instance methods
 
 - (NSInteger)numberOfItems
 {
-    return [self.data count];
+    if (_cachedData == nil) {
+        NSInteger numberOfItems = [self.showcaseDataSource numberOfItemsInShowcaseView:self];
+        _cachedData = [[NSMutableArray alloc] initWithCapacity:numberOfItems];
+        for (NSInteger i = 0; i < numberOfItems; i++) {
+            [_cachedData addObject:[NSMutableDictionary dictionary]];
+        }
+    }
+    return [_cachedData count];
 }
 
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index
 {
-    return [[[self.data objectAtIndex:index] objectForKey:@"contentType"] integerValue];
+    NSNumber *contentType = [[_cachedData objectAtIndex:index] objectForKey:@"contentType"];
+    if (contentType == nil) {
+        contentType = [NSNumber numberWithInteger:[self.showcaseDataSource showcaseView:self contentTypeForItemAtIndex:index]];
+        [[_cachedData objectAtIndex:index] setObject:contentType forKey:@"contentType"];
+    }
+    return [contentType integerValue];
 }
 
 - (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index
 {
-    return [[[self.data objectAtIndex:index] objectForKey:@"orientation"] integerValue];
+    NSNumber *orientation = [[_cachedData objectAtIndex:index] objectForKey:@"orientation"];
+    if (orientation == nil) {
+        if ([self.showcaseDelegate respondsToSelector:@selector(showcaseView:orientationForItemAtIndex:)]) {
+            orientation = [NSNumber numberWithInteger:[self.showcaseDelegate showcaseView:self orientationForItemAtIndex:index]];
+        }
+        else {
+            orientation = [NSNumber numberWithInteger:PTItemOrientationPortrait];
+        }
+
+        [[_cachedData objectAtIndex:index] setObject:orientation forKey:@"orientation"];
+    }
+
+    return [orientation integerValue];
 }
 
 - (NSString *)uniqueNameForItemAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"uniqueName"];
-    return object == [NSNull null] ? nil : object;
+    NSString *uniqueName = [[_cachedData objectAtIndex:index] objectForKey:@"uniqueName"];
+    if (uniqueName == nil) {
+        uniqueName = [self.showcaseDataSource showcaseView:self uniqueNameForItemAtIndex:index];
+        [[_cachedData objectAtIndex:index] setObject:uniqueName forKey:@"uniqueName"];
+    }
+    return uniqueName;
 }
 
 - (NSString *)pathForItemAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"path"];
-    return object == [NSNull null] ? nil : object;
+    NSString *path = [[_cachedData objectAtIndex:index] objectForKey:@"path"];
+    if (path == nil) {
+        path = [self.showcaseDataSource showcaseView:self pathForItemAtIndex:index];
+        NSAssert([path hasPrefix:@"/"], @"path should be a valid non-relative (absolute) system path.");
+        [[_cachedData objectAtIndex:index] setObject:path forKey:@"path"];
+    }
+    return path;
 }
 
 - (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
-    return object == [NSNull null] ? nil : object;
+    NSString *source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
+    if (source == nil) {
+        // TODO if optional 'showcaseView:sourceForThumbnailImageOfItemAtIndex:' wasn't implemented in data source use original image path instead?
+        source = [self.showcaseDataSource showcaseView:self sourceForThumbnailImageOfItemAtIndex:index];
+        [[_cachedData objectAtIndex:index] setObject:source forKey:@"thumbnailImageSource"];
+    }
+    return source;
 }
 
 - (NSString *)textForItemAtIndex:(NSInteger)index
 {
-    id object = [[self.data objectAtIndex:index] objectForKey:@"text"];
-    return object == [NSNull null] ? nil : object;
+    NSString *text = [[_cachedData objectAtIndex:index] objectForKey:@"text"];
+    if (text == nil) {
+        text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:index];
+        [[_cachedData objectAtIndex:index] setObject:text forKey:@"text"];
+    }
+    return text;
+}
+
+- (NSInteger)indexForItemAtRelativeIndex:(NSInteger)relativeIndex withContentType:(PTContentType)contentType
+{
+    for (NSInteger i = 0; i < [_cachedData count]; i++) {
+        if ([[[_cachedData objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType && --relativeIndex < 0) {
+            return i;
+        }
+    }
+    // TODO use NSNotFound instead?
+    return -1;
 }
 
 - (NSInteger)relativeIndexForItemAtIndex:(NSInteger)index withContentType:(PTContentType)contentType
 {
+    // TODO use NSNotFound instead?
     NSInteger relativeIndex = -1;
-    for (NSInteger i = 0; i < index+1; i++) {
-        if ([[[self.data objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType) {
+    for (NSInteger i = 0; i <= index; i++) {
+        if ([[[_cachedData objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType) {
             relativeIndex++;
         }
     }
-    
     return relativeIndex;
 }
 
 - (void)reloadData
 {
-    // Ask data source for number of items
-    NSInteger numberOfItems = [self.showcaseDataSource numberOfItemsInShowcaseView:self];
-    
-    // Create an items' info array for reusing
-    self.data = [NSMutableArray arrayWithCapacity:numberOfItems];
-    for (NSInteger i = 0; i < numberOfItems; i++) {
-        // Ask data source and delegate for various data
-        PTContentType contentType = [self.showcaseDataSource showcaseView:self contentTypeForItemAtIndex:i];
-        PTItemOrientation orientation = [self.showcaseDelegate showcaseView:self orientationForItemAtIndex:i];
-
-        NSString *path = [self.showcaseDataSource showcaseView:self pathForItemAtIndex:i];
-        if (path) {
-            NSAssert([path hasPrefix:@"/"], @"path should be a valid non-relative (absolute) system path.");
-        }
-        NSString *uniqueName = [self.showcaseDataSource showcaseView:self uniqueNameForItemAtIndex:i];
-        NSString *thumbnailImageSource = [self.showcaseDataSource showcaseView:self sourceForThumbnailImageOfItemAtIndex:i];
-        NSString *text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:i];
-        
-        [self.data addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithInteger:contentType], @"contentType",
-                              [NSNumber numberWithInteger:orientation], @"orientation",
-                              path ? path : [NSNull null], @"path",
-                              uniqueName ? uniqueName : [NSNull null], @"uniqueName",
-                              thumbnailImageSource ? thumbnailImageSource : [NSNull null], @"thumbnailImageSource",
-                              text ? text : [NSNull null], @"text",
-                              nil]];
-    }
-    
+    _cachedData = nil;
+    _imageItems = nil;
     [super reloadData];
 }
 
