@@ -24,6 +24,8 @@
 
 @optional
 - (PTItemOrientation)showcaseView:(PTShowcaseView *)showcaseView orientationForItemAtIndex:(NSInteger)index;
-- (void)showcaseView:(PTShowcaseView *)showcaseView willDisplayView:(UIView *)view forItemAtIndex:(NSInteger)index;
+
+- (void)showcaseView:(PTShowcaseView *)showcaseView didPrepareReusableThumbnailView:(UIView *)view forContentType:(PTContentType)contentType andOrientation:(PTItemOrientation)orientation;
+- (void)showcaseView:(PTShowcaseView *)showcaseView willDisplayThumbnailView:(UIView *)view forItemAtIndex:(NSInteger)index;
 
 @end
