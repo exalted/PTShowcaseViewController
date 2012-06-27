@@ -115,44 +115,44 @@ typedef enum {
 
 - (NSString *)uniqueNameForItemAtIndex:(NSInteger)index
 {
-    NSString *uniqueName = [[_cachedData objectAtIndex:index] objectForKey:@"uniqueName"];
+    id uniqueName = [[_cachedData objectAtIndex:index] objectForKey:@"uniqueName"];
     if (uniqueName == nil) {
         uniqueName = [self.showcaseDataSource showcaseView:self uniqueNameForItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:uniqueName forKey:@"uniqueName"];
+        [[_cachedData objectAtIndex:index] setObject:(uniqueName ? uniqueName : [NSNull null]) forKey:@"uniqueName"];
     }
-    return uniqueName;
+    return uniqueName == [NSNull null] ? nil : uniqueName;
 }
 
 - (NSString *)pathForItemAtIndex:(NSInteger)index
 {
-    NSString *path = [[_cachedData objectAtIndex:index] objectForKey:@"path"];
+    id path = [[_cachedData objectAtIndex:index] objectForKey:@"path"];
     if (path == nil) {
         path = [self.showcaseDataSource showcaseView:self pathForItemAtIndex:index];
         NSAssert([path hasPrefix:@"/"], @"path should be a valid non-relative (absolute) system path.");
-        [[_cachedData objectAtIndex:index] setObject:path forKey:@"path"];
+        [[_cachedData objectAtIndex:index] setObject:(path ? path : [NSNull null]) forKey:@"path"];
     }
-    return path;
+    return path == [NSNull null] ? nil : path;
 }
 
 - (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index
 {
-    NSString *source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
+    id source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
     if (source == nil) {
         // TODO if optional 'showcaseView:sourceForThumbnailImageOfItemAtIndex:' wasn't implemented in data source use original image path instead?
         source = [self.showcaseDataSource showcaseView:self sourceForThumbnailImageOfItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:source forKey:@"thumbnailImageSource"];
+        [[_cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"thumbnailImageSource"];
     }
-    return source;
+    return source == [NSNull null] ? nil : source;
 }
 
 - (NSString *)textForItemAtIndex:(NSInteger)index
 {
-    NSString *text = [[_cachedData objectAtIndex:index] objectForKey:@"text"];
+    id text = [[_cachedData objectAtIndex:index] objectForKey:@"text"];
     if (text == nil) {
         text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:text forKey:@"text"];
+        [[_cachedData objectAtIndex:index] setObject:(text ? text : [NSNull null]) forKey:@"text"];
     }
-    return text;
+    return text == [NSNull null] ? nil : text;
 }
 
 - (NSInteger)indexForItemAtRelativeIndex:(NSInteger)relativeIndex withContentType:(PTContentType)contentType
