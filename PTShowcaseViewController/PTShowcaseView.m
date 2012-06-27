@@ -66,6 +66,16 @@ typedef enum {
 - (NSArray *)imageItems
 {
     if (_imageItems == nil) {
+        // ask data source for all items that are not cached yet
+        NSInteger numberOfItems = [self numberOfItems];
+        for (int i = 0; i < numberOfItems; i++) {
+            [self contentTypeForItemAtIndex:i];
+            [self orientationForItemAtIndex:i];
+            [self uniqueNameForItemAtIndex:i];
+            [self pathForItemAtIndex:i];
+            [self sourceForThumbnailImageOfItemAtIndex:i];
+            [self textForItemAtIndex:i];
+        }
         _imageItems = [_cachedData filteredArrayUsingPredicate:
                        [NSPredicate predicateWithFormat:@"contentType = %d", PTContentTypeImage]];
     }
