@@ -37,6 +37,7 @@
 @implementation PTShowcaseViewController
 
 @synthesize showcaseView = _showcaseView;
+@synthesize hidesBottomBarInDetails = _hidesBottomBarInDetails;
 
 - (id)init
 {
@@ -46,6 +47,8 @@
         _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:nil];
         _showcaseView.showcaseDelegate = self;
         _showcaseView.showcaseDataSource = self;
+
+        _hidesBottomBarInDetails = NO;
     }
     return self;
 }
@@ -149,6 +152,8 @@
             
             detailViewController.title = text;
             detailViewController.view.backgroundColor = self.view.backgroundColor;
+
+            detailViewController.hidesBottomBarWhenPushed = self.hidesBottomBarInDetails;
 
             [self.navigationController pushViewController:detailViewController animated:YES];
             

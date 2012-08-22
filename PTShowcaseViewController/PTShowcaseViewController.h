@@ -22,6 +22,8 @@
 
 @property (nonatomic, retain) PTShowcaseView *showcaseView;
 
+@property (nonatomic, assign) BOOL hidesBottomBarInDetails;
+
 - (id)initWithUniqueName:(NSString *)uniqueName;
 
 @end
