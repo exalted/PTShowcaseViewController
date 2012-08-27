@@ -5,8 +5,7 @@ How To Get It
 $ cd <somewhere>
 $ git clone git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
 $ cd PTShowcaseViewController-exalted/
-$ git submodule init
-$ git submodule update
+$ git submodule update --init --recursive
 $ open Examples/ShowcaseDemo/ShowcaseDemo.xcodeproj
 ```
 
