@@ -45,8 +45,6 @@
     if (self) {
         // Custom initialization
         _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:nil];
-        _showcaseView.showcaseDelegate = self;
-        _showcaseView.showcaseDataSource = self;
 
         _hidesBottomBarInDetails = NO;
     }
@@ -59,8 +57,6 @@
     if (self) {
         // Custom initialization
         _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:uniqueName];
-        _showcaseView.showcaseDelegate = self;
-        _showcaseView.showcaseDataSource = self;
     }
     return self;
 }
@@ -89,6 +85,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if (self.showcaseView.showcaseDelegate == nil) {
+        self.showcaseView.showcaseDelegate = self;
+    }
+
+    if (self.showcaseView.showcaseDataSource == nil) {
+        self.showcaseView.showcaseDataSource = self;
+    }
 
     // Internal
     self.showcaseView.dataSource = self.showcaseView; // this will trigger 'reloadData' automatically
