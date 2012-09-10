@@ -42,6 +42,7 @@
 - (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
 - (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index;
 - (NSString *)textForItemAtIndex:(NSInteger)index;
+- (NSString *)detailTextForItemAtIndex:(NSInteger)index;
 
 - (NSInteger)indexForItemAtRelativeIndex:(NSInteger)relativeIndex withContentType:(PTContentType)contentType;
 - (NSInteger)relativeIndexForItemAtIndex:(NSInteger)index withContentType:(PTContentType)contentType;

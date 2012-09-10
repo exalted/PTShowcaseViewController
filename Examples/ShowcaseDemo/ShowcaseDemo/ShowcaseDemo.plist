@@ -9,6 +9,8 @@
 			<string>83a115dfcdce56aeb39a75df77d58ddf</string>
 			<key>Title</key>
 			<string>Depliant</string>
+			<key>Description</key>
+			<string>Nulla vitae elit libero, a pharetra augue.</string>
 			<key>ContentType</key>
 			<integer>0</integer>
 			<key>Thumbnail</key>
@@ -32,6 +34,8 @@
 				<dict>
 					<key>Title</key>
 					<string>Lastre</string>
+					<key>Description</key>
+					<string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed posuere consectetur est at lobortis.</string>
 					<key>Source</key>
 					<string>data/doc/lastre.pdf</string>
 					<key>Thumbnail</key>
@@ -58,6 +62,8 @@
 		<dict>
 			<key>Title</key>
 			<string>Poliespanso</string>
+			<key>Description</key>
+			<string>Justo Cursus Nibh</string>
 			<key>Source</key>
 			<string>data/video/poliespanso.mp4</string>
 			<key>Thumbnail</key>
@@ -95,7 +101,7 @@
 							<key>Title</key>
 							<string></string>
 							<key>Description</key>
-							<string></string>
+							<string>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</string>
 							<key>Source</key>
 							<string>data/img/laminati-plastici/01.jpg</string>
 							<key>Thumbnail</key>

@@ -165,6 +165,16 @@ typedef enum {
     return text == [NSNull null] ? nil : text;
 }
 
+- (NSString *)detailTextForItemAtIndex:(NSInteger)index
+{
+    id text = [[_cachedData objectAtIndex:index] objectForKey:@"detailText"];
+    if (text == nil) {
+        text = [self.showcaseDataSource showcaseView:self detailTextForItemAtIndex:index];
+        [[_cachedData objectAtIndex:index] setObject:(text ? text : [NSNull null]) forKey:@"detailText"];
+    }
+    return text == [NSNull null] ? nil : text;
+}
+
 - (NSInteger)indexForItemAtRelativeIndex:(NSInteger)relativeIndex withContentType:(PTContentType)contentType
 {
     for (NSInteger i = 0; i < [_cachedData count]; i++) {
@@ -277,6 +287,19 @@ typedef enum {
         textLabel.backgroundColor = [UIColor clearColor];
         
         [cell.contentView addSubview:textLabel];
+
+        UILabel *detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 256.0+20.0, 256.0, 40.0)];
+        detailTextLabel.tag = PTShowcaseTagDetailText;
+        detailTextLabel.numberOfLines = 2;
+        detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+        detailTextLabel.textAlignment = UITextAlignmentCenter;
+        detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+        detailTextLabel.textColor = [UIColor whiteColor];
+        detailTextLabel.shadowOffset = CGSizeMake(0.0, 1.0);
+        detailTextLabel.shadowColor = [UIColor blackColor];
+        detailTextLabel.backgroundColor = [UIColor clearColor];
+
+        [cell.contentView addSubview:detailTextLabel];
     }
     
     if ([self.showcaseDelegate respondsToSelector:@selector(showcaseView:didPrepareReusableThumbnailView:forContentType:andOrientation:)]) {
@@ -502,7 +525,7 @@ typedef enum {
         return CGSizeMake(80.0, 80.0+20.0);
     }
     
-    return CGSizeMake(256.0, 256.0+20.0);
+    return CGSizeMake(256.0, 256.0+20.0+40.0);
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
@@ -511,7 +534,8 @@ typedef enum {
     PTItemOrientation orientation = [self orientationForItemAtIndex:index];
     NSString *thumbnailImageSource = [self sourceForThumbnailImageOfItemAtIndex:index];
     NSString *text = [self textForItemAtIndex:index];
-    
+    NSString *detailText = [self detailTextForItemAtIndex:index];
+
     GMGridViewCell *cell = [self GMGridView:gridView reusableCellForContentType:contentType withOrientation:orientation];
     
     NINetworkImageView *thumbnailView = (NINetworkImageView *)[cell.contentView viewWithTag:PTShowcaseTagThumbnail];
@@ -520,11 +544,19 @@ typedef enum {
     
     UILabel *textLabel = (UILabel *)[cell.contentView viewWithTag:PTShowcaseTagText];
     textLabel.text = text;
-    
+
+    UILabel *detailTextLabel = (UILabel *)[cell.contentView viewWithTag:PTShowcaseTagDetailText];
+    detailTextLabel.text = detailText;
+
     if ([self.showcaseDelegate respondsToSelector:@selector(showcaseView:willDisplayThumbnailView:forItemAtIndex:)]) {
         [self.showcaseDelegate showcaseView:self willDisplayThumbnailView:cell.contentView forItemAtIndex:index];
     }
     
+//    [cell.contentView setBackgroundColor:((index % 2 == 0) ? [UIColor greenColor] : [UIColor magentaColor])];
+//    [thumbnailView setBackgroundColor:[UIColor cyanColor]];
+//    [textLabel setBackgroundColor:((index % 2 == 0) ? [UIColor redColor] : [UIColor blueColor])];
+//    [detailTextLabel setBackgroundColor:((index % 2 == 0) ? [UIColor brownColor] : [UIColor yellowColor])];
+
     return cell;
 }
 

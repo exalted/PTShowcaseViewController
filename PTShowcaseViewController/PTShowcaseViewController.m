@@ -275,6 +275,12 @@
     return [self.showcaseView sourceForThumbnailImageOfItemAtIndex:i];
 }
 
+- (NSString *)imageAlbumView:(PTImageAlbumView *)imageAlbumView captionForImageAtIndex:(NSInteger)index
+{
+    NSInteger i = [self.showcaseView indexForItemAtRelativeIndex:index withContentType:PTContentTypeImage];
+    return [self.showcaseView detailTextForItemAtIndex:i];
+}
+
 #pragma mark - PTShowcaseViewDataSource
 
 - (NSInteger)numberOfItemsInShowcaseView:(PTShowcaseView *)showcaseView

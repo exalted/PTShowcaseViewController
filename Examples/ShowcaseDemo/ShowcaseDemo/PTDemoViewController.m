@@ -187,6 +187,12 @@
             objectForKey:@"Title"];
 }
 
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView detailTextForItemAtIndex:(NSInteger)index
+{
+    return [[[self recursiveSearchForItems:self.demoItems forUniqueName:showcaseView.uniqueName] objectAtIndex:index]
+            objectForKey:@"Description"];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 @end
