@@ -299,7 +299,7 @@ typedef enum {
         // Placeholder
         
         NSString *placeholderImageName = @"PTShowcase.bundle/group.png";
-        CGRect placeholderImageNameImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
+        CGRect placeholderImageNameImageViewFrame = CGRectMake(2.5, 2.5, 75.0, 75.0);
         
         UIImageView *placeholderImageView = [[UIImageView alloc] initWithFrame:placeholderImageNameImageViewFrame];
         placeholderImageView.image = [UIImage imageNamed:placeholderImageName];
@@ -346,7 +346,7 @@ typedef enum {
         // Thumbnail
         
         NSString *loadingImageName = @"PTShowcase.bundle/image-loading.png";
-        CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
+        CGRect loadingImageViewFrame = CGRectMake(2.5, 2.5, 75.0, 75.0);
         
         NINetworkImageView *thumbnailView = [[NINetworkImageView alloc] initWithFrame:loadingImageViewFrame];
         thumbnailView.tag = PTShowcaseTagThumbnail;
@@ -398,7 +398,7 @@ typedef enum {
         // Thumbnail
         
         NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
-        CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
+        CGRect loadingImageViewFrame = CGRectMake(2.5, 2.5, 75.0, 75.0);
         UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
         
         PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
@@ -416,7 +416,7 @@ typedef enum {
         // Thumbnail
         
         NSString *loadingImageName = @"PTShowcase.bundle/video-loading.png";
-        CGRect loadingImageViewFrame = CGRectMake(0.0, 30.0, 240.0, 180.0);
+        CGRect loadingImageViewFrame = CGRectMake(8.0, 30.0, 240.0, 180.0);
         UIImage *maskedImage = [PTVideoThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
         
         PTVideoThumbnailImageView *thumbnailView = [[PTVideoThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
@@ -447,7 +447,7 @@ typedef enum {
         // Thumbnail
         
         NSString *loadingImageName = @"PTShowcase.bundle/document-loading.png";
-        CGRect loadingImageViewFrame = CGRectMake(2.0, 2.0, 75.0, 75.0);
+        CGRect loadingImageViewFrame = CGRectMake(2.5, 2.5, 75.0, 75.0);
         UIImage *maskedImage = [PTPdfThumbnailImageView applyMask:[UIImage imageNamed:loadingImageName] forOrientation:orientation];
         
         PTPdfThumbnailImageView *thumbnailView = [[PTPdfThumbnailImageView alloc] initWithFrame:loadingImageViewFrame];
