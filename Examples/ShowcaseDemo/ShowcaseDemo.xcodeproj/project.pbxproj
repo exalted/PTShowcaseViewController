@@ -79,6 +79,7 @@
 		50A601A114F536E8002076AB /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019C14F536E8002076AB /* UIView+GMGridViewAdditions.m */; };
 		50A601AE14F556A3002076AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A601AD14F556A3002076AB /* MediaPlayer.framework */; };
 		50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */; };
+		50C0086915FE195C00A3B951 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C0086815FE195C00A3B951 /* CaptionedPhotoView.m */; };
 		50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50DE74F214E964FE0070F1FE /* PTShowcase.bundle */; };
 		50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1914E3D44300F28648 /* UIKit.framework */; };
 		50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1B14E3D44300F28648 /* Foundation.framework */; };
@@ -248,6 +249,8 @@
 		50A6019C14F536E8002076AB /* UIView+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+GMGridViewAdditions.m"; path = "../../Libraries/GMGridView/GMGridView/UIView+GMGridViewAdditions.m"; sourceTree = "<group>"; };
 		50A601AD14F556A3002076AB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShowcaseDemo.bundle; sourceTree = "<group>"; };
+		50C0086715FE195C00A3B951 /* CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptionedPhotoView.h; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.h; sourceTree = "<group>"; };
+		50C0086815FE195C00A3B951 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.m; sourceTree = "<group>"; };
 		50DE74F114E940AD0070F1FE /* PTShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcase.h; sourceTree = "<group>"; };
 		50DE74F214E964FE0070F1FE /* PTShowcase.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PTShowcase.bundle; sourceTree = "<group>"; };
 		50FC0D1514E3D44300F28648 /* ShowcaseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowcaseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,6 +429,8 @@
 		50925DFF14F40301009A05D1 /* NetworkPhotoAlbumViewController */ = {
 			isa = PBXGroup;
 			children = (
+				50C0086715FE195C00A3B951 /* CaptionedPhotoView.h */,
+				50C0086815FE195C00A3B951 /* CaptionedPhotoView.m */,
 				5058396E1590C469007C9675 /* NetworkPhotoAlbumViewController.h */,
 				5058396F1590C469007C9675 /* NetworkPhotoAlbumViewController.m */,
 			);
@@ -752,6 +757,7 @@
 				505839A41590C4A8007C9675 /* NIRadioGroupController.m in Sources */,
 				505839A51590C4A8007C9675 /* NITableViewActions.m in Sources */,
 				505839A61590C4A8007C9675 /* NITableViewModel.m in Sources */,
+				50C0086915FE195C00A3B951 /* CaptionedPhotoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
