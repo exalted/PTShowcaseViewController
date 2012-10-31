@@ -57,14 +57,12 @@
 		505839A51590C4A8007C9675 /* NITableViewActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058399C1590C4A8007C9675 /* NITableViewActions.m */; };
 		505839A61590C4A8007C9675 /* NITableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058399E1590C4A8007C9675 /* NITableViewModel.m */; };
 		505AE96314ED785700BBFC05 /* PTImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */; };
-		5088D9CA1521EAEA00A1A9DE /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9C91521EAEA00A1A9DE /* PSPDFKit.framework */; };
 		5088D9CD1521EC0700A1A9DE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9CC1521EC0700A1A9DE /* CoreText.framework */; };
 		5088D9CF1521EC1800A1A9DE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9CE1521EC1800A1A9DE /* MessageUI.framework */; };
 		5088D9D11521EC2400A1A9DE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D01521EC2400A1A9DE /* libz.dylib */; };
 		5088D9D31521EC2B00A1A9DE /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D21521EC2B00A1A9DE /* ImageIO.framework */; };
 		5088D9D51521EC3100A1A9DE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D41521EC3100A1A9DE /* CoreMedia.framework */; };
 		5088D9D71521EC3E00A1A9DE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D61521EC3E00A1A9DE /* AVFoundation.framework */; };
-		5088D9DA1521EC9F00A1A9DE /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5088D9D91521EC9F00A1A9DE /* PSPDFKit.bundle */; };
 		508F7CFC14EEA26A000140D6 /* PTImageAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F7CFA14EEA26A000140D6 /* PTImageAlbumView.m */; };
 		50918CD114F508A00005AD9C /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50918CD014F508A00005AD9C /* SDURLCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5093F24E14E532F1004DC805 /* PTShowcaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F24D14E532F1004DC805 /* PTShowcaseViewController.m */; };
@@ -81,6 +79,12 @@
 		50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */; };
 		50C0086915FE195C00A3B951 /* CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C0086815FE195C00A3B951 /* CaptionedPhotoView.m */; };
 		50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50DE74F214E964FE0070F1FE /* PTShowcase.bundle */; };
+		50E92A6116403D57003D6A22 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E92A5A16403D57003D6A22 /* PSPDFKit.framework */; };
+		50E92A6216403D57003D6A22 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */; };
+		50E92A6316403D57003D6A22 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5D16403D57003D6A22 /* LICENSE */; };
+		50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */; };
+		50E92A6516403D57003D6A22 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5F16403D57003D6A22 /* PSPDFKit.xcconfig */; };
+		50E92A6616403D57003D6A22 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A6016403D57003D6A22 /* VERSION */; };
 		50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1914E3D44300F28648 /* UIKit.framework */; };
 		50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1B14E3D44300F28648 /* Foundation.framework */; };
 		50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */; };
@@ -212,7 +216,6 @@
 		5058399F1590C4A8007C9675 /* NITableViewModel+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NITableViewModel+Private.h"; path = "../../Libraries/nimbus/src/models/src/NITableViewModel+Private.h"; sourceTree = "<group>"; };
 		505AE96114ED785700BBFC05 /* PTImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewController.h; sourceTree = "<group>"; };
 		505AE96214ED785700BBFC05 /* PTImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumViewController.m; sourceTree = "<group>"; };
-		5088D9C91521EAEA00A1A9DE /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../Libraries/PSPDFKit/PSPDFKit.framework; sourceTree = "<group>"; };
 		5088D9CC1521EC0700A1A9DE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		5088D9CE1521EC1800A1A9DE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		5088D9D01521EC2400A1A9DE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -253,6 +256,12 @@
 		50C0086815FE195C00A3B951 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.m; sourceTree = "<group>"; };
 		50DE74F114E940AD0070F1FE /* PTShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcase.h; sourceTree = "<group>"; };
 		50DE74F214E964FE0070F1FE /* PTShowcase.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PTShowcase.bundle; sourceTree = "<group>"; };
+		50E92A5A16403D57003D6A22 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
+		50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
+		50E92A5D16403D57003D6A22 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
+		50E92A5F16403D57003D6A22 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
+		50E92A6016403D57003D6A22 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		50FC0D1514E3D44300F28648 /* ShowcaseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowcaseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FC0D1914E3D44300F28648 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50FC0D1B14E3D44300F28648 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -278,10 +287,10 @@
 				5088D9CF1521EC1800A1A9DE /* MessageUI.framework in Frameworks */,
 				5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */,
 				5088D9CD1521EC0700A1A9DE /* CoreText.framework in Frameworks */,
-				5088D9CA1521EAEA00A1A9DE /* PSPDFKit.framework in Frameworks */,
 				50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */,
 				50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */,
 				50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */,
+				50E92A6116403D57003D6A22 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +574,28 @@
 			name = "Network Image";
 			sourceTree = "<group>";
 		};
+		50E92A5916403D57003D6A22 /* PSPDFKit.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				50E92A5A16403D57003D6A22 /* PSPDFKit.framework */,
+				50E92A5B16403D57003D6A22 /* Resources */,
+			);
+			name = PSPDFKit.embeddedframework;
+			path = ../../Libraries/PSPDFKit/PSPDFKit.embeddedframework;
+			sourceTree = "<group>";
+		};
+		50E92A5B16403D57003D6A22 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */,
+				50E92A5D16403D57003D6A22 /* LICENSE */,
+				50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */,
+				50E92A5F16403D57003D6A22 /* PSPDFKit.xcconfig */,
+				50E92A6016403D57003D6A22 /* VERSION */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		50FC0D0A14E3D44300F28648 = {
 			isa = PBXGroup;
 			children = (
@@ -587,7 +618,7 @@
 		50FC0D1814E3D44300F28648 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5088D9C91521EAEA00A1A9DE /* PSPDFKit.framework */,
+				50E92A5916403D57003D6A22 /* PSPDFKit.embeddedframework */,
 				5088D9D61521EC3E00A1A9DE /* AVFoundation.framework */,
 				5088D9D41521EC3100A1A9DE /* CoreMedia.framework */,
 				5088D9D21521EC2B00A1A9DE /* ImageIO.framework */,
@@ -684,9 +715,13 @@
 				50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */,
 				50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */,
 				50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */,
-				5088D9DA1521EC9F00A1A9DE /* PSPDFKit.bundle in Resources */,
 				5058396D1590C44F007C9675 /* NimbusPhotos.bundle in Resources */,
 				5058398D1590C490007C9675 /* NimbusOverviewer.bundle in Resources */,
+				50E92A6216403D57003D6A22 /* ACKNOWLEDGEMENTS in Resources */,
+				50E92A6316403D57003D6A22 /* LICENSE in Resources */,
+				50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */,
+				50E92A6516403D57003D6A22 /* PSPDFKit.xcconfig in Resources */,
+				50E92A6616403D57003D6A22 /* VERSION in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,7 +865,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../Libraries/PSPDFKit\"",
+					"\"$(SRCROOT)/../../Libraries/PSPDFKit/PSPDFKit.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
@@ -847,7 +882,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../Libraries/PSPDFKit\"",
+					"\"$(SRCROOT)/../../Libraries/PSPDFKit/PSPDFKit.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
