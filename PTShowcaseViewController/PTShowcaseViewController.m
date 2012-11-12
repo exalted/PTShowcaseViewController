@@ -171,14 +171,6 @@
     return YES;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self.showcaseView setNeedsLayout];
-//#warning remove duplicate
-//    self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-//    self.showcaseView.itemSpacing = 0;
-}
-
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 #warning move to view
 
