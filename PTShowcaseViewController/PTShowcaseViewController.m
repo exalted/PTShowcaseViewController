@@ -90,15 +90,6 @@
         [super loadView];
     }
     else {
-        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#warning move to view
-        self.showcaseView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-        self.showcaseView.centerGrid = NO;
-//#warning remove duplicate
-//        self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-//        self.showcaseView.itemSpacing = 0;
-        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
         self.view = self.showcaseView;
     }
 }

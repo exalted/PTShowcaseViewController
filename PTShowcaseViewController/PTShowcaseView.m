@@ -130,7 +130,11 @@ typedef enum {
 {
     self = [super init];
     if (self) {
-        // Custom initialization
+        self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+        self.centerGrid = NO;
+        self.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.itemSpacing = 0;
+
         _uniqueName = uniqueName;
     }
     return self;
