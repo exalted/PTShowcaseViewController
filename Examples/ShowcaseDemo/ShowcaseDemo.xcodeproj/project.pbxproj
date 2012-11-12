@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50265E2C14FD45DA0094A642 /* PTVideoThumbnailImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50265E2B14FD45DA0094A642 /* PTVideoThumbnailImageView.m */; };
-		50265E2F14FD46080094A642 /* PTPdfThumbnailImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50265E2E14FD46080094A642 /* PTPdfThumbnailImageView.m */; };
-		50265E3614FE72D10094A642 /* PTGroupDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50265E3514FE72D10094A642 /* PTGroupDetailViewController.m */; };
 		505839331590C427007C9675 /* NICommonMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 505839071590C427007C9675 /* NICommonMetrics.m */; };
 		505839341590C427007C9675 /* NIDataStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 505839091590C427007C9675 /* NIDataStructures.m */; };
 		505839351590C427007C9675 /* NIDebuggingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5058390B1590C427007C9675 /* NIDebuggingTools.m */; };
@@ -94,12 +91,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		50265E2A14FD45DA0094A642 /* PTVideoThumbnailImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTVideoThumbnailImageView.h; sourceTree = "<group>"; };
-		50265E2B14FD45DA0094A642 /* PTVideoThumbnailImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTVideoThumbnailImageView.m; sourceTree = "<group>"; };
-		50265E2D14FD46080094A642 /* PTPdfThumbnailImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPdfThumbnailImageView.h; sourceTree = "<group>"; };
-		50265E2E14FD46080094A642 /* PTPdfThumbnailImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPdfThumbnailImageView.m; sourceTree = "<group>"; };
-		50265E3414FE72D10094A642 /* PTGroupDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTGroupDetailViewController.h; sourceTree = "<group>"; };
-		50265E3514FE72D10094A642 /* PTGroupDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTGroupDetailViewController.m; sourceTree = "<group>"; };
 		505839051590C427007C9675 /* NIBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NIBlocks.h; path = ../../Libraries/nimbus/src/core/src/NIBlocks.h; sourceTree = "<group>"; };
 		505839061590C427007C9675 /* NICommonMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NICommonMetrics.h; path = ../../Libraries/nimbus/src/core/src/NICommonMetrics.h; sourceTree = "<group>"; };
 		505839071590C427007C9675 /* NICommonMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NICommonMetrics.m; path = ../../Libraries/nimbus/src/core/src/NICommonMetrics.m; sourceTree = "<group>"; };
@@ -230,8 +221,6 @@
 		50918CD014F508A00005AD9C /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDURLCache.m; path = ../../Libraries/SDURLCache/SDURLCache.m; sourceTree = "<group>"; };
 		5093F24C14E532F1004DC805 /* PTShowcaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcaseViewController.h; sourceTree = "<group>"; };
 		5093F24D14E532F1004DC805 /* PTShowcaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTShowcaseViewController.m; sourceTree = "<group>"; };
-		5093F24F14E53375004DC805 /* PTShowcaseViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcaseViewDelegate.h; sourceTree = "<group>"; };
-		5093F25014E53386004DC805 /* PTShowcaseViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcaseViewDataSource.h; sourceTree = "<group>"; };
 		5093F25114E53496004DC805 /* PTShowcaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcaseView.h; sourceTree = "<group>"; };
 		5093F25214E53496004DC805 /* PTShowcaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTShowcaseView.m; sourceTree = "<group>"; };
 		5093F25414E538A5004DC805 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -254,7 +243,6 @@
 		50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShowcaseDemo.bundle; sourceTree = "<group>"; };
 		50C0086715FE195C00A3B951 /* CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptionedPhotoView.h; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.h; sourceTree = "<group>"; };
 		50C0086815FE195C00A3B951 /* CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptionedPhotoView.m; path = ../../Libraries/nimbus/examples/photos/NetworkPhotoAlbums/src/CaptionedPhotoView.m; sourceTree = "<group>"; };
-		50DE74F114E940AD0070F1FE /* PTShowcase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowcase.h; sourceTree = "<group>"; };
 		50DE74F214E964FE0070F1FE /* PTShowcase.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PTShowcase.bundle; sourceTree = "<group>"; };
 		50E92A5A16403D57003D6A22 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
 		50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
@@ -406,26 +394,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		5088D9DC1521EE1000A1A9DE /* Thumbnails */ = {
-			isa = PBXGroup;
-			children = (
-				50265E2A14FD45DA0094A642 /* PTVideoThumbnailImageView.h */,
-				50265E2B14FD45DA0094A642 /* PTVideoThumbnailImageView.m */,
-				50265E2D14FD46080094A642 /* PTPdfThumbnailImageView.h */,
-				50265E2E14FD46080094A642 /* PTPdfThumbnailImageView.m */,
-			);
-			name = Thumbnails;
-			sourceTree = "<group>";
-		};
-		5088D9DD1521EE2900A1A9DE /* Details */ = {
-			isa = PBXGroup;
-			children = (
-				50265E3414FE72D10094A642 /* PTGroupDetailViewController.h */,
-				50265E3514FE72D10094A642 /* PTGroupDetailViewController.m */,
-			);
-			name = Details;
-			sourceTree = "<group>";
-		};
 		50918CCE14F508930005AD9C /* SDURLCache */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,16 +448,11 @@
 		50A7967014E3D95E002B9117 /* PTShowcaseViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5088D9DC1521EE1000A1A9DE /* Thumbnails */,
-				5088D9DD1521EE2900A1A9DE /* Details */,
 				50DE74F214E964FE0070F1FE /* PTShowcase.bundle */,
-				50DE74F114E940AD0070F1FE /* PTShowcase.h */,
-				5093F24C14E532F1004DC805 /* PTShowcaseViewController.h */,
-				5093F24D14E532F1004DC805 /* PTShowcaseViewController.m */,
 				5093F25114E53496004DC805 /* PTShowcaseView.h */,
 				5093F25214E53496004DC805 /* PTShowcaseView.m */,
-				5093F24F14E53375004DC805 /* PTShowcaseViewDelegate.h */,
-				5093F25014E53386004DC805 /* PTShowcaseViewDataSource.h */,
+				5093F24C14E532F1004DC805 /* PTShowcaseViewController.h */,
+				5093F24D14E532F1004DC805 /* PTShowcaseViewController.m */,
 			);
 			name = PTShowcaseViewController;
 			path = ../../PTShowcaseViewController;
@@ -745,9 +708,6 @@
 				50A6019F14F536E8002076AB /* GMGridViewLayoutStrategies.m in Sources */,
 				50A601A014F536E8002076AB /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */,
 				50A601A114F536E8002076AB /* UIView+GMGridViewAdditions.m in Sources */,
-				50265E2C14FD45DA0094A642 /* PTVideoThumbnailImageView.m in Sources */,
-				50265E2F14FD46080094A642 /* PTPdfThumbnailImageView.m in Sources */,
-				50265E3614FE72D10094A642 /* PTGroupDetailViewController.m in Sources */,
 				505839331590C427007C9675 /* NICommonMetrics.m in Sources */,
 				505839341590C427007C9675 /* NIDataStructures.m in Sources */,
 				505839351590C427007C9675 /* NIDebuggingTools.m in Sources */,

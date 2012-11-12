@@ -16,36 +16,55 @@
 
 #import "PTShowcaseViewController.h"
 
-#import "GMGridViewLayoutStrategies.h"
-
-// Detail
-#import "PTGroupDetailViewController.h"
 #import "PTImageAlbumViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private APIs
+////////////////////////////////////////////////////////////////////////////////
 @interface PTShowcaseView () <GMGridViewDataSource>
 
 @end
 
 @interface PTShowcaseViewController () <GMGridViewActionDelegate, PTImageAlbumViewDataSource>
 
-- (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
 - (void)dismissImageDetailViewController;
 
 @end
 
+#pragma mark - Group detail
+
+@interface PTGroupDetailViewController : PTShowcaseViewController
+
+@end
+
+@implementation PTGroupDetailViewController
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return [[self.navigationController.viewControllers objectAtIndex:0] shouldAutorotateToInterfaceOrientation:interfaceOrientation];
+}
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Class implementation
+////////////////////////////////////////////////////////////////////////////////
 @implementation PTShowcaseViewController
 
-@synthesize showcaseView = _showcaseView;
-@synthesize hidesBottomBarInDetails = _hidesBottomBarInDetails;
+#pragma mark - Initializing
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        // Custom initialization
-        _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:nil];
+    return [self initWithUniqueName:nil];
+}
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    NSAssert(nibBundleOrNil == nil, @"Initializing showcase view controller with the nib file is not supported yet!");
+
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
         _hidesBottomBarInDetails = NO;
     }
     return self;
@@ -53,38 +72,44 @@
 
 - (id)initWithUniqueName:(NSString *)uniqueName
 {
-    self = [super init];
+    self = [self initWithNibName:nil bundle:nil];
     if (self) {
-        // Custom initialization
         _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:uniqueName];
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark - View lifecycle
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    self.showcaseView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-    self.showcaseView.centerGrid = NO;
-    [self setupShowcaseViewForInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    if (self.nibName) {
+        // although documentation states that custom implementation of this method
+        // should not call super, it is easier than loading nib on my own, because
+        // I'm too lazy! ;-)
+        [super loadView];
+    }
+    else {
+        // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#warning move to view
+        self.showcaseView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+        self.showcaseView.centerGrid = NO;
+//#warning remove duplicate
+//        self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+//        self.showcaseView.itemSpacing = 0;
+        // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-    self.view = self.showcaseView;
+        self.view = self.showcaseView;
+    }
 }
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if (self.showcaseView == nil) {
+        self.showcaseView = (PTShowcaseView *)self.view;
+    }
 
     if (self.showcaseView.showcaseDelegate == nil) {
         self.showcaseView.showcaseDelegate = self;
@@ -102,18 +127,45 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
+
     self.showcaseView = nil;
 }
 
+/*
+ * Prior to iOS 6, when a low-memory warning occurred, the UIViewController
+ * class purged its views if it knew it could reload or recreate them again
+ * later. If this happens, it also calls the viewWillUnload and viewDidUnload
+ * methods to give your code a chance to relinquish ownership of any objects
+ * that are associated with your view hierarchy, including objects loaded from
+ * the nib file, objects created in your viewDidLoad method, and objects created
+ * lazily at runtime and added to the view hierarchy.
+
+ * On iOS 6, views are never purged and these methods are never called. If a
+ * view controller needs to perform specific tasks when memory is low, it should
+ * override the didReceiveMemoryWarning method.
+ *
+ * This will simulate previous behavior also in iOS 6 without hurting much.
+ */
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+
+    if ([self isViewLoaded] && [self.view window] == nil) {
+        [self viewWillUnload];
+        [self setView:nil];
+        [self viewDidUnload];
+    }
+}
+
+#pragma mark - Rotation
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    
+    // Phone: any orientation except upside down
+    // Pad  : any orientation is just fine
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return interfaceOrientation == UIInterfaceOrientationPortrait || UIInterfaceOrientationIsLandscape(interfaceOrientation);
+        return interfaceOrientation =! UIInterfaceOrientationPortraitUpsideDown;
     }
     
     return YES;
@@ -121,16 +173,16 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [self setupShowcaseViewForInterfaceOrientation:toInterfaceOrientation];
+    [self.showcaseView setNeedsLayout];
+//#warning remove duplicate
+//    self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+//    self.showcaseView.itemSpacing = 0;
 }
 
-#pragma mark - Private
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#warning move to view
 
-- (void)setupShowcaseViewForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    self.showcaseView.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.showcaseView.itemSpacing = 0;
-}
+#pragma mark - ()
 
 - (void)dismissImageDetailViewController
 {
@@ -300,5 +352,7 @@
     NSAssert(NO, @"missing required method implementation 'showcaseView:pathForItemAtIndex:'");
     abort();
 }
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 @end

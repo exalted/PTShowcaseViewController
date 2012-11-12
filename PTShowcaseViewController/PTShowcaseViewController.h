@@ -20,9 +20,8 @@
 
 @interface PTShowcaseViewController : UIViewController <PTShowcaseViewDelegate, PTShowcaseViewDataSource>
 
-@property (nonatomic, retain) PTShowcaseView *showcaseView;
-
-@property (nonatomic, assign) BOOL hidesBottomBarInDetails;
+@property (retain, nonatomic) PTShowcaseView *showcaseView;
+@property (assign, nonatomic) BOOL hidesBottomBarInDetails;
 
 - (id)initWithUniqueName:(NSString *)uniqueName;
 

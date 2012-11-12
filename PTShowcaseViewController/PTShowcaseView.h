@@ -16,17 +16,60 @@
 
 #import "GMGridView.h"
 
-#import "PTShowcase.h"
+@class PTShowcaseView;
 
-#import "PTShowcaseViewDelegate.h"
-#import "PTShowcaseViewDataSource.h"
+typedef enum {
+    PTItemOrientationPortrait,
+    PTItemOrientationLandscape,
+} PTItemOrientation;
 
+typedef enum {
+    PTContentTypeGroup,
+    PTContentTypeImage,
+    PTContentTypeVideo,
+    PTContentTypePdf,
+} PTContentType;
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Delegate protocol definition
+////////////////////////////////////////////////////////////////////////////////
+@protocol PTShowcaseViewDelegate <NSObject>
+
+@optional
+- (PTItemOrientation)showcaseView:(PTShowcaseView *)showcaseView orientationForItemAtIndex:(NSInteger)index;
+
+- (void)showcaseView:(PTShowcaseView *)showcaseView didPrepareReusableThumbnailView:(UIView *)view forContentType:(PTContentType)contentType andOrientation:(PTItemOrientation)orientation;
+- (void)showcaseView:(PTShowcaseView *)showcaseView willDisplayThumbnailView:(UIView *)view forItemAtIndex:(NSInteger)index;
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Data source protocol definition
+////////////////////////////////////////////////////////////////////////////////
+@protocol PTShowcaseViewDataSource <NSObject>
+
+@required
+- (NSInteger)numberOfItemsInShowcaseView:(PTShowcaseView *)showcaseView;
+- (PTContentType)showcaseView:(PTShowcaseView *)showcaseView contentTypeForItemAtIndex:(NSInteger)index;
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView pathForItemAtIndex:(NSInteger)index;
+
+@optional
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView uniqueNameForItemAtIndex:(NSInteger)index;
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView sourceForThumbnailImageOfItemAtIndex:(NSInteger)index;
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView textForItemAtIndex:(NSInteger)index;
+- (NSString *)showcaseView:(PTShowcaseView *)showcaseView detailTextForItemAtIndex:(NSInteger)index;
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Class interface
+////////////////////////////////////////////////////////////////////////////////
 @interface PTShowcaseView : GMGridView
 
-@property (nonatomic, assign) id<PTShowcaseViewDelegate> showcaseDelegate;
-@property (nonatomic, assign) id<PTShowcaseViewDataSource> showcaseDataSource;
+@property (assign, nonatomic) id<PTShowcaseViewDelegate> showcaseDelegate;
+@property (assign, nonatomic) id<PTShowcaseViewDataSource> showcaseDataSource;
 
-@property (nonatomic, retain, readonly) NSString *uniqueName;
+@property (retain, nonatomic, readonly) NSString *uniqueName;
 
 @property (nonatomic, readonly) NSArray *imageItems;
 

@@ -17,10 +17,7 @@
 #import "PTShowcaseView.h"
 
 #import "GMGridView.h"
-
-// Thumbnail
-#import "PTVideoThumbnailImageView.h"
-#import "PTPdfThumbnailImageView.h"
+#import "NINetworkImageView.h"
 
 typedef enum {
     PTShowcaseTagThumbnail  = 10,
@@ -28,6 +25,9 @@ typedef enum {
     PTShowcaseTagDetailText = 30,
 } PTShowcaseTag;
 
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private APIs
+////////////////////////////////////////////////////////////////////////////////
 @interface PTShowcaseView () <GMGridViewDataSource> {
     NSMutableArray *_cachedData;
     NSArray *_imageItems;
@@ -43,12 +43,88 @@ typedef enum {
 
 @end
 
+#pragma mark - Video thumbnail
+
+@interface PTVideoThumbnailImageView : NINetworkImageView
+
+@property (assign, nonatomic) PTItemOrientation orientation;
+
++ (UIImage *)applyMask:(UIImage *)image forOrientation:(PTItemOrientation)orientation;
+
+@end
+
+@implementation PTVideoThumbnailImageView
+
++ (UIImage *)applyMask:(UIImage *)image forOrientation:(PTItemOrientation)orientation
+{
+    CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/video-mask.png"] CGImage];
+    CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
+                                           CGImageGetHeight(maskImageRef),
+                                           CGImageGetBitsPerComponent(maskImageRef),
+                                           CGImageGetBitsPerPixel(maskImageRef),
+                                           CGImageGetBytesPerRow(maskImageRef),
+                                           CGImageGetDataProvider(maskImageRef),
+                                           NULL,
+                                           NO);
+    CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], maskRef);
+    CGImageRelease(maskRef);
+
+    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
+    CGImageRelease(maskedImageRef);
+
+    return maskedImage;
+}
+
+- (void)networkImageViewDidLoadImage:(UIImage *)image {
+    self.image = [PTVideoThumbnailImageView applyMask:image forOrientation:self.orientation];
+}
+
+@end
+
+#pragma mark - Pdf thumbnail
+
+@interface PTPdfThumbnailImageView : NINetworkImageView
+
+@property (assign, nonatomic) PTItemOrientation orientation;
+
++ (UIImage *)applyMask:(UIImage *)image forOrientation:(PTItemOrientation)orientation;
+
+@end
+
+@implementation PTPdfThumbnailImageView
+
++ (UIImage *)applyMask:(UIImage *)image forOrientation:(PTItemOrientation)orientation
+{
+    CGImageRef maskImageRef = [[UIImage imageNamed:@"PTShowcase.bundle/document-mask.png"] CGImage];
+    CGImageRef maskRef = CGImageMaskCreate(CGImageGetWidth(maskImageRef),
+                                           CGImageGetHeight(maskImageRef),
+                                           CGImageGetBitsPerComponent(maskImageRef),
+                                           CGImageGetBitsPerPixel(maskImageRef),
+                                           CGImageGetBytesPerRow(maskImageRef),
+                                           CGImageGetDataProvider(maskImageRef),
+                                           NULL,
+                                           NO);
+    CGImageRef maskedImageRef = CGImageCreateWithMask([image CGImage], maskRef);
+    CGImageRelease(maskRef);
+
+    UIImage *maskedImage = [UIImage imageWithCGImage:maskedImageRef];
+    CGImageRelease(maskedImageRef);
+
+    return maskedImage;
+}
+
+- (void)networkImageViewDidLoadImage:(UIImage *)image {
+    self.image = [PTPdfThumbnailImageView applyMask:image forOrientation:self.orientation];
+}
+
+@end
+
+////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Class implementation
+////////////////////////////////////////////////////////////////////////////////
 @implementation PTShowcaseView
 
-@synthesize showcaseDelegate = _showcaseDelegate;
-@synthesize showcaseDataSource = _showcaseDataSource;
-
-@synthesize uniqueName = _uniqueName;
+#pragma mark Initializing
 
 - (id)initWithUniqueName:(NSString *)uniqueName
 {
@@ -60,7 +136,7 @@ typedef enum {
     return self;
 }
 
-#pragma mark - Instance properties
+#pragma mark Instance properties
 
 // TODO replace with much better 'imageItemsForContentType:'
 - (NSArray *)imageItems
@@ -82,7 +158,7 @@ typedef enum {
     return _imageItems;
 }
 
-#pragma mark - Instance methods
+#pragma mark Instance methods
 
 - (NSInteger)numberOfItems
 {
@@ -512,7 +588,7 @@ typedef enum {
     return cell;
 }
 
-#pragma mark - GMGridViewDataSource
+#pragma mark GMGridViewDataSource
 
 - (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView
 {
