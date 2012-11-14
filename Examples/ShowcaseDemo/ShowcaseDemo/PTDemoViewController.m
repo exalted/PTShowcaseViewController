@@ -18,7 +18,7 @@
 
 @interface PTDemoViewController ()
 
-@property (nonatomic, readonly) NSArray *demoItems;
+@property (retain, nonatomic, readonly) NSArray *demoItems;
 
 - (NSArray *)recursiveSearchForItems:(NSArray *)root forUniqueName:(NSString *)uniqueName;
 

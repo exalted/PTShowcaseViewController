@@ -71,7 +71,7 @@ typedef enum {
 
 @property (retain, nonatomic, readonly) NSString *uniqueName;
 
-@property (nonatomic, readonly) NSArray *imageItems;
+@property (retain, nonatomic, readonly) NSArray *imageItems;
 
 - (id)initWithUniqueName:(NSString *)uniqueName;
 
