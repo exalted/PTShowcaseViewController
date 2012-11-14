@@ -65,7 +65,7 @@
 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _hidesBottomBarInDetails = NO;
+        self.hidesBottomBarInDetails = NO;
     }
     return self;
 }
@@ -74,7 +74,7 @@
 {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
-        _showcaseView = [[PTShowcaseView alloc] initWithUniqueName:uniqueName];
+        self.showcaseView = [[PTShowcaseView alloc] initWithUniqueName:uniqueName];
     }
     return self;
 }

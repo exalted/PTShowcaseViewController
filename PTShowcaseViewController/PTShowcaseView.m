@@ -29,9 +29,14 @@ typedef enum {
 #pragma mark - Private APIs
 ////////////////////////////////////////////////////////////////////////////////
 @interface PTShowcaseView () <GMGridViewDataSource> {
-    NSMutableArray *_cachedData;
-    NSArray *_imageItems;
+    NSArray *_imageItems; // ivar used in custom setter method
 }
+
+@property (retain, nonatomic, readwrite) NSString *uniqueName;
+
+@property (retain, nonatomic, readwrite) NSArray *imageItems;
+
+@property (retain, nonatomic) NSMutableArray *cachedData;
 
 // Supported cells for content types
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView reusableCellForContentType:(PTContentType)contentType withOrientation:(PTItemOrientation)orientation;
@@ -130,12 +135,12 @@ typedef enum {
 {
     self = [super init];
     if (self) {
+        self.uniqueName = uniqueName;
+
         self.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
         self.centerGrid = NO;
         self.minEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         self.itemSpacing = 0;
-
-        _uniqueName = uniqueName;
     }
     return self;
 }
@@ -156,7 +161,7 @@ typedef enum {
             [self sourceForThumbnailImageOfItemAtIndex:i];
             [self textForItemAtIndex:i];
         }
-        _imageItems = [_cachedData filteredArrayUsingPredicate:
+        _imageItems = [self.cachedData filteredArrayUsingPredicate:
                        [NSPredicate predicateWithFormat:@"contentType = %d", PTContentTypeImage]];
     }
     return _imageItems;
@@ -166,29 +171,29 @@ typedef enum {
 
 - (NSInteger)numberOfItems
 {
-    if (_cachedData == nil) {
+    if (self.cachedData == nil) {
         NSInteger numberOfItems = [self.showcaseDataSource numberOfItemsInShowcaseView:self];
-        _cachedData = [[NSMutableArray alloc] initWithCapacity:numberOfItems];
+        self.cachedData = [[NSMutableArray alloc] initWithCapacity:numberOfItems];
         for (NSInteger i = 0; i < numberOfItems; i++) {
-            [_cachedData addObject:[NSMutableDictionary dictionary]];
+            [self.cachedData addObject:[NSMutableDictionary dictionary]];
         }
     }
-    return [_cachedData count];
+    return [self.cachedData count];
 }
 
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index
 {
-    NSNumber *contentType = [[_cachedData objectAtIndex:index] objectForKey:@"contentType"];
+    NSNumber *contentType = [[self.cachedData objectAtIndex:index] objectForKey:@"contentType"];
     if (contentType == nil) {
         contentType = [NSNumber numberWithInteger:[self.showcaseDataSource showcaseView:self contentTypeForItemAtIndex:index]];
-        [[_cachedData objectAtIndex:index] setObject:contentType forKey:@"contentType"];
+        [[self.cachedData objectAtIndex:index] setObject:contentType forKey:@"contentType"];
     }
     return [contentType integerValue];
 }
 
 - (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index
 {
-    NSNumber *orientation = [[_cachedData objectAtIndex:index] objectForKey:@"orientation"];
+    NSNumber *orientation = [[self.cachedData objectAtIndex:index] objectForKey:@"orientation"];
     if (orientation == nil) {
         if ([self.showcaseDelegate respondsToSelector:@selector(showcaseView:orientationForItemAtIndex:)]) {
             orientation = [NSNumber numberWithInteger:[self.showcaseDelegate showcaseView:self orientationForItemAtIndex:index]];
@@ -197,7 +202,7 @@ typedef enum {
             orientation = [NSNumber numberWithInteger:PTItemOrientationPortrait];
         }
 
-        [[_cachedData objectAtIndex:index] setObject:orientation forKey:@"orientation"];
+        [[self.cachedData objectAtIndex:index] setObject:orientation forKey:@"orientation"];
     }
 
     return [orientation integerValue];
@@ -205,60 +210,60 @@ typedef enum {
 
 - (NSString *)uniqueNameForItemAtIndex:(NSInteger)index
 {
-    id uniqueName = [[_cachedData objectAtIndex:index] objectForKey:@"uniqueName"];
+    id uniqueName = [[self.cachedData objectAtIndex:index] objectForKey:@"uniqueName"];
     if (uniqueName == nil) {
         uniqueName = [self.showcaseDataSource showcaseView:self uniqueNameForItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:(uniqueName ? uniqueName : [NSNull null]) forKey:@"uniqueName"];
+        [[self.cachedData objectAtIndex:index] setObject:(uniqueName ? uniqueName : [NSNull null]) forKey:@"uniqueName"];
     }
     return uniqueName == [NSNull null] ? nil : uniqueName;
 }
 
 - (NSString *)pathForItemAtIndex:(NSInteger)index
 {
-    id path = [[_cachedData objectAtIndex:index] objectForKey:@"path"];
+    id path = [[self.cachedData objectAtIndex:index] objectForKey:@"path"];
     if (path == nil) {
         path = [self.showcaseDataSource showcaseView:self pathForItemAtIndex:index];
         NSAssert([path hasPrefix:@"/"], @"path should be a valid non-relative (absolute) system path.");
-        [[_cachedData objectAtIndex:index] setObject:(path ? path : [NSNull null]) forKey:@"path"];
+        [[self.cachedData objectAtIndex:index] setObject:(path ? path : [NSNull null]) forKey:@"path"];
     }
     return path == [NSNull null] ? nil : path;
 }
 
 - (NSString *)sourceForThumbnailImageOfItemAtIndex:(NSInteger)index
 {
-    id source = [[_cachedData objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
+    id source = [[self.cachedData objectAtIndex:index] objectForKey:@"thumbnailImageSource"];
     if (source == nil) {
         // TODO if optional 'showcaseView:sourceForThumbnailImageOfItemAtIndex:' wasn't implemented in data source use original image path instead?
         source = [self.showcaseDataSource showcaseView:self sourceForThumbnailImageOfItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"thumbnailImageSource"];
+        [[self.cachedData objectAtIndex:index] setObject:(source ? source : [NSNull null]) forKey:@"thumbnailImageSource"];
     }
     return source == [NSNull null] ? nil : source;
 }
 
 - (NSString *)textForItemAtIndex:(NSInteger)index
 {
-    id text = [[_cachedData objectAtIndex:index] objectForKey:@"text"];
+    id text = [[self.cachedData objectAtIndex:index] objectForKey:@"text"];
     if (text == nil) {
         text = [self.showcaseDataSource showcaseView:self textForItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:(text ? text : [NSNull null]) forKey:@"text"];
+        [[self.cachedData objectAtIndex:index] setObject:(text ? text : [NSNull null]) forKey:@"text"];
     }
     return text == [NSNull null] ? nil : text;
 }
 
 - (NSString *)detailTextForItemAtIndex:(NSInteger)index
 {
-    id text = [[_cachedData objectAtIndex:index] objectForKey:@"detailText"];
+    id text = [[self.cachedData objectAtIndex:index] objectForKey:@"detailText"];
     if (text == nil) {
         text = [self.showcaseDataSource showcaseView:self detailTextForItemAtIndex:index];
-        [[_cachedData objectAtIndex:index] setObject:(text ? text : [NSNull null]) forKey:@"detailText"];
+        [[self.cachedData objectAtIndex:index] setObject:(text ? text : [NSNull null]) forKey:@"detailText"];
     }
     return text == [NSNull null] ? nil : text;
 }
 
 - (NSInteger)indexForItemAtRelativeIndex:(NSInteger)relativeIndex withContentType:(PTContentType)contentType
 {
-    for (NSInteger i = 0; i < [_cachedData count]; i++) {
-        if ([[[_cachedData objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType && --relativeIndex < 0) {
+    for (NSInteger i = 0; i < [self.cachedData count]; i++) {
+        if ([[[self.cachedData objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType && --relativeIndex < 0) {
             return i;
         }
     }
@@ -271,7 +276,7 @@ typedef enum {
     // TODO use NSNotFound instead?
     NSInteger relativeIndex = -1;
     for (NSInteger i = 0; i <= index; i++) {
-        if ([[[_cachedData objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType) {
+        if ([[[self.cachedData objectAtIndex:i] objectForKey:@"contentType"] integerValue] == contentType) {
             relativeIndex++;
         }
     }
@@ -280,8 +285,8 @@ typedef enum {
 
 - (void)reloadData
 {
-    _cachedData = nil;
-    _imageItems = nil;
+    self.cachedData = nil;
+    self.imageItems = nil;
     [super reloadData];
 }
 
