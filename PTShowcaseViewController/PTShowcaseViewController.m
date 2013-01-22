@@ -169,6 +169,12 @@
 
 - (void)dismissImageDetailViewController
 {
+    UINavigationController *navCtrl = (UINavigationController *)self.presentedViewController;
+    PTImageAlbumViewController *imageAlbumViewController = (PTImageAlbumViewController *)[[navCtrl viewControllers] objectAtIndex:0];
+    NSInteger relativeIndex = imageAlbumViewController.photoAlbumView.centerPageIndex;
+    NSInteger index = [self.showcaseView indexForItemAtRelativeIndex:relativeIndex withContentType:PTContentTypeImage];
+    [self.showcaseView scrollToObjectAtIndex:index atScrollPosition:GMGridViewScrollPositionTop animated:NO];
+
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -207,7 +213,7 @@
             detailViewController.imageAlbumView.imageAlbumDataSource = self;
 
             detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            
+
             [detailViewController.navigationItem setLeftBarButtonItem:
              [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                            target:self
