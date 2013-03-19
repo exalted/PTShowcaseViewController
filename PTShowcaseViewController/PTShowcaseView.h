@@ -80,6 +80,8 @@ typedef enum {
 - (PTContentType)contentTypeForItemAtIndex:(NSInteger)index;
 - (PTItemOrientation)orientationForItemAtIndex:(NSInteger)index;
 
+- (CGSize)sizeForThumbnailImageOfItemAtIndex:(NSInteger)index;
+
 - (NSString *)pathForItemAtIndex:(NSInteger)index;
 
 - (NSString *)uniqueNameForItemAtIndex:(NSInteger)index;
