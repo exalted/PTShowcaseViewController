@@ -335,7 +335,9 @@ typedef enum {
             thumbnailImageSize = [NSValue valueWithCGSize:CGSizeZero];
         }
 
-        [[self.cachedData objectAtIndex:index] setObject:thumbnailImageSize forKey:@"thumbnailImageSize"];
+        if (thumbnailImageSize) {
+            [[self.cachedData objectAtIndex:index] setObject:thumbnailImageSize forKey:@"thumbnailImageSize"];
+        }
     }
 
     return [thumbnailImageSize CGSizeValue];
