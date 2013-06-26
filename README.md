@@ -2,7 +2,7 @@ How To Get It
 =============
 
 ```bash
-$ git clone --recursive git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
+$ git clone --recursive https://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
 $ open PTShowcaseViewController-exalted/Examples/ShowcaseDemo/ShowcaseDemo.xcodeproj
 ```
 
