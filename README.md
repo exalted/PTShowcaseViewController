@@ -2,11 +2,8 @@ How To Get It
 =============
 
 ```bash
-$ cd <somewhere>
-$ git clone git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
-$ cd PTShowcaseViewController-exalted/
-$ git submodule update --init --recursive
-$ open Examples/ShowcaseDemo/ShowcaseDemo.xcodeproj
+$ git clone --recursive git://github.com/exalted/PTShowcaseViewController.git PTShowcaseViewController-exalted
+$ open PTShowcaseViewController-exalted/Examples/ShowcaseDemo/ShowcaseDemo.xcodeproj
 ```
 
 Screenshots
