@@ -142,9 +142,7 @@
     [super didReceiveMemoryWarning];
 
     if ([self isViewLoaded] && [self.view window] == nil) {
-        [self viewWillUnload];
         [self setView:nil];
-        [self viewDidUnload];
     }
 }
 
@@ -277,19 +275,20 @@
                 url = [NSURL URLWithString:path];
             }
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-            
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:url];
-            document.title = text;
 
-            PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
-            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            detailViewController.backgroundColor = self.view.backgroundColor;
-            
-            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+#warning TODO Missing implementation
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:url];
+//            document.title = text;
+//
+//            PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
+//            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//            detailViewController.backgroundColor = self.view.backgroundColor;
+//            
+//            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+//
+//            // TODO zoom in/out (just like in Photos.app in the iPad)
+//            [self presentViewController:navCtrl animated:YES completion:NULL];
 
-            // TODO zoom in/out (just like in Photos.app in the iPad)
-            [self presentViewController:navCtrl animated:YES completion:NULL];
-            
             break;
         }
             

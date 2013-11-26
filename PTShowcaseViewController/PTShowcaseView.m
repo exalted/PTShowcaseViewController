@@ -486,8 +486,8 @@ typedef enum {
         UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 80.0, 80.0, 20.0)];
         textLabel.tag = PTShowcaseTagText;
         textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-        textLabel.textAlignment = UITextAlignmentCenter;
-        textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        textLabel.textAlignment = NSTextAlignmentCenter;
+        textLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         textLabel.textColor = [UIColor whiteColor];
         textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
         textLabel.shadowColor = [UIColor blackColor];
@@ -499,8 +499,8 @@ typedef enum {
         UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 256.0, 256.0, 20.0)];
         textLabel.tag = PTShowcaseTagText;
         textLabel.font = [UIFont boldSystemFontOfSize:12.0];
-        textLabel.textAlignment = UITextAlignmentCenter;
-        textLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        textLabel.textAlignment = NSTextAlignmentCenter;
+        textLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         textLabel.textColor = [UIColor whiteColor];
         textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
         textLabel.shadowColor = [UIColor blackColor];
@@ -512,8 +512,8 @@ typedef enum {
         detailTextLabel.tag = PTShowcaseTagDetailText;
         detailTextLabel.numberOfLines = 2;
         detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-        detailTextLabel.textAlignment = UITextAlignmentCenter;
-        detailTextLabel.lineBreakMode = UILineBreakModeTailTruncation;
+        detailTextLabel.textAlignment = NSTextAlignmentCenter;
+        detailTextLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         detailTextLabel.textColor = [UIColor whiteColor];
         detailTextLabel.shadowOffset = CGSizeMake(0.0, 1.0);
         detailTextLabel.shadowColor = [UIColor blackColor];
