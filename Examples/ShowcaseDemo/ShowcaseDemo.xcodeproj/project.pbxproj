@@ -80,7 +80,6 @@
 		50E92A6216403D57003D6A22 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */; };
 		50E92A6316403D57003D6A22 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5D16403D57003D6A22 /* LICENSE */; };
 		50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */; };
-		50E92A6516403D57003D6A22 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5F16403D57003D6A22 /* PSPDFKit.xcconfig */; };
 		50E92A6616403D57003D6A22 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A6016403D57003D6A22 /* VERSION */; };
 		50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1914E3D44300F28648 /* UIKit.framework */; };
 		50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1B14E3D44300F28648 /* Foundation.framework */; };
@@ -649,7 +648,7 @@
 		50FC0D0C14E3D44300F28648 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Apex-net srl";
 			};
 			buildConfigurationList = 50FC0D0F14E3D44300F28648 /* Build configuration list for PBXProject "ShowcaseDemo" */;
@@ -683,7 +682,6 @@
 				50E92A6216403D57003D6A22 /* ACKNOWLEDGEMENTS in Resources */,
 				50E92A6316403D57003D6A22 /* LICENSE in Resources */,
 				50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */,
-				50E92A6516403D57003D6A22 /* PSPDFKit.xcconfig in Resources */,
 				50E92A6616403D57003D6A22 /* VERSION in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -776,6 +774,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -789,6 +791,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Libraries/GMGridView/GMGridView\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -803,12 +806,17 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Libraries/GMGridView/GMGridView\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
