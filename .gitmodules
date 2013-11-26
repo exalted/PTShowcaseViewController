@@ -1,0 +1,3 @@
+[submodule "Libraries/PTImageAlbumViewController"]
+	path = Libraries/PTImageAlbumViewController
+	url = https://github.com/exalted/PTImageAlbumViewController.git

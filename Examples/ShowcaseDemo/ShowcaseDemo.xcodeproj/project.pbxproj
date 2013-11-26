@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35C941D057EC4339BA936546 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A602895C9445788B0A0957 /* libPods.a */; };
 		5088D9CD1521EC0700A1A9DE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9CC1521EC0700A1A9DE /* CoreText.framework */; };
 		5088D9CF1521EC1800A1A9DE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9CE1521EC1800A1A9DE /* MessageUI.framework */; };
 		5088D9D11521EC2400A1A9DE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088D9D01521EC2400A1A9DE /* libz.dylib */; };
@@ -21,12 +22,11 @@
 		50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */; };
 		50A601AE14F556A3002076AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A601AD14F556A3002076AB /* MediaPlayer.framework */; };
 		50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */; };
+		50ACF7281844E4EB00DEB286 /* PT_CaptionedPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACF71F1844E4EB00DEB286 /* PT_CaptionedPhotoView.m */; };
+		50ACF7291844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACF7211844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.m */; };
+		50ACF72A1844E4EB00DEB286 /* PTImageAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACF7231844E4EB00DEB286 /* PTImageAlbumView.m */; };
+		50ACF72B1844E4EB00DEB286 /* PTImageAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ACF7251844E4EB00DEB286 /* PTImageAlbumViewController.m */; };
 		50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50DE74F214E964FE0070F1FE /* PTShowcase.bundle */; };
-		50E92A6116403D57003D6A22 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E92A5A16403D57003D6A22 /* PSPDFKit.framework */; };
-		50E92A6216403D57003D6A22 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */; };
-		50E92A6316403D57003D6A22 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5D16403D57003D6A22 /* LICENSE */; };
-		50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */; };
-		50E92A6616403D57003D6A22 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 50E92A6016403D57003D6A22 /* VERSION */; };
 		50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1914E3D44300F28648 /* UIKit.framework */; };
 		50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1B14E3D44300F28648 /* Foundation.framework */; };
 		50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */; };
@@ -54,13 +54,17 @@
 		50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShowcaseDemo.plist; sourceTree = "<group>"; };
 		50A601AD14F556A3002076AB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		50A601AF14F55D99002076AB /* ShowcaseDemo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShowcaseDemo.bundle; sourceTree = "<group>"; };
+		50ACF71E1844E4EB00DEB286 /* PT_CaptionedPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PT_CaptionedPhotoView.h; sourceTree = "<group>"; };
+		50ACF71F1844E4EB00DEB286 /* PT_CaptionedPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PT_CaptionedPhotoView.m; sourceTree = "<group>"; };
+		50ACF7201844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PT_NetworkPhotoAlbumViewController.h; sourceTree = "<group>"; };
+		50ACF7211844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PT_NetworkPhotoAlbumViewController.m; sourceTree = "<group>"; };
+		50ACF7221844E4EB00DEB286 /* PTImageAlbumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumView.h; sourceTree = "<group>"; };
+		50ACF7231844E4EB00DEB286 /* PTImageAlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumView.m; sourceTree = "<group>"; };
+		50ACF7241844E4EB00DEB286 /* PTImageAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewController.h; sourceTree = "<group>"; };
+		50ACF7251844E4EB00DEB286 /* PTImageAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTImageAlbumViewController.m; sourceTree = "<group>"; };
+		50ACF7261844E4EB00DEB286 /* PTImageAlbumViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewDataSource.h; sourceTree = "<group>"; };
+		50ACF7271844E4EB00DEB286 /* PTImageAlbumViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTImageAlbumViewDelegate.h; sourceTree = "<group>"; };
 		50DE74F214E964FE0070F1FE /* PTShowcase.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PTShowcase.bundle; sourceTree = "<group>"; };
-		50E92A5A16403D57003D6A22 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
-		50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
-		50E92A5D16403D57003D6A22 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
-		50E92A5F16403D57003D6A22 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
-		50E92A6016403D57003D6A22 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		50FC0D1514E3D44300F28648 /* ShowcaseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowcaseDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50FC0D1914E3D44300F28648 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50FC0D1B14E3D44300F28648 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +75,8 @@
 		50FC0D2714E3D44300F28648 /* ShowcaseDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShowcaseDemo-Prefix.pch"; sourceTree = "<group>"; };
 		50FC0D2814E3D44300F28648 /* PTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTAppDelegate.h; sourceTree = "<group>"; };
 		50FC0D2914E3D44300F28648 /* PTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PTAppDelegate.m; sourceTree = "<group>"; };
+		581873E944F84A2DAC74BB81 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C8A602895C9445788B0A0957 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +95,7 @@
 				50FC0D1A14E3D44300F28648 /* UIKit.framework in Frameworks */,
 				50FC0D1C14E3D44300F28648 /* Foundation.framework in Frameworks */,
 				50FC0D1E14E3D44300F28648 /* CoreGraphics.framework in Frameworks */,
-				50E92A6116403D57003D6A22 /* PSPDFKit.framework in Frameworks */,
+				35C941D057EC4339BA936546 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,26 +123,31 @@
 			path = ../../PTShowcaseViewController;
 			sourceTree = "<group>";
 		};
-		50E92A5916403D57003D6A22 /* PSPDFKit.embeddedframework */ = {
+		50ACF6E91844E4D700DEB286 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				50E92A5A16403D57003D6A22 /* PSPDFKit.framework */,
-				50E92A5B16403D57003D6A22 /* Resources */,
+				50ACF71D1844E4EB00DEB286 /* PTImageAlbumViewController */,
 			);
-			name = PSPDFKit.embeddedframework;
-			path = ../../Libraries/PSPDFKit/PSPDFKit.embeddedframework;
+			name = Libraries;
+			path = ../../Libraries;
 			sourceTree = "<group>";
 		};
-		50E92A5B16403D57003D6A22 /* Resources */ = {
+		50ACF71D1844E4EB00DEB286 /* PTImageAlbumViewController */ = {
 			isa = PBXGroup;
 			children = (
-				50E92A5C16403D57003D6A22 /* ACKNOWLEDGEMENTS */,
-				50E92A5D16403D57003D6A22 /* LICENSE */,
-				50E92A5E16403D57003D6A22 /* PSPDFKit.bundle */,
-				50E92A5F16403D57003D6A22 /* PSPDFKit.xcconfig */,
-				50E92A6016403D57003D6A22 /* VERSION */,
+				50ACF71E1844E4EB00DEB286 /* PT_CaptionedPhotoView.h */,
+				50ACF71F1844E4EB00DEB286 /* PT_CaptionedPhotoView.m */,
+				50ACF7201844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.h */,
+				50ACF7211844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.m */,
+				50ACF7221844E4EB00DEB286 /* PTImageAlbumView.h */,
+				50ACF7231844E4EB00DEB286 /* PTImageAlbumView.m */,
+				50ACF7241844E4EB00DEB286 /* PTImageAlbumViewController.h */,
+				50ACF7251844E4EB00DEB286 /* PTImageAlbumViewController.m */,
+				50ACF7261844E4EB00DEB286 /* PTImageAlbumViewDataSource.h */,
+				50ACF7271844E4EB00DEB286 /* PTImageAlbumViewDelegate.h */,
 			);
-			path = Resources;
+			name = PTImageAlbumViewController;
+			path = PTImageAlbumViewController/PTImageAlbumViewController;
 			sourceTree = "<group>";
 		};
 		50FC0D0A14E3D44300F28648 = {
@@ -144,8 +155,10 @@
 			children = (
 				50FC0D1F14E3D44300F28648 /* ShowcaseDemo */,
 				50A7967014E3D95E002B9117 /* PTShowcaseViewController */,
+				50ACF6E91844E4D700DEB286 /* Libraries */,
 				50FC0D1814E3D44300F28648 /* Frameworks */,
 				50FC0D1614E3D44300F28648 /* Products */,
+				581873E944F84A2DAC74BB81 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,7 +173,6 @@
 		50FC0D1814E3D44300F28648 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				50E92A5916403D57003D6A22 /* PSPDFKit.embeddedframework */,
 				5088D9D61521EC3E00A1A9DE /* AVFoundation.framework */,
 				5088D9D41521EC3100A1A9DE /* CoreMedia.framework */,
 				5088D9D21521EC2B00A1A9DE /* ImageIO.framework */,
@@ -172,6 +184,7 @@
 				50FC0D1D14E3D44300F28648 /* CoreGraphics.framework */,
 				5093F25414E538A5004DC805 /* QuartzCore.framework */,
 				50A601AD14F556A3002076AB /* MediaPlayer.framework */,
+				C8A602895C9445788B0A0957 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 50FC0D2D14E3D44300F28648 /* Build configuration list for PBXNativeTarget "ShowcaseDemo" */;
 			buildPhases = (
+				74B5FAB50DF8441A94450DD2 /* Check Pods Manifest.lock */,
 				50FC0D1114E3D44300F28648 /* Sources */,
 				50FC0D1214E3D44300F28648 /* Frameworks */,
 				50FC0D1314E3D44300F28648 /* Resources */,
+				0D08BC736D5A4DCCA8D2356C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -258,15 +273,44 @@
 				50DE74F314E964FE0070F1FE /* PTShowcase.bundle in Resources */,
 				50A601B014F55D99002076AB /* ShowcaseDemo.bundle in Resources */,
 				50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */,
-				50E92A6216403D57003D6A22 /* ACKNOWLEDGEMENTS in Resources */,
-				50E92A6316403D57003D6A22 /* LICENSE in Resources */,
-				50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */,
-				50E92A6616403D57003D6A22 /* VERSION in Resources */,
 				509B91011844A6070084A300 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D08BC736D5A4DCCA8D2356C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74B5FAB50DF8441A94450DD2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		50FC0D1114E3D44300F28648 /* Sources */ = {
@@ -278,6 +322,10 @@
 				5093F24E14E532F1004DC805 /* PTShowcaseViewController.m in Sources */,
 				5093F25314E53496004DC805 /* PTShowcaseView.m in Sources */,
 				5093F29114E557A3004DC805 /* PTDemoViewController.m in Sources */,
+				50ACF7281844E4EB00DEB286 /* PT_CaptionedPhotoView.m in Sources */,
+				50ACF7291844E4EB00DEB286 /* PT_NetworkPhotoAlbumViewController.m in Sources */,
+				50ACF72A1844E4EB00DEB286 /* PTImageAlbumView.m in Sources */,
+				50ACF72B1844E4EB00DEB286 /* PTImageAlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,12 +404,10 @@
 		};
 		50FC0D2E14E3D44300F28648 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 581873E944F84A2DAC74BB81 /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../Libraries/PSPDFKit/PSPDFKit.embeddedframework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShowcaseDemo/ShowcaseDemo-Info.plist";
@@ -373,12 +419,10 @@
 		};
 		50FC0D2F14E3D44300F28648 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 581873E944F84A2DAC74BB81 /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../Libraries/PSPDFKit/PSPDFKit.embeddedframework\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShowcaseDemo/ShowcaseDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShowcaseDemo/ShowcaseDemo-Info.plist";

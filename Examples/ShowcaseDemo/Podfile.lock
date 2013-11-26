@@ -1,0 +1,28 @@
+PODS:
+  - GMGridView (1.1.1)
+  - Nimbus/Core (0.9.3-arc-ios7)
+  - Nimbus/NetworkImage (0.9.3-arc-ios7):
+    - Nimbus/Core
+  - Nimbus/PagingScrollView (0.9.3-arc-ios7):
+    - Nimbus/Core
+  - Nimbus/Photos (0.9.3-arc-ios7):
+    - Nimbus/Core
+    - Nimbus/PagingScrollView
+  - SDURLCache (1.2)
+
+DEPENDENCIES:
+  - GMGridView (~> 1.1.1)
+  - Nimbus/NetworkImage (from `https://gist.github.com/exalted/7655606/raw/ce27220c457984ecd30fb800503b4c299159ace0/Nimbus.podspec`)
+  - Nimbus/Photos (from `https://gist.github.com/exalted/7655606/raw/ce27220c457984ecd30fb800503b4c299159ace0/Nimbus.podspec`)
+  - SDURLCache (~> 1.2)
+
+EXTERNAL SOURCES:
+  Nimbus:
+    :podspec: https://gist.github.com/exalted/7655606/raw/ce27220c457984ecd30fb800503b4c299159ace0/Nimbus.podspec
+
+SPEC CHECKSUMS:
+  GMGridView: a17a31f010990eb8f802abb4cab50e6e03e993ea
+  Nimbus: 3b1be31a57a70bcbeafda5ee403e7e5892ba516d
+  SDURLCache: cf4dcdd0d01473c334e9338e82a8733de156ef15
+
+COCOAPODS: 0.28.0
