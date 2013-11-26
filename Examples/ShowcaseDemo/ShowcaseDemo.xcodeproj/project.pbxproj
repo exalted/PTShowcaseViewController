@@ -66,6 +66,7 @@
 		5093F25314E53496004DC805 /* PTShowcaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F25214E53496004DC805 /* PTShowcaseView.m */; };
 		5093F25514E538A5004DC805 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5093F25414E538A5004DC805 /* QuartzCore.framework */; };
 		5093F29114E557A3004DC805 /* PTDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5093F29014E557A3004DC805 /* PTDemoViewController.m */; };
+		509B91011844A6070084A300 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 509B91001844A6070084A300 /* Default-568h@2x.png */; };
 		50A2F63614F63EE0009EE464 /* ShowcaseDemo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */; };
 		50A6019D14F536E8002076AB /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019314F536E8002076AB /* GMGridView.m */; };
 		50A6019E14F536E8002076AB /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A6019514F536E8002076AB /* GMGridViewCell.m */; };
@@ -225,6 +226,7 @@
 		5093F25414E538A5004DC805 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5093F28F14E557A3004DC805 /* PTDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTDemoViewController.h; sourceTree = "<group>"; };
 		5093F29014E557A3004DC805 /* PTDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTDemoViewController.m; sourceTree = "<group>"; };
+		509B91001844A6070084A300 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		50A2F63514F63EE0009EE464 /* ShowcaseDemo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ShowcaseDemo.plist; sourceTree = "<group>"; };
 		50A6019114F536E8002076AB /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GMGridView-Constants.h"; path = "../../Libraries/GMGridView/GMGridView/GMGridView-Constants.h"; sourceTree = "<group>"; };
 		50A6019214F536E8002076AB /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GMGridView.h; path = ../../Libraries/GMGridView/GMGridView/GMGridView.h; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				50FC0D2214E3D44300F28648 /* InfoPlist.strings */,
 				50FC0D2514E3D44300F28648 /* main.m */,
 				50FC0D2714E3D44300F28648 /* ShowcaseDemo-Prefix.pch */,
+				509B91001844A6070084A300 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				50E92A6316403D57003D6A22 /* LICENSE in Resources */,
 				50E92A6416403D57003D6A22 /* PSPDFKit.bundle in Resources */,
 				50E92A6616403D57003D6A22 /* VERSION in Resources */,
+				509B91011844A6070084A300 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
