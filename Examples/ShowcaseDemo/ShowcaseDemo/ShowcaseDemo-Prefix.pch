@@ -12,8 +12,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     ////////////////////////////////////////////////////////////////////////////
-    #import "NimbusCore.h"
-    #import "NimbusPhotos.h"
-    #import "NimbusNetworkImage.h"
+    #import <Nimbus/NimbusCore.h>
+    #import <Nimbus/NimbusPhotos.h>
+    #import <Nimbus/NimbusNetworkImage.h>
     ////////////////////////////////////////////////////////////////////////////
 #endif

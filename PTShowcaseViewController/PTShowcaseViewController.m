@@ -142,9 +142,7 @@
     [super didReceiveMemoryWarning];
 
     if ([self isViewLoaded] && [self.view window] == nil) {
-        [self viewWillUnload];
         [self setView:nil];
-        [self viewDidUnload];
     }
 }
 
