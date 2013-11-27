@@ -33,6 +33,8 @@ If you have trouble, check out `Showcase` project in `Examples` directory for a 
 Screenshots
 ===========
 
+> :information_source: Please note: screenshots below are outdated. On devices that run iOS 7 navigationbars and toolbars are actually "flat" and translucent as you would expect.
+
 Screenshot 1.
 
 ![Screenshot 1.](http://exalted.github.com/PTShowcaseViewController/iPad/ss1.png "Screenshot 1.")
