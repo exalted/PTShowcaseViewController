@@ -261,6 +261,7 @@
         case PTContentTypePdf:
         {
             NSString *path = [self.showcaseView pathForItemAtIndex:position];
+            NSString *text = [self.showcaseView textForItemAtIndex:position];
 
             // TODO remove duplicate
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -279,6 +280,7 @@
 
             // Initialize Document Interaction Controller
             UIDocumentInteractionController *documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:url];
+            documentInteractionController.name = text;
             documentInteractionController.delegate = self;
                 
             // Preview PDF
