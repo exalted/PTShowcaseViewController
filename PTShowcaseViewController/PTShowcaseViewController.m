@@ -26,7 +26,9 @@
 
 @end
 
-@interface PTShowcaseViewController () <GMGridViewActionDelegate, PTImageAlbumViewDataSource>
+@interface PTShowcaseViewController () <GMGridViewActionDelegate,
+                                        PTImageAlbumViewDataSource,
+                                        UIDocumentInteractionControllerDelegate>
 
 - (void)dismissImageDetailViewController;
 
@@ -259,7 +261,6 @@
         case PTContentTypePdf:
         {
             NSString *path = [self.showcaseView pathForItemAtIndex:position];
-            NSString *text = [self.showcaseView textForItemAtIndex:position];
 
             // TODO remove duplicate
             // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -276,18 +277,12 @@
             }
             // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-#warning TODO Missing implementation
-//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:url];
-//            document.title = text;
-//
-//            PSPDFViewController *detailViewController = [[PSPDFViewController alloc] initWithDocument:document];
-//            detailViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//            detailViewController.backgroundColor = self.view.backgroundColor;
-//            
-//            UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-//
-//            // TODO zoom in/out (just like in Photos.app in the iPad)
-//            [self presentViewController:navCtrl animated:YES completion:NULL];
+            // Initialize Document Interaction Controller
+            UIDocumentInteractionController *documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:url];
+            documentInteractionController.delegate = self;
+                
+            // Preview PDF
+            [documentInteractionController presentPreviewAnimated:YES];
 
             break;
         }
@@ -339,6 +334,13 @@
 {
     NSAssert(NO, @"missing required method implementation 'showcaseView:pathForItemAtIndex:'");
     abort();
+}
+
+#pragma mark - UIDocumentInteractionControllerDelegate
+
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self;
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
